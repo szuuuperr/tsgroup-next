@@ -29,9 +29,10 @@
   overflow: visible;
 }
 
-.description {
+.description p {
+  font-size: var(--fs-body);
   color: var(--primary);
-  line-height: 1.5;
+  line-height: var(--lh-base);
   text-align: justify;
 }
 
@@ -88,11 +89,19 @@
     width: 100%;
     flex-shrink: 1;
   }
+
+  .description p {
+    font-size: 0.9375rem; /* 15px */
+  }
 }
 
 @media (max-width: 30rem) /* 480px */ {
   .whyChooseUsSection {
     padding: 2.5rem 2rem; /* 40px 32px */
+  }
+
+  .description p {
+    font-size: 0.875rem; /* 14px */
   }
 
   .whyChooseUsLeft {

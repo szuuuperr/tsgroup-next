@@ -15,9 +15,10 @@
   overflow: visible;
 }
 
-.description {
+.description p {
+  font-size: var(--fs-body);
   color: var(--primary);
-  line-height: 1.5;
+  line-height: var(--lh-base);
   text-align: justify;
 }
 
@@ -78,6 +79,10 @@
     flex-shrink: 1;
   }
 
+  .description p {
+    font-size: 0.9375rem; /* 15px */
+  }
+
   .introductionRight {
     height: 15.625rem; /* 250px */
     width: 100%;
@@ -91,6 +96,10 @@
 @media (max-width: 30rem) /* 480px */ {
   .introductionSection {
     padding: 2.5rem 2rem; /* 40px 32px */
+  }
+
+  .description p {
+    font-size: 0.875rem; /* 14px */
   }
 
   .introductionRight {

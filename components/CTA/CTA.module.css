@@ -93,6 +93,14 @@
     text-align: center;
   }
 
+  .ctaLeft {
+    align-items: center;
+  }
+
+  .ctaTitle {
+    font-size: 1.875rem; /* 30px */
+  }
+
   .ctaRight {
     width: 100%;
     max-width: 28.125rem; /* 450px */
@@ -113,5 +121,35 @@
 
   .ctaContainer::before {
     border-radius: 1.5rem; /* 24px */
+  }
+
+  .ctaLeft {
+    align-items: center;
+  }
+
+  .ctaTitle {
+    font-size: 1.625rem; /* 26px */
+  }
+
+  .ctaDescription {
+    font-size: 0.9375rem; /* 15px */
+  }
+}
+
+@media (max-width: 30rem) /* 480px */ {
+  .ctaLeft {
+    align-items: center;
+  }
+
+  .ctaTitle {
+    font-size: 1.375rem; /* 22px */
+  }
+
+  .ctaDescription {
+    font-size: 0.875rem; /* 14px */
+  }
+
+  .ctaContainer {
+    padding: var(--sp-4) 1rem; /* 24px 16px */
   }
 }

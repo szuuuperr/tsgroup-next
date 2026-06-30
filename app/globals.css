@@ -74,11 +74,11 @@
   letter-spacing: -1.8px;
 }
 
-.section-description,
-.description {
+.section-description {
   font-size: var(--fs-body);
   color: var(--primary);
-  text-align: center;
+  text-align: justify;
+  text-align-last: center;
   max-width: 858px;
   line-height: var(--lh-base);
 }
@@ -674,8 +674,7 @@ a {
   .fab-scroll-top svg { width: 24px; height: 24px; }
   .section-title { font-size: 26px; letter-spacing: -1px; }
   .section-subtitle { font-size: 15px; }
-  .section-description,
-  .description { font-size: 15px; }
+  .section-description { font-size: 15px; }
   .content-section { padding: var(--sp-6) var(--sp-4); }
 }
 @media (max-width: 480px) {
@@ -683,7 +682,6 @@ a {
   .fab-scroll-top { width: 36px; height: 36px; }
   .section-title { font-size: 22px; letter-spacing: -0.5px; }
   .section-subtitle { font-size: 14px; }
-  .section-description,
-  .description { font-size: 14px; }
+  .section-description { font-size: 14px; }
   .content-section { padding: var(--sp-5) var(--sp-3); }
 }
