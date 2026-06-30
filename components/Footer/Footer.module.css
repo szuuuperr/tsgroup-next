@@ -1,0 +1,239 @@
+.footerWrapper {
+  background: var(--black);
+  width: 100vw;
+  display: flex;
+  justify-content: center;
+}
+
+.footer {
+  max-width: 95rem; /* 1520px */
+}
+
+.footerTop {
+  display: flex;
+  gap: 2.25rem; /* 36px */
+  align-items: flex-start;
+  padding: var(--sp-7) var(--sp-8); /* 56px 72px */
+}
+
+.footerTopLeft {
+  flex: 1;
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  gap: var(--gap-4); /* 24px */
+  overflow: hidden;
+}
+
+.footerLogo img {
+  height: 2.5rem; /* 40px */
+  width: auto;
+}
+
+.footerDesc {
+  font-size: var(--fs-small);
+  color: var(--white);
+  line-height: var(--lh-base);
+}
+
+.footerSocialTitle {
+  font-size: var(--fs-small);
+  font-weight: 600;
+  color: var(--white);
+  line-height: var(--lh-base);
+}
+
+.footerSocialIcons {
+  display: flex;
+  align-items: center;
+  gap: var(--gap-3); /* 16px */
+}
+
+.socialIcon {
+  width: 1.125rem; /* 18px */
+  height: 1.125rem; /* 18px */
+}
+
+.socialIcon svg {
+  width: 100%;
+  height: 100%;
+  fill: var(--white);
+}
+
+.footerTopRight {
+  display: flex;
+  gap: var(--gap-4); /* 24px */
+  width: 46.875rem; /* 750px */
+  flex-shrink: 0;
+}
+
+.footerContact {
+  flex: 1;
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  gap: var(--gap-3); /* 16px */
+  overflow: hidden;
+}
+
+.footerSectionTitle {
+  font-weight: 600;
+  font-size: var(--fs-small);
+  color: var(--secondary);
+  line-height: var(--lh-base);
+}
+
+.contactLabel {
+  font-weight: 600;
+  font-size: var(--fs-small);
+  color: var(--white);
+  line-height: var(--lh-base);
+}
+
+.contactValue {
+  font-size: var(--fs-small);
+  color: var(--white);
+  line-height: var(--lh-base);
+}
+
+.footerContactTelp {
+  display: flex;
+  gap: var(--gap-2); /* 8px */
+  align-items: flex-start;
+  width: 100%;
+}
+
+.contactGroup {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  gap: 0.625rem; /* 10px */
+}
+
+.footerContactTelp svg {
+  width: 1.125rem; /* 18px */
+  height: 1.125rem; /* 18px */
+  fill: var(--white);
+  flex-shrink: 0;
+}
+
+.contactNumber {
+  font-weight: 600;
+  font-size: var(--fs-small);
+  color: var(--white);
+  line-height: var(--lh-base);
+}
+
+.footerGallery {
+  flex: 1;
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  gap: var(--gap-4); /* 24px */
+  overflow: hidden;
+}
+
+.footerGalleryGrid {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--gap-2); /* 8px */
+  align-items: center;
+  align-content: center;
+}
+
+.galleryThumb {
+  width: 4.6875rem; /* 75px */
+  height: 4.6875rem; /* 75px */
+  border-radius: 0.625rem; /* 10px */
+  overflow: hidden;
+}
+
+.galleryThumb img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.footerLine {
+  width: 100%;
+  height: 0.0625rem; /* 1px */
+  background: #1e1e1e;
+}
+
+.footerBottom {
+  background: var(--black);
+  padding: 1.5rem var(--sp-8) 1.5rem; /* 24px 72px 24px */
+}
+
+.footerCopyright {
+  font-size: 0.5625rem; /* 9px */
+  color: var(--grey);
+  line-height: var(--lh-base);
+}
+
+/* ===== MEDIA QUERIES ===== */
+@media (max-width: 80rem) /* 1280px */ {
+  .footerTop {
+    padding: var(--sp-6) var(--sp-6); /* 48px */
+  }
+
+  .footerBottom {
+    padding: 1.5rem var(--sp-6) 1.5rem; /* 24px 48px */
+  }
+}
+
+@media (max-width: 64rem) /* 1024px */ {
+  .footerTop {
+    padding: var(--sp-6) var(--sp-4); /* 48px 24px */
+  }
+
+  .footerTopRight {
+    width: auto;
+    flex: 1.5;
+  }
+
+  .footerBottom {
+    padding: 1.5rem var(--sp-4) 3rem; /* 24px 24px 48px */
+  }
+}
+
+@media (max-width: 48rem) /* 768px */ {
+  .footerTop {
+    flex-direction: column;
+    padding: 2rem 1.25rem; /* 32px 20px */
+    gap: 2rem; /* 32px */
+  }
+
+  .footerTopRight {
+    width: 100%;
+    flex-direction: column;
+    gap: 2rem; /* 32px */
+  }
+
+  .galleryThumb {
+    width: 4.0625rem; /* 65px */
+    height: 4.0625rem; /* 65px */
+  }
+
+  .footerBottom {
+    padding: 1.25rem 1.25rem 5rem; /* 20px 20px 80px */
+  }
+
+  .footerCopyright {
+    font-size: 0.5rem; /* 8px */
+    text-align: center;
+  }
+}
+
+@media (max-width: 30rem) /* 480px */ {
+  .footerContactTelp {
+    flex-direction: column;
+    gap: 0.75rem; /* 12px */
+  }
+
+  .galleryThumb {
+    width: 3.125rem; /* 50px */
+    height: 3.125rem; /* 50px */
+    border-radius: 0.5rem; /* 8px */
+  }
+}

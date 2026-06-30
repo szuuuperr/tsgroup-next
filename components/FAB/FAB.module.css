@@ -1,0 +1,113 @@
+/* ===== FAB (Floating Action Buttons) ===== */
+.fabWhatsapp {
+  position: fixed;
+  bottom: 1.5rem; /* 24px */
+  left: 1.5rem; /* 24px */
+  display: flex;
+  align-items: center;
+  gap: 0.5rem; /* 8px */
+  padding: 0.75rem 1.25rem; /* 12px 20px */
+  background: #25d366;
+  border-radius: 3.125rem; /* 50px */
+  color: var(--white);
+  font-size: 0.875rem; /* 14px */
+  font-weight: 600;
+  white-space: nowrap;
+  box-shadow: 0 0.25rem 0.9375rem rgba(37, 211, 102, 0.4);
+  transition: all 0.3s ease;
+  z-index: 1000;
+}
+
+.fabWhatsapp:hover {
+  transform: translateY(-0.1875rem); /* -3px */
+  box-shadow: 0 0.375rem 1.25rem rgba(37, 211, 102, 0.5);
+}
+
+.fabWhatsapp svg {
+  width: 1.5rem; /* 24px */
+  height: 1.5rem; /* 24px */
+  fill: var(--white);
+}
+
+.fabScrollTop {
+  position: fixed;
+  bottom: 1.5rem; /* 24px */
+  right: 1.5rem; /* 24px */
+  width: 3rem; /* 48px */
+  height: 3rem; /* 48px */
+  border-radius: 50%;
+  background: var(--primary);
+  border: none;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 0.25rem 0.9375rem rgba(0, 0, 0, 0.2);
+  transition: all 0.3s ease;
+  z-index: 1000;
+}
+
+.fabScrollTop:hover {
+  transform: translateY(-0.1875rem); /* -3px */
+  box-shadow: 0 0.375rem 1.25rem rgba(0, 0, 0, 0.3);
+  background: var(--secondary);
+}
+
+.fabScrollTop svg {
+  width: 1.75rem; /* 28px */
+  height: 1.75rem; /* 28px */
+  fill: var(--white);
+}
+
+/* ===== MEDIA QUERIES ===== */
+@media (max-width: 48rem) /* 768px */ {
+  .fabWhatsapp {
+    bottom: 1rem; /* 16px */
+    left: 1rem; /* 16px */
+    padding: 0.625rem 1rem; /* 10px 16px */
+    font-size: 0.75rem; /* 12px */
+  }
+
+  .fabWhatsapp svg {
+    width: 1.25rem; /* 20px */
+    height: 1.25rem; /* 20px */
+  }
+
+  .fabScrollTop {
+    bottom: 1rem; /* 16px */
+    right: 1rem; /* 16px */
+    width: 2.5rem; /* 40px */
+    height: 2.5rem; /* 40px */
+  }
+
+  .fabScrollTop svg {
+    width: 1.5rem; /* 24px */
+    height: 1.5rem; /* 24px */
+  }
+}
+
+@media (max-width: 30rem) /* 480px */ {
+  .fabWhatsapp {
+    padding: 0.5rem 0.75rem; /* 8px 12px */
+    font-size: 0.6875rem; /* 11px */
+    bottom: 0.75rem; /* 12px */
+    left: 0.75rem; /* 12px */
+  }
+
+  .fabWhatsapp svg {
+    width: 1.125rem; /* 18px */
+    height: 1.125rem; /* 18px */
+  }
+
+  .fabScrollTop {
+    width: 2.25rem; /* 36px */
+    height: 2.25rem; /* 36px */
+    bottom: 0.75rem; /* 12px */
+    right: 0.75rem; /* 12px */
+  }
+
+  .fabScrollTop svg {
+    width: 1.25rem; /* 20px */
+    height: 1.25rem; /* 20px */
+  }
+}
