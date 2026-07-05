@@ -1,5 +1,6 @@
 /* ===== CSS RESET & BASE ===== */
-@import url("https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Kaushan+Script&display=swap");
+/* Fonts di-self-host via next/font (lihat app/layout.tsx):
+   --font-inter dan --font-kaushan tersedia global dari <html>. */
 
 *,
 *::before,
@@ -59,14 +60,14 @@
 }
 
 .section-subtitle {
-  font-family: "Kaushan Script", cursive;
+  font-family: var(--font-kaushan), cursive;
   font-size: var(--fs-body);
   color: var(--secondary);
   line-height: var(--lh-base);
 }
 
 .section-title {
-  font-family: "Inter", sans-serif;
+  font-family: var(--font-inter), sans-serif;
   font-weight: 600;
   font-size: var(--fs-h4);
   color: var(--primary);
@@ -98,7 +99,7 @@
   gap: 0.5rem; 
   border-radius: 6.25rem; /* 100px — pill shape */
   padding: 0.75rem 1.5rem; /* 12px 24px */
-  font-family: "Inter", sans-serif;
+  font-family: var(--font-inter), sans-serif;
   font-size: 0.875rem; /* 14px */
   font-weight: 600;
   cursor: pointer;
@@ -428,7 +429,7 @@ html {
 }
 
 body {
-  font-family: "Inter", sans-serif;
+  font-family: var(--font-inter), sans-serif;
   color: var(--primary);
   font-size: var(--fs-body);
   line-height: var(--lh-base);

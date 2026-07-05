@@ -36,6 +36,9 @@ yarn-error.log*
 # vercel
 .vercel
 
+# original (uncompressed) asset backup — not deployed
+/asset-originals
+
 # typescript
 *.tsbuildinfo
 next-env.d.ts

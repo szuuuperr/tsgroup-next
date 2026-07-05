@@ -81,6 +81,7 @@ export default function ProfilPage() {
             height={720}
             className={styles.aboutImage}
             sizes="(max-width: 1024px) 100vw, 45vw"
+            priority
           />
         </div>
         <div className={styles.aboutRight}>

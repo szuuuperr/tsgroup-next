@@ -15,7 +15,7 @@
   padding: 0 !important;
   overflow: hidden;
   border: 0.0625rem solid rgba(17, 11, 102, 0.08); /* 1px */
-  font-family: "Inter", sans-serif;
+  font-family: var(--font-inter), sans-serif;
   transform: translateX(1.5625rem); /* 25px */
 }
 
@@ -173,7 +173,7 @@
   font-size: 0.75rem; /* 12px */
   font-weight: 600;
   cursor: pointer;
-  font-family: "Inter", sans-serif;
+  font-family: var(--font-inter), sans-serif;
   transition: all 0.3s ease;
   text-decoration: none !important;
   letter-spacing: 0.0125rem; /* 0.2px */

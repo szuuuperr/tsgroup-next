@@ -55,6 +55,7 @@ export default function BlogPage() {
               alt={featuredPost.title}
               fill
               sizes="(max-width: 768px) 100vw, 55vw"
+              priority
             />
             <span className={styles.featuredBadge}>Artikel Unggulan</span>
           </Link>

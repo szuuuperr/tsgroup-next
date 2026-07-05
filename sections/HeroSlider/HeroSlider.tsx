@@ -53,6 +53,7 @@ export default function HeroSlider() {
               src={slide.src}
               alt={slide.alt}
               fill
+              sizes="100vw"
               priority={index === 0}
             />
           </div>

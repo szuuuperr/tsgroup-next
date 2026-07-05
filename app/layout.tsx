@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { Inter, Kaushan_Script } from "next/font/google";
 import "./globals.css";
 import { SITE } from "@/lib/site";
 import ScrollAnimations from "@/components/ScrollAnimations/ScrollAnimations";
@@ -7,6 +8,20 @@ import Navbar from "@/components/Navbar/Navbar";
 import CTA from "@/components/CTA/CTA";
 import Footer from "@/components/Footer/Footer";
 import FAB from "@/components/FAB/FAB";
+
+const inter = Inter({
+  subsets: ["latin"],
+  weight: ["400", "500", "600", "700"],
+  variable: "--font-inter",
+  display: "swap",
+});
+
+const kaushan = Kaushan_Script({
+  subsets: ["latin"],
+  weight: "400",
+  variable: "--font-kaushan",
+  display: "swap",
+});
 
 export const metadata: Metadata = {
   title: {
@@ -22,7 +37,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="id">
+    <html lang="id" className={`${inter.variable} ${kaushan.variable}`}>
       <body>
         <ScrollAnimations />
         <div className="grid-wrap">
