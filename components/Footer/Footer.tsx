@@ -1,4 +1,23 @@
+import Image from "next/image";
+import Link from "next/link";
 import styles from "./Footer.module.css";
+import {
+  SITE,
+  SOCIAL_LINKS,
+  WHATSAPP_ICON_640,
+  WHATSAPP_URL,
+} from "@/lib/site";
+
+const galleryThumbs = [
+  { src: "/assets/goapindul-gambar.png", alt: "Goa Pindul" },
+  { src: "/assets/parangtritis-gambar.png", alt: "Pantai Parangtritis" },
+  { src: "/assets/prambanan-gambar.png", alt: "Candi Prambanan" },
+  { src: "/assets/merapilava-gambar.png", alt: "Merapi Lava Tour" },
+  { src: "/assets/borobudur-gambar.png", alt: "Candi Borobudur" },
+  { src: "/assets/heha-gambar.png", alt: "HeHa Ocean View" },
+  { src: "/assets/tugu-jogja.jpg", alt: "Tugu Yogyakarta" },
+  { src: "/assets/kraton-yogyakarta.webp", alt: "Keraton Yogyakarta" },
+];
 
 export default function Footer() {
   return (
@@ -7,93 +26,85 @@ export default function Footer() {
         <div className={styles.footerTop}>
           <div className={styles.footerTopLeft}>
             <div className={styles.footerLogo}>
-              <img src="/assets/footer-logo-tsgroup.svg" alt="TS Group Logo" />
+              <Image
+                src="/assets/footer-logo-tsgroup.svg"
+                alt="TS Group Logo"
+                width={203}
+                height={49}
+                unoptimized
+              />
             </div>
             <p className={styles.footerDesc}>
-              Dengan komitmen untuk memberikan kepuasan kepada pelanggan, TS Group turut menghadirkan beragam paket wisata menarik yang memungkinkan Anda menikmati keindahan Jogja dan sekitarnya.
+              Dengan komitmen untuk memberikan kepuasan kepada pelanggan, TS
+              Group turut menghadirkan beragam paket wisata menarik yang
+              memungkinkan Anda menikmati keindahan Jogja dan sekitarnya.
             </p>
             <p className={styles.footerSocialTitle}>Sosial Media Kami</p>
             <div className={styles.footerSocialIcons}>
-              <div className={styles.socialIcon}>
+              <a
+                href={WHATSAPP_URL}
+                target="_blank"
+                rel="noopener noreferrer"
+                className={styles.socialIcon}
+                aria-label="WhatsApp"
+              >
                 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 640">
-                  <path d="M476.9 161.1C435 119.1 379.2 96 319.9 96C197.5 96 97.9 195.6 97.9 318C97.9 357.1 108.1 395.3 127.5 429L96 544L213.7 513.1C246.1 530.8 282.6 540.1 319.8 540.1L319.9 540.1C442.2 540.1 544 440.5 544 318.1C544 258.8 518.8 203.1 476.9 161.1zM319.9 502.7C286.7 502.7 254.2 493.8 225.9 477L219.2 473L149.4 491.3L168 423.2L163.6 416.2C145.1 386.8 135.4 352.9 135.4 318C135.4 216.3 218.2 133.5 320 133.5C369.3 133.5 415.6 152.7 450.4 187.6C485.2 222.5 506.6 268.8 506.5 318.1C506.5 419.9 421.6 502.7 319.9 502.7zM421.1 364.5C415.6 361.7 388.3 348.3 383.2 346.5C378.1 344.6 374.4 343.7 370.7 349.3C367 354.9 356.4 367.3 353.1 371.1C349.9 374.8 346.6 375.3 341.1 372.5C308.5 356.2 287.1 343.4 265.6 306.5C259.9 296.7 271.3 297.4 281.9 276.2C283.7 272.5 282.8 269.3 281.4 266.5C280 263.7 268.9 236.4 264.3 225.3C259.8 214.5 255.2 216 251.8 215.8C248.6 215.6 244.9 215.6 241.2 215.6C237.5 215.6 231.5 217 226.4 222.5C221.3 228.1 207 241.5 207 268.8C207 296.1 226.9 322.5 229.6 326.2C232.4 329.9 268.7 385.9 324.4 410C359.6 425.2 373.4 426.5 391 423.9C401.7 422.3 423.8 410.5 428.4 397.5C433 384.5 433 373.4 431.6 371.1C430.3 368.6 426.6 367.2 421.1 364.5z" />
+                  <path d={WHATSAPP_ICON_640} />
                 </svg>
-              </div>
-              <div className={styles.socialIcon}>
-                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
-                  <path d="M7.8 2h8.4C19.4 2 22 4.6 22 7.8v8.4a5.8 5.8 0 0 1-5.8 5.8H7.8C4.6 22 2 19.4 2 16.2V7.8A5.8 5.8 0 0 1 7.8 2m-.2 2A3.6 3.6 0 0 0 4 7.6v8.8C4 18.39 5.61 20 7.6 20h8.8a3.6 3.6 0 0 0 3.6-3.6V7.6C20 5.61 18.39 4 16.4 4H7.6m9.65 1.5a1.25 1.25 0 0 1 0 2.5 1.25 1.25 0 0 1 0-2.5M12 7a5 5 0 0 1 5 5 5 5 0 0 1-5 5 5 5 0 0 1-5-5 5 5 0 0 1 5-5m0 2a3 3 0 0 0-3 3 3 3 0 0 0 3 3 3 3 0 0 0 3-3 3 3 0 0 0-3-3z" />
-                </svg>
-              </div>
-              <div className={styles.socialIcon}>
-                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
-                  <path d="M12 2.04C6.5 2.04 2 6.53 2 12.06C2 17.06 5.66 21.21 10.44 21.96V14.96H7.9V12.06H10.44V9.85C10.44 7.34 11.93 5.96 14.22 5.96C15.31 5.96 16.45 6.15 16.45 6.15V8.62H15.19C13.95 8.62 13.56 9.39 13.56 10.18V12.06H16.34L15.89 14.96H13.56V21.96A10 10 0 0 0 22 12.06C22 6.53 17.5 2.04 12 2.04Z" />
-                </svg>
-              </div>
-              <div className={styles.socialIcon}>
-                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
-                  <path d="M16.6 5.82s.51.5 0 0A4.278 4.278 0 0 1 15.54 3h-3.09v12.4a2.592 2.592 0 0 1-2.59 2.5c-1.42 0-2.6-1.16-2.6-2.6 0-1.72 1.66-3.01 3.37-2.48V9.66c-3.45-.46-6.47 2.22-6.47 5.64 0 3.33 2.76 5.7 5.69 5.7 3.14 0 5.69-2.55 5.69-5.7V9.01a7.35 7.35 0 0 0 4.3 1.38V7.3s-1.88.09-3.24-1.48z" />
-                </svg>
-              </div>
-              <div className={styles.socialIcon}>
-                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
-                  <path d="M10 15l5.19-3L10 9v6m11.56-7.83c.13.47.22 1.1.28 1.9.07.8.1 1.49.1 2.09L22 12c0 2.19-.16 3.8-.44 4.83-.25.9-.83 1.48-1.73 1.73-.47.13-1.33.22-2.65.28-1.3.07-2.49.1-3.59.1L12 19c-4.19 0-6.8-.16-7.83-.44-.9-.25-1.48-.83-1.73-1.73-.13-.47-.22-1.1-.28-1.9-.07-.8-.1-1.49-.1-2.09L2 12c0-2.19.16-3.8.44-4.83.25-.9.83-1.48 1.73-1.73.47-.13 1.33-.22 2.65-.28 1.3-.07 2.49-.1 3.59-.1L12 5c4.19 0 6.8.16 7.83.44.9.25 1.48.83 1.73 1.73z" />
-                </svg>
-              </div>
+              </a>
+              {SOCIAL_LINKS.map((social) => (
+                <a
+                  key={social.label}
+                  href={social.href}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className={styles.socialIcon}
+                  aria-label={social.label}
+                >
+                  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                    <path d={social.icon} />
+                  </svg>
+                </a>
+              ))}
             </div>
           </div>
           <div className={styles.footerTopRight}>
             <div className={styles.footerContact}>
               <p className={styles.footerSectionTitle}>Kontak Kami</p>
               <p className={styles.contactLabel}>Alamat</p>
-              <p className={styles.contactValue}>
-                Pangukan, Panglikan, Tridadi, Kec. Sleman, Kabupaten Sleman, Daerah Istimewa Yogyakarta 55511
-              </p>
+              <p className={styles.contactValue}>{SITE.address}</p>
               <div className={styles.footerContactTelp}>
-                <div className={styles.contactGroup}>
-                  <div className={styles.socialIcon}>
+                <a
+                  href={WHATSAPP_URL}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className={styles.contactGroup}
+                >
+                  <span className={styles.socialIcon}>
                     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 640">
-                      <path d="M476.9 161.1C435 119.1 379.2 96 319.9 96C197.5 96 97.9 195.6 97.9 318C97.9 357.1 108.1 395.3 127.5 429L96 544L213.7 513.1C246.1 530.8 282.6 540.1 319.8 540.1L319.9 540.1C442.2 540.1 544 440.5 544 318.1C544 258.8 518.8 203.1 476.9 161.1zM319.9 502.7C286.7 502.7 254.2 493.8 225.9 477L219.2 473L149.4 491.3L168 423.2L163.6 416.2C145.1 386.8 135.4 352.9 135.4 318C135.4 216.3 218.2 133.5 320 133.5C369.3 133.5 415.6 152.7 450.4 187.6C485.2 222.5 506.6 268.8 506.5 318.1C506.5 419.9 421.6 502.7 319.9 502.7zM421.1 364.5C415.6 361.7 388.3 348.3 383.2 346.5C378.1 344.6 374.4 343.7 370.7 349.3C367 354.9 356.4 367.3 353.1 371.1C349.9 374.8 346.6 375.3 341.1 372.5C308.5 356.2 287.1 343.4 265.6 306.5C259.9 296.7 271.3 297.4 281.9 276.2C283.7 272.5 282.8 269.3 281.4 266.5C280 263.7 268.9 236.4 264.3 225.3C259.8 214.5 255.2 216 251.8 215.8C248.6 215.6 244.9 215.6 241.2 215.6C237.5 215.6 231.5 217 226.4 222.5C221.3 228.1 207 241.5 207 268.8C207 296.1 226.9 322.5 229.6 326.2C232.4 329.9 268.7 385.9 324.4 410C359.6 425.2 373.4 426.5 391 423.9C401.7 422.3 423.8 410.5 428.4 397.5C433 384.5 433 373.4 431.6 371.1C430.3 368.6 426.6 367.2 421.1 364.5z" />
+                      <path d={WHATSAPP_ICON_640} />
                     </svg>
-                  </div>
-                  <span className={styles.contactNumber}>085645733351</span>
-                </div>
-                <div className={styles.contactGroup}>
+                  </span>
+                  <span className={styles.contactNumber}>{SITE.phone}</span>
+                </a>
+                <a href={`tel:+62${SITE.phone.slice(1)}`} className={styles.contactGroup}>
                   <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
                     <path d="M6.62 10.79c1.44 2.83 3.76 5.14 6.59 6.59l2.2-2.2c.27-.27.67-.36 1.02-.24 1.12.37 2.33.57 3.57.57.55 0 1 .45 1 1V20c0 .55-.45 1-1 1-9.39 0-17-7.61-17-17 0-.55.45-1 1-1h3.5c.55 0 1 .45 1 1 0 1.25.2 2.45.57 3.57.11.35.03.74-.25 1.02l-2.2 2.2z" />
                   </svg>
-                  <span className={styles.contactNumber}>085645733351</span>
-                </div>
+                  <span className={styles.contactNumber}>{SITE.phone}</span>
+                </a>
               </div>
               <p className={styles.contactLabel}>Email</p>
-              <p className={styles.contactValue}>info@tsgrouptour.com</p>
+              <p className={styles.contactValue}>{SITE.email}</p>
             </div>
             <div className={styles.footerGallery}>
               <p className={styles.footerSectionTitle}>Galeri Terbaru</p>
               <div className={styles.footerGalleryGrid}>
-                <div className={styles.galleryThumb}>
-                  <img src="/assets/goapindul-gambar.png" alt="Goa Pindul" />
-                </div>
-                <div className={styles.galleryThumb}>
-                  <img src="/assets/parangtritis-gambar.png" alt="Parangtritis" />
-                </div>
-                <div className={styles.galleryThumb}>
-                  <img src="/assets/prambanan-gambar.png" alt="Prambanan" />
-                </div>
-                <div className={styles.galleryThumb}>
-                  <img src="/assets/merapilava-gambar.png" alt="Merapi Lava" />
-                </div>
-                <div className={styles.galleryThumb}>
-                  <img src="/assets/borobudur-gambar.png" alt="Borobudur" />
-                </div>
-                <div className={styles.galleryThumb}>
-                  <img src="/assets/heha-gambar.png" alt="Heha" />
-                </div>
-                <div className={styles.galleryThumb}>
-                  <img src="/assets/goapindul-gambar.png" alt="Goa Pindul" />
-                </div>
-                <div className={styles.galleryThumb}>
-                  <img src="/assets/parangtritis-gambar.png" alt="Parangtritis" />
-                </div>
+                {galleryThumbs.map((thumb) => (
+                  <Link href="/galeri" className={styles.galleryThumb} key={thumb.alt}>
+                    <Image src={thumb.src} alt={thumb.alt} width={150} height={150} />
+                  </Link>
+                ))}
               </div>
             </div>
           </div>

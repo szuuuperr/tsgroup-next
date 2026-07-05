@@ -39,7 +39,7 @@
 
 .leaflet-popup-close-button {
   top: 0.625rem !important; /* 10px */
-  right: 0.625rem !important; /* 10px */
+  right: -1rem !important; /* 10px */
   width: 1.75rem !important; /* 28px */
   height: 1.75rem !important; /* 28px */
   font-size: 1rem !important; /* 16px */
@@ -72,7 +72,7 @@
 .map-popup-header {
   display: flex;
   flex-direction: column;
-  gap: 0.375rem; /* 6px */
+  gap: 0.8rem; /* 6px */
   padding-right: 1.25rem; /* 20px */
 }
 

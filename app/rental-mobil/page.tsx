@@ -1,12 +1,16 @@
-"use client";
+import type { Metadata } from "next";
+import Vehicle from "@/sections/Vehicle/Vehicle";
 
-import RentalMobil from "../../sections/Vehicle/Vehicle";
-import styles from "../../sections/Vehicle/Vehicle.module.css";
+export const metadata: Metadata = {
+  title: "Rental Mobil",
+  description:
+    "Sewa mobil di Yogyakarta bersama TS Group - tersedia dengan sopir maupun lepas kunci. Armada lengkap, terawat, dan harga bersaing.",
+};
 
 export default function RentalMobilPage() {
   return (
-    <>
-      <RentalMobil className={styles.vehiclePage}/>
-    </>
+    <main>
+      <Vehicle variant="page" />
+    </main>
   );
 }

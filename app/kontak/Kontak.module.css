@@ -1,0 +1,196 @@
+/* Kartu kontak */
+.contactGrid {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--gap-4);
+  justify-content: center;
+  margin-top: var(--sp-5);
+  width: 100%;
+  max-width: 80rem; /* 1280px */
+}
+
+.contactCard {
+  flex: 0 0 calc(25% - 1.125rem); /* 18px */
+  background: var(--white);
+  padding: 2rem 1.5rem; /* 32px 24px */
+  border-radius: 1.5rem; /* 24px */
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  gap: 0.5rem; /* 8px */
+  box-shadow: 0 0.25rem 1.25rem rgba(17, 11, 102, 0.05);
+  border: 0.0625rem solid rgba(17, 11, 102, 0.06);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.contactCard:hover {
+  transform: translateY(-0.3125rem); /* -5px */
+  box-shadow: 0 1rem 2.5rem rgba(17, 11, 102, 0.1);
+}
+
+.contactIcon {
+  width: 3.5rem; /* 56px */
+  height: 3.5rem; /* 56px */
+  background: rgba(17, 11, 102, 0.05);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 0.5rem; /* 8px */
+  transition: background 0.3s ease;
+}
+
+.contactCard:hover .contactIcon {
+  background: var(--secondary);
+}
+
+.contactIcon svg {
+  width: 1.75rem; /* 28px */
+  height: 1.75rem; /* 28px */
+  fill: var(--primary);
+  transition: fill 0.3s ease;
+}
+
+.contactCard:hover .contactIcon svg {
+  fill: var(--white);
+}
+
+.contactLabel {
+  font-size: 0.75rem; /* 12px */
+  font-weight: 600;
+  color: var(--secondary);
+  text-transform: uppercase;
+  letter-spacing: 0.0625rem; /* 1px */
+}
+
+.contactValue {
+  font-size: 1.0625rem; /* 17px */
+  font-weight: 700;
+  color: var(--primary);
+}
+
+.contactNote {
+  font-size: 0.8125rem; /* 13px */
+  color: #777;
+  line-height: 1.5;
+}
+
+/* Formulir & peta */
+.formSection {
+  display: flex;
+  gap: var(--gap-6);
+  width: 100%;
+  max-width: 80rem; /* 1280px */
+  margin: 0 auto;
+  padding: 0 var(--sp-8) var(--sp-9);
+}
+
+.formWrapper,
+.mapWrapper {
+  flex: 1;
+  background: var(--white);
+  border: 0.0625rem solid rgba(17, 11, 102, 0.06);
+  border-radius: 1.5rem; /* 24px */
+  padding: 2.5rem; /* 40px */
+  box-shadow: 0 0.25rem 1.25rem rgba(17, 11, 102, 0.06);
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem; /* 12px */
+}
+
+.formTitle {
+  font-size: 1.5rem; /* 24px */
+  font-weight: 700;
+  color: var(--primary);
+  letter-spacing: -0.03125rem; /* -0.5px */
+}
+
+.formSubtitle {
+  font-size: 0.875rem; /* 14px */
+  color: #666;
+  line-height: 1.6;
+}
+
+.form {
+  display: flex;
+  flex-direction: column;
+  gap: 1.25rem; /* 20px */
+  margin-top: 0.75rem; /* 12px */
+}
+
+.formField {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem; /* 8px */
+}
+
+.fieldLabel {
+  font-size: 0.8125rem; /* 13px */
+  font-weight: 600;
+  color: var(--primary);
+}
+
+.fieldInput {
+  font-family: "Inter", sans-serif;
+  font-size: 0.875rem; /* 14px */
+  color: var(--black);
+  padding: 0.75rem 1rem; /* 12px 16px */
+  border: 0.0625rem solid rgba(17, 11, 102, 0.15);
+  border-radius: 0.75rem; /* 12px */
+  background: var(--white);
+  transition: border-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+.fieldInput:focus {
+  outline: none;
+  border-color: var(--primary);
+  box-shadow: 0 0 0 0.1875rem rgba(17, 11, 102, 0.1); /* 3px */
+}
+
+.fieldTextarea {
+  resize: vertical;
+  min-height: 7.5rem; /* 120px */
+}
+
+.mapFrame {
+  width: 100%;
+  flex: 1;
+  min-height: 20rem; /* 320px */
+  border: none;
+  border-radius: 1rem; /* 16px */
+  margin-top: 0.75rem; /* 12px */
+}
+
+/* ===== MEDIA QUERIES ===== */
+@media (max-width: 80rem) /* 1280px */ {
+  .formSection {
+    padding: 0 var(--sp-6) var(--sp-8);
+  }
+}
+
+@media (max-width: 64rem) /* 1024px */ {
+  .contactCard {
+    flex: 0 0 calc(50% - 0.75rem);
+  }
+
+  .formSection {
+    flex-direction: column;
+    padding: 0 var(--sp-5) var(--sp-7);
+  }
+
+  .formWrapper,
+  .mapWrapper {
+    padding: 1.75rem; /* 28px */
+  }
+}
+
+@media (max-width: 30rem) /* 480px */ {
+  .contactCard {
+    flex: 0 0 100%;
+  }
+
+  .formSection {
+    padding: 0 var(--sp-3) var(--sp-6);
+  }
+}

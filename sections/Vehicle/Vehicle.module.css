@@ -1,3 +1,8 @@
+.vehicleOuter {
+  width: 100%;
+  overflow: hidden;
+}
+
 .vehicleSection {
   background-color: #e5e5f7;
   background-image: radial-gradient(#aaaaaa 0.03125rem, var(--grey) 0.03125rem); /* 0.5px */
@@ -88,7 +93,8 @@
 
 .cardImage {
   width: 100%;
-  height: 100%;
+  aspect-ratio: 320 / 267;
+  flex-shrink: 0;
   overflow: hidden;
   position: relative;
 }

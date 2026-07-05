@@ -1,6 +1,14 @@
-"use client";
-
 import styles from "./Review.module.css";
+import { SITE } from "@/lib/site";
+
+const googleLetters = [
+  { letter: "G", color: "#4285F4" },
+  { letter: "o", color: "#EA4335" },
+  { letter: "o", color: "#FBBC05" },
+  { letter: "g", color: "#4285F4" },
+  { letter: "l", color: "#34A853" },
+  { letter: "e", color: "#EA4335" },
+];
 
 const reviews = [
   {
@@ -35,7 +43,7 @@ const reviews = [
 
 export default function Review() {
   return (
-    <section id="review" style={{ width: "100%", overflow: "hidden" }}>
+    <section id="review" className={styles.reviewOuter}>
       <div className={styles.customersReviewSection}>
         <div className={styles.reviewContainer}>
           <span className="section-subtitle" data-scroll="fade-up">
@@ -53,12 +61,15 @@ export default function Review() {
           <div className={styles.reviewHeader} data-scroll="fade-up" data-scroll-delay="200">
             <div className={styles.reviewHeaderLeft}>
               <div className={styles.googleLogo}>
-                <span style={{ color: "#4285F4", fontWeight: 700, fontSize: "22px" }}>G</span>
-                <span style={{ color: "#EA4335", fontWeight: 700, fontSize: "22px" }}>o</span>
-                <span style={{ color: "#FBBC05", fontWeight: 700, fontSize: "22px" }}>o</span>
-                <span style={{ color: "#4285F4", fontWeight: 700, fontSize: "22px" }}>g</span>
-                <span style={{ color: "#34A853", fontWeight: 700, fontSize: "22px" }}>l</span>
-                <span style={{ color: "#EA4335", fontWeight: 700, fontSize: "22px" }}>e</span>
+                {googleLetters.map((item, index) => (
+                  <span
+                    key={index}
+                    className={styles.googleLetter}
+                    style={{ color: item.color }}
+                  >
+                    {item.letter}
+                  </span>
+                ))}
                 <span className={styles.reviewLabel}>Reviews</span>
               </div>
               <div className={styles.reviewRatingRow}>
@@ -74,7 +85,7 @@ export default function Review() {
               </div>
             </div>
             <a
-              href="https://www.google.com/search?client=firefox-b-d&hs=KeCV&si=AL3DRZEsmMGCryMMFSHJ3StBhOdZ2-6yYkXd_doETEE1OR-qOVYOXmp-r9QP1AyO_Xe1u3dDtIjBR4hCEDmwsTm6kZPL8L9S7-1n2GIZMVgpzGINkti0pl24_ZDSMcS6ZbBz53ceAU-b94gmLcd7r59OK4OcVRoCuw%3D%3D&q=TS+GROUP+TOUR+N+TRAVEL+Ulasan&sa=X#lrd=0x2e7a59775406a531:0xe5e692e3e23ede8f,3,,,,"
+              href={SITE.googleReviewUrl}
               target="_blank"
               rel="noopener noreferrer"
               className={styles.btnReviewGoogle}
@@ -111,7 +122,7 @@ export default function Review() {
                       </svg>
                     ))}
                   </div>
-                  <div className="card-line"></div>
+                  <div className={styles.cardLine}></div>
                   <p className={styles.reviewText}>{review.text}</p>
                 </div>
               </div>

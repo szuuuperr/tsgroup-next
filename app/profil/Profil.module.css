@@ -1,0 +1,318 @@
+/* Tentang Kami */
+.aboutSection {
+  display: flex;
+  align-items: center;
+  gap: var(--sp-7); /* 48px */
+  width: 100%;
+  max-width: 80rem; /* 1280px */
+  margin: 0 auto;
+  padding: var(--sp-8) var(--sp-8) var(--sp-6);
+}
+
+.aboutLeft {
+  flex: 0 0 45%;
+}
+
+.aboutImage {
+  width: 100%;
+  height: auto;
+  border-radius: 1.5rem; /* 24px */
+  box-shadow: 0 1rem 2.5rem rgba(17, 11, 102, 0.12);
+}
+
+.aboutRight {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: var(--gap-4);
+}
+
+.aboutDescription {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem; /* 16px */
+}
+
+.aboutDescription p {
+  font-size: 1rem; /* 16px */
+  line-height: 1.7;
+  color: #444;
+  text-align: justify;
+}
+
+.statsGrid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: var(--gap-3);
+  margin-top: var(--sp-2);
+}
+
+.statItem {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.25rem; /* 4px */
+  background: var(--white);
+  border: 0.0625rem solid rgba(17, 11, 102, 0.06);
+  border-radius: 1rem; /* 16px */
+  padding: 1.25rem 0.75rem; /* 20px 12px */
+  box-shadow: 0 0.25rem 1.25rem rgba(17, 11, 102, 0.05);
+  text-align: center;
+}
+
+.statValue {
+  font-size: 1.75rem; /* 28px */
+  font-weight: 700;
+  color: var(--secondary);
+  letter-spacing: -0.0625rem; /* -1px */
+}
+
+.statLabel {
+  font-size: 0.75rem; /* 12px */
+  font-weight: 500;
+  color: var(--primary);
+}
+
+/* Visi & Misi */
+.visiMisiGrid {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--gap-4);
+  justify-content: center;
+  margin-top: var(--sp-5);
+  width: 100%;
+  max-width: 60rem; /* 960px */
+}
+
+.visiMisiCard {
+  flex: 1 1 25rem; /* 400px */
+  background: var(--white);
+  border: 0.0625rem solid rgba(17, 11, 102, 0.06);
+  border-radius: 1.5rem; /* 24px */
+  padding: 2rem; /* 32px */
+  box-shadow: 0 0.25rem 1.25rem rgba(17, 11, 102, 0.05);
+  display: flex;
+  flex-direction: column;
+  gap: 1rem; /* 16px */
+}
+
+.visiMisiTitle {
+  font-size: 1.25rem; /* 20px */
+  font-weight: 700;
+  color: var(--primary);
+  padding-bottom: 0.75rem; /* 12px */
+  border-bottom: 0.125rem solid var(--secondary); /* 2px */
+  align-self: flex-start;
+}
+
+.visiMisiText {
+  font-size: 0.9375rem; /* 15px */
+  color: #555;
+  line-height: 1.7;
+}
+
+.visiMisiList {
+  display: flex;
+  flex-direction: column;
+  gap: 0.625rem; /* 10px */
+  padding-left: 1.25rem; /* 20px */
+  font-size: 0.9375rem; /* 15px */
+  color: #555;
+  line-height: 1.6;
+}
+
+/* Nilai Kami */
+.valuesGrid {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--gap-4);
+  justify-content: center;
+  margin-top: var(--sp-5);
+  width: 100%;
+  max-width: 80rem;
+}
+
+.valueCard {
+  flex: 0 0 calc(25% - 1.125rem); /* 18px */
+  background: var(--white);
+  padding: 2rem; /* 32px */
+  border-radius: 1.5rem; /* 24px */
+  display: flex;
+  flex-direction: column;
+  gap: 1rem; /* 16px */
+  box-shadow: 0 0.25rem 1.25rem rgba(17, 11, 102, 0.05);
+  border: 0.0625rem solid rgba(17, 11, 102, 0.06);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.valueCard:hover {
+  transform: translateY(-0.3125rem); /* -5px */
+  box-shadow: 0 1rem 2.5rem rgba(17, 11, 102, 0.1);
+}
+
+.valueIcon {
+  width: 3.5rem; /* 56px */
+  height: 3.5rem; /* 56px */
+  background: rgba(17, 11, 102, 0.05);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.valueIcon svg {
+  width: 1.75rem; /* 28px */
+  height: 1.75rem; /* 28px */
+  fill: var(--primary);
+}
+
+.valueTitle {
+  font-size: 1.125rem; /* 18px */
+  font-weight: 700;
+  color: var(--primary);
+}
+
+.valueDesc {
+  font-size: 0.875rem; /* 14px */
+  color: #666;
+  line-height: 1.6;
+}
+
+/* Layanan Kami */
+.servicesGrid {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--gap-4);
+  justify-content: center;
+  margin-top: var(--sp-5);
+  margin-bottom: var(--sp-5);
+  width: 100%;
+  max-width: 80rem;
+}
+
+.serviceCard {
+  flex: 0 0 calc(33.333% - 1rem); /* 16px */
+  background: var(--white);
+  border-radius: 1.5rem; /* 24px */
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  box-shadow: 0 0.25rem 1.25rem rgba(17, 11, 102, 0.06);
+  border: 0.0625rem solid rgba(17, 11, 102, 0.06);
+  transition:
+    transform 0.4s cubic-bezier(0.16, 1, 0.3, 1),
+    box-shadow 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.serviceCard:hover {
+  transform: translateY(-0.625rem); /* -10px */
+  box-shadow: 0 1.25rem 3.125rem rgba(17, 11, 102, 0.14);
+}
+
+.serviceImage {
+  position: relative;
+  width: 100%;
+  height: 11.25rem; /* 180px */
+  overflow: hidden;
+}
+
+.serviceImage img {
+  object-fit: cover;
+  transition: transform 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.serviceCard:hover .serviceImage img {
+  transform: scale(1.08);
+}
+
+.serviceBody {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem; /* 12px */
+  padding: 1.5rem; /* 24px */
+  flex: 1;
+}
+
+.serviceTitle {
+  font-size: 1.125rem; /* 18px */
+  font-weight: 700;
+  color: var(--primary);
+}
+
+.serviceDesc {
+  font-size: 0.875rem; /* 14px */
+  color: #666;
+  line-height: 1.6;
+}
+
+.serviceLink {
+  margin-top: auto;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem; /* 8px */
+  color: var(--primary);
+  font-size: 0.875rem; /* 14px */
+  font-weight: 600;
+  transition: color 0.3s ease;
+}
+
+.serviceCard:hover .serviceLink {
+  color: var(--secondary);
+}
+
+.serviceLink svg {
+  width: 1.125rem; /* 18px */
+  height: 1.125rem; /* 18px */
+  fill: none;
+  transition: transform 0.3s ease;
+}
+
+.serviceCard:hover .serviceLink svg {
+  transform: translateX(0.25rem); /* 4px */
+}
+
+/* ===== MEDIA QUERIES ===== */
+@media (max-width: 80rem) /* 1280px */ {
+  .aboutSection {
+    padding: var(--sp-7) var(--sp-6) var(--sp-5);
+    gap: var(--sp-6);
+  }
+}
+
+@media (max-width: 64rem) /* 1024px */ {
+  .aboutSection {
+    flex-direction: column;
+    padding: var(--sp-6) var(--sp-5) var(--sp-4);
+  }
+
+  .aboutLeft {
+    flex: 1;
+    width: 100%;
+    max-width: 32rem; /* 512px */
+  }
+
+  .valueCard {
+    flex: 0 0 calc(50% - 0.75rem);
+  }
+
+  .serviceCard {
+    flex: 0 0 calc(50% - 0.75rem);
+  }
+}
+
+@media (max-width: 48rem) /* 768px */ {
+  .statsGrid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 30rem) /* 480px */ {
+  .aboutSection {
+    padding: var(--sp-5) var(--sp-3);
+  }
+
+  .valueCard,
+  .serviceCard {
+    flex: 0 0 100%;
+  }
+}

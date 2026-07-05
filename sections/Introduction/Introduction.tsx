@@ -1,4 +1,6 @@
+import Image from "next/image";
 import styles from "./Introduction.module.css";
+import { WHATSAPP_URL } from "@/lib/site";
 
 export default function Introduction() {
   return (
@@ -27,7 +29,7 @@ export default function Introduction() {
           </p>
         </div>
         <a
-          href="https://wa.me/6285645733351"
+          href={WHATSAPP_URL}
           target="_blank"
           rel="noopener noreferrer"
           className="btn-outline-secondary"
@@ -37,7 +39,13 @@ export default function Introduction() {
         </a>
       </div>
       <div className={styles.introductionRight} data-scroll="zoom-in">
-        <img src="/assets/introduction-image.png" alt="Tentang TS Group" />
+        <Image
+          src="/assets/introduction-image.png"
+          alt="Tentang TS Group"
+          width={1080}
+          height={1080}
+          sizes="(max-width: 1024px) 100vw, 45rem"
+        />
       </div>
     </section>
   );

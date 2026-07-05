@@ -1,10 +1,18 @@
+import Image from "next/image";
 import styles from "./WhyChooseUs.module.css";
+import { WHATSAPP_URL } from "@/lib/site";
 
 export default function WhyChooseUs() {
   return (
     <section className={styles.whyChooseUsSection}>
       <div className={styles.whyChooseUsLeft} data-scroll="zoom-in">
-        <img src="/assets/why-choose-us-image.png" alt="Kenapa Memilih Kami" />
+        <Image
+          src="/assets/why-choose-us-image.png"
+          alt="Kenapa Memilih Kami"
+          width={1080}
+          height={1080}
+          sizes="(max-width: 1024px) 100vw, 40rem"
+        />
       </div>
       <div className={styles.whyChooseUsRight}>
         <span className="section-subtitle" data-scroll="fade-up">
@@ -30,7 +38,7 @@ export default function WhyChooseUs() {
           </p>
         </div>
         <a
-          href="https://wa.me/6285645733351"
+          href={WHATSAPP_URL}
           target="_blank"
           rel="noopener noreferrer"
           className="btn-outline-secondary"

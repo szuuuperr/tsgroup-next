@@ -189,6 +189,12 @@
   flex-shrink: 0;
 }
 
+.cardLine {
+  width: 100%;
+  height: 0.0625rem; /* 1px */
+  background: rgba(17, 11, 102, 0.08);
+}
+
 /* Bottom CTA */
 .cardBtnContainer {
   margin-top: auto;

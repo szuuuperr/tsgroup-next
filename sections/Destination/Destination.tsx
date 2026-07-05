@@ -50,9 +50,8 @@ export default function Destination() {
 
         <Link
           href="/destinasi-wisata"
-          className="btn-outline-secondary"
+          className={`btn-outline-secondary ${styles.moreLink}`}
           data-scroll="fade-up"
-          style={{ position: 'relative', zIndex: 10 }}
         >
           Lihat Semua Destinasi
         </Link>

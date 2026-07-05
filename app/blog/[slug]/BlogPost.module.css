@@ -1,0 +1,216 @@
+.article {
+  width: 100%;
+  max-width: 55rem; /* 880px */
+  margin: 0 auto;
+  padding: var(--sp-7) var(--sp-5) var(--sp-6);
+  display: flex;
+  flex-direction: column;
+  gap: var(--gap-5);
+}
+
+.breadcrumb {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 0.5rem; /* 8px */
+  font-size: 0.8125rem; /* 13px */
+  color: #666;
+}
+
+.breadcrumb a {
+  color: var(--primary);
+  font-weight: 500;
+  transition: color 0.3s ease;
+}
+
+.breadcrumb a:hover {
+  color: var(--secondary);
+}
+
+.breadcrumbSeparator {
+  color: #aaa;
+}
+
+.breadcrumbCurrent {
+  color: #888;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  max-width: 18rem;
+}
+
+.articleHeader {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem; /* 16px */
+}
+
+.articleMeta {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 1rem; /* 16px */
+  font-size: 0.8125rem; /* 13px */
+  color: #666;
+  font-weight: 500;
+}
+
+.articleCategory {
+  color: var(--secondary);
+  background: rgba(254, 34, 13, 0.1);
+  padding: 0.25rem 0.75rem; /* 4px 12px */
+  border-radius: 6.25rem; /* 100px */
+  font-weight: 600;
+}
+
+.articleDate {
+  display: flex;
+  align-items: center;
+  gap: 0.375rem; /* 6px */
+}
+
+.articleTitle {
+  font-size: 2.25rem; /* 36px */
+  font-weight: 700;
+  color: var(--primary);
+  line-height: 1.2;
+  letter-spacing: -0.0625rem; /* -1px */
+}
+
+.articleImage {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 16 / 9;
+  border-radius: 1.5rem; /* 24px */
+  overflow: hidden;
+  box-shadow: 0 0.5rem 1.875rem rgba(17, 11, 102, 0.12);
+}
+
+.articleImage img {
+  object-fit: cover;
+}
+
+.articleContent {
+  display: flex;
+  flex-direction: column;
+  gap: 1.25rem; /* 20px */
+}
+
+.articleContent p {
+  font-size: 1.0625rem; /* 17px */
+  line-height: 1.8;
+  color: #333;
+}
+
+.articleContent p:first-child::first-letter {
+  font-size: 3rem;
+  font-weight: 700;
+  color: var(--primary);
+  float: left;
+  line-height: 1;
+  padding-right: 0.5rem;
+}
+
+/* Artikel terkait */
+.relatedSection {
+  width: 100%;
+  max-width: 80rem; /* 1280px */
+  margin: 0 auto;
+  padding: var(--sp-6) var(--sp-5) var(--sp-8);
+  display: flex;
+  flex-direction: column;
+  gap: var(--gap-5);
+}
+
+.relatedTitle {
+  font-size: 1.5rem; /* 24px */
+  font-weight: 700;
+  color: var(--primary);
+  text-align: center;
+  letter-spacing: -0.03125rem; /* -0.5px */
+}
+
+.relatedGrid {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--gap-4);
+  justify-content: center;
+}
+
+.relatedCard {
+  flex: 0 0 calc(33.333% - 1rem);
+  background: var(--white);
+  border-radius: 1.25rem; /* 20px */
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  box-shadow: 0 0.25rem 1.25rem rgba(17, 11, 102, 0.06);
+  border: 0.0625rem solid rgba(17, 11, 102, 0.06);
+  transition:
+    transform 0.4s cubic-bezier(0.16, 1, 0.3, 1),
+    box-shadow 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.relatedCard:hover {
+  transform: translateY(-0.375rem); /* -6px */
+  box-shadow: 0 1rem 2.5rem rgba(17, 11, 102, 0.12);
+}
+
+.relatedImage {
+  position: relative;
+  width: 100%;
+  height: 10rem; /* 160px */
+  overflow: hidden;
+}
+
+.relatedImage img {
+  object-fit: cover;
+  transition: transform 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.relatedCard:hover .relatedImage img {
+  transform: scale(1.08);
+}
+
+.relatedBody {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem; /* 8px */
+  padding: 1.25rem; /* 20px */
+}
+
+.relatedCategory {
+  font-size: 0.75rem; /* 12px */
+  font-weight: 600;
+  color: var(--secondary);
+}
+
+.relatedCardTitle {
+  font-size: 1rem; /* 16px */
+  font-weight: 700;
+  color: var(--primary);
+  line-height: 1.4;
+}
+
+/* ===== MEDIA QUERIES ===== */
+@media (max-width: 48rem) /* 768px */ {
+  .article {
+    padding: var(--sp-6) var(--sp-4) var(--sp-5);
+  }
+
+  .articleTitle {
+    font-size: 1.625rem; /* 26px */
+  }
+
+  .articleImage {
+    border-radius: 1rem;
+  }
+
+  .articleContent p {
+    font-size: 1rem;
+  }
+
+  .relatedCard {
+    flex: 0 0 100%;
+  }
+}

@@ -1,4 +1,6 @@
+import Image from "next/image";
 import styles from "./CTA.module.css";
+import { WHATSAPP_URL } from "@/lib/site";
 
 export default function CTA() {
   return (
@@ -10,7 +12,7 @@ export default function CTA() {
             Tersedia layanan rental mobil dengan beragam pilihan armada yang lengkap dan nyaman, didukung harga yang kompetitif untuk memenuhi kebutuhan perjalanan Anda.
           </p>
           <a
-            href="https://wa.me/6285645733351"
+            href={WHATSAPP_URL}
             target="_blank"
             rel="noopener noreferrer"
             className="btn-outline-white"
@@ -34,7 +36,13 @@ export default function CTA() {
           </a>
         </div>
         <div className={styles.ctaRight}>
-          <img src="/assets/cta-gambar.png" alt="CTA Image" />
+          <Image
+            src="/assets/cta-gambar.png"
+            alt="Liburan bersama TS Group"
+            width={951}
+            height={587}
+            sizes="(max-width: 1024px) 100vw, 35rem"
+          />
         </div>
       </div>
     </section>

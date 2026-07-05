@@ -206,6 +206,22 @@
 }
 
 /* Review text */
+.reviewOuter {
+  width: 100%;
+  overflow: hidden;
+}
+
+.googleLetter {
+  font-weight: 700;
+  font-size: 1.375rem; /* 22px */
+}
+
+.cardLine {
+  width: 100%;
+  height: 0.0625rem; /* 1px */
+  background: rgba(17, 11, 102, 0.08);
+}
+
 .reviewText {
   font-size: 0.8125rem; /* 13px */
   color: #555;

@@ -1,5 +1,5 @@
 .mapSection {
-  width: 100%;
+  width: 100vw;
   padding: var(--sp-9) var(--sp-8); /* 96px 72px */
 }
 
