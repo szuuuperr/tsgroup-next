@@ -35,9 +35,9 @@ export default function Footer() {
               />
             </div>
             <p className={styles.footerDesc}>
-              Dengan komitmen untuk memberikan kepuasan kepada pelanggan, TS
-              Group turut menghadirkan beragam paket wisata menarik yang
-              memungkinkan Anda menikmati keindahan Jogja dan sekitarnya.
+              Biro perjalanan wisata di Sleman, Yogyakarta. Sejak 2010 melayani
+              paket wisata, rental mobil dengan sopir maupun lepas kunci, untuk
+              liburan keluarga hingga rombongan besar.
             </p>
             <p className={styles.footerSocialTitle}>Sosial Media Kami</p>
             <div className={styles.footerSocialIcons}>
@@ -95,7 +95,9 @@ export default function Footer() {
                 </a>
               </div>
               <p className={styles.contactLabel}>Email</p>
-              <p className={styles.contactValue}>{SITE.email}</p>
+              <p className={styles.contactValue}>
+                <a href={`mailto:${SITE.email}`}>{SITE.email}</a>
+              </p>
             </div>
             <div className={styles.footerGallery}>
               <p className={styles.footerSectionTitle}>Galeri Terbaru</p>
@@ -112,7 +114,8 @@ export default function Footer() {
         <div className={styles.footerLine}></div>
         <div className={styles.footerBottom}>
           <p className={styles.footerCopyright}>
-            Copyright © 2026 TS Group. All rights reserved. Developed with ❤️ by ModernWeb.
+            Copyright © {new Date().getFullYear()} {SITE.name}. All rights
+            reserved.
           </p>
         </div>
       </footer>

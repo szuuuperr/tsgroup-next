@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import styles from "./Kontak.module.css";
 import KontakForm from "./KontakForm";
+import KontakMap from "./KontakMap";
 import { SITE, WHATSAPP_URL } from "@/lib/site";
 
 export const metadata: Metadata = {
@@ -54,7 +55,8 @@ export default function KontakPage() {
           <p className="section-description" data-scroll="fade-up" data-scroll-delay="200">
             Punya pertanyaan seputar paket wisata atau rental mobil? Hubungi
             kami melalui salah satu kanal di bawah ini, atau kirim pesan
-            langsung melalui formulir - tim kami akan segera merespons.
+            langsung melalui <a href="#form-kontak" className={styles.inlineLink}>formulir</a>,
+            tim kami akan segera merespons.
           </p>
 
           <div className={styles.contactGrid} data-scroll-parent>
@@ -93,14 +95,7 @@ export default function KontakPage() {
         <div className={styles.mapWrapper} data-scroll="fade-left">
           <h2 className={styles.formTitle}>Lokasi Kami</h2>
           <p className={styles.formSubtitle}>{SITE.address}</p>
-          <iframe
-            title="Lokasi TS Group Tour & Travel"
-            src={`https://www.google.com/maps?q=${encodeURIComponent(SITE.address)}&output=embed`}
-            className={styles.mapFrame}
-            loading="lazy"
-            referrerPolicy="no-referrer-when-downgrade"
-            allowFullScreen
-          />
+          <KontakMap />
         </div>
       </section>
     </main>

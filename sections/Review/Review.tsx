@@ -53,9 +53,10 @@ export default function Review() {
             Apa Kata Pelanggan Kami
           </h2>
           <p className="section-description" data-scroll="fade-up" data-scroll-delay="200">
-            Tersedia layanan rental mobil dengan beragam pilihan armada yang
-            lengkap dan nyaman, didukung harga yang kompetitif untuk memenuhi
-            kebutuhan perjalanan Anda.
+            Kepercayaan pelanggan adalah aset terbesar kami. Berikut cerita
+            asli dari mereka yang sudah berlibur bersama TS Group, mulai dari
+            liburan keluarga, rombongan kantor, hingga pelanggan setia yang
+            kembali setiap kali ke Jogja.
           </p>
 
           <div className={styles.reviewHeader} data-scroll="fade-up" data-scroll-delay="200">
@@ -88,7 +89,7 @@ export default function Review() {
               href={SITE.googleReviewUrl}
               target="_blank"
               rel="noopener noreferrer"
-              className={styles.btnReviewGoogle}
+              className={`btn-outline-primary ${styles.btnReviewGoogle}`}
             >
               Tulis Ulasan di Google
               <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" width="16" height="16">

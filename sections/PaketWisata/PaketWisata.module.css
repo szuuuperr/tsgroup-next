@@ -1,6 +1,6 @@
 .paketWisataSection {
   width: 100%;
-  padding: var(--sp-9) var(--sp-8); /* 96px 72px */
+  padding: var(--section-py) var(--section-px);
 }
 
 .paketWisataContainer {
@@ -8,7 +8,7 @@
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  gap: var(--gap-5); /* 16px */
+  gap: var(--gap-4); /* 16px */
 }
 
 .paketCardContainer {
@@ -201,35 +201,7 @@
   padding-top: 1rem; /* 16px */
 }
 
-.btnPesan {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 0.5rem; /* 8px */
-  background: linear-gradient(135deg, var(--primary), #2a1fa8);
-  color: var(--white);
-  border: none;
-  border-radius: 6.25rem; /* 100px */
-  padding: 0.8125rem var(--sp-2); /* 13px 16px */
-  width: 100%;
-  font-size: 0.875rem; /* 14px */
-  font-weight: 500;
-  cursor: pointer;
-  transition: all 0.3s ease;
-  letter-spacing: 0.0125rem; /* 0.2px */
-}
-
-.btnPesan:hover {
-  background: linear-gradient(135deg, var(--secondary), #ff4433);
-  transform: translateY(-0.125rem); /* -2px */
-  box-shadow: 0 0.375rem 1.25rem rgba(254, 34, 13, 0.3); /* 6px 20px */
-}
-
-.btnPesan svg {
-  width: 1.125rem; /* 18px */
-  height: 1.125rem; /* 18px */
-  fill: var(--white);
-}
+/* Tombol pesan memakai kelas global .btn-primary .btn-block */
 
 .btnMorePaket {
   margin-top: var(--sp-4); /* 32px */
@@ -237,39 +209,19 @@
 }
 
 /* ===== MEDIA QUERIES ===== */
-@media (max-width: 80rem) /* 1280px */ {
-  .paketWisataSection {
-    padding: var(--sp-8) var(--sp-6); /* 72px 48px */
-  }
-}
-
 @media (max-width: 64rem) /* 1024px */ {
-  .paketWisataSection {
-    padding: var(--sp-6) var(--sp-4); /* 48px 24px */
-  }
-
   .paketCard {
     flex: 0 0 calc(50% - 0.75rem); /* 50% - 12px */
   }
 }
 
 @media (max-width: 48rem) /* 768px */ {
-  .paketWisataSection {
-    padding: 2.5rem 1.25rem; /* 40px 20px */
-  }
-
   .paketCard {
     flex: 0 0 100%;
   }
 
   .paketCardContainer {
-    padding-top: var(--sp-4); /* 24px */
+    padding-top: var(--sp-4); /* 16px */
     gap: 1.25rem; /* 20px */
-  }
-}
-
-@media (max-width: 30rem) /* 480px */ {
-  .paketWisataSection {
-    padding: 2.5rem 2rem; /* 40px 32px */
   }
 }

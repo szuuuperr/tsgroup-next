@@ -1,21 +1,25 @@
 .destinationSection {
   width: 100%;
+  padding: var(--section-py) var(--section-px);
+  padding-bottom: var(--sp-6);
 }
 
 .destinationContainer {
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: var(--gap-5); /* 16px */
+  gap: var(--gap-4); /* 16px */
 }
 
+/* Breakout selebar wrapper (bukan 100vw agar tidak bocor dari
+   .wrapper max-width di layar lebar). */
 .galleryWrapper {
-  width: 100vw;
+  width: calc(100% + 2 * var(--section-px));
   height: 80vw;
   max-height: 600px;
   margin-top: -96px;
-  margin-left: calc(-50vw + 50%);
-  margin-right: calc(-50vw + 50%);
+  margin-left: calc(-1 * var(--section-px));
+  margin-right: calc(-1 * var(--section-px));
 }
 
 .destinationGallery {
@@ -60,17 +64,7 @@
 }
 
 /* ===== MEDIA QUERIES ===== */
-@media (max-width: 80rem) /* 1280px */ {
-  .destinationSection {
-    padding: var(--sp-8) var(--sp-6); /* 72px 48px */
-  }
-}
-
 @media (max-width: 64rem) /* 1024px */ {
-  .destinationSection {
-    padding: var(--sp-6) var(--sp-4); /* 48px 24px */
-  }
-
   .galleryWrapper {
     height: 70vw;
     max-height: 500px;
@@ -85,10 +79,6 @@
 }
 
 @media (max-width: 48rem) /* 768px */ {
-  .destinationSection {
-    padding: 2.5rem 1.25rem; /* 40px 20px */
-  }
-
   .galleryWrapper {
     height: 100vw;
     max-height: 400px;
@@ -114,10 +104,6 @@
 }
 
 @media (max-width: 30rem) /* 480px */ {
-  .destinationSection {
-    padding: 2.5rem 2rem; /* 40px 32px */
-  }
-
   .galleryWrapper {
     height: 120vw;
     max-height: 350px;

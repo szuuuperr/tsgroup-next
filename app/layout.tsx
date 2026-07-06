@@ -43,10 +43,11 @@ export default function RootLayout({
         <div className="grid-wrap">
           <div className="grid-bg"></div>
         </div>
-        <TopBar />
         <Navbar />
-        {children}
-        <CTA />
+        <div className="wrapper">
+          {children}
+          <CTA />
+        </div>
         <FAB />
         <Footer />
       </body>

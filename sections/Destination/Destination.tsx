@@ -44,7 +44,7 @@ export default function Destination() {
             bend={2}
             textColor="#110b66"
             borderRadius={0.08}
-            font="bold 30px Inter"
+            font="bold 30px var(--font-inter)"
           />
         </div>
 

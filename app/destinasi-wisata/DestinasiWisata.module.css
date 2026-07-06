@@ -1,73 +1,23 @@
-.pageHeader {
-  padding: var(--sp-7) var(--sp-8) var(--sp-6) var(--sp-8);
-  width: 100%;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  text-align: center;
-  gap: var(--gap-5);
-}
-
+/* Section utama: hanya padding token parent, child dibatasi padding ini. */
 .listSection {
   width: 100%;
-  padding: 0 var(--sp-8) var(--sp-9);
+  padding: var(--section-py) var(--section-px);
 }
 
 .contentContainer {
   display: flex;
   flex-direction: column;
   align-items: center;
+  text-align: center;
+  gap: var(--gap-4);
   width: 100%;
-  max-width: 80rem; /* 1280px */
-  margin: 0 auto;
-}
-
-.filterTabs {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 0.75rem; /* 12px */
-  margin-top: var(--sp-6); /* 48px */
-  justify-content: center;
-} 
-
-.filterTab {
-  display: flex;
-  align-items: center;
-  gap: 0.5rem; /* 8px */
-  padding: 0.625rem 1.25rem; /* 10px 20px */
-  border-radius: 6.25rem; /* 100px */
-  background: var(--white);
-  color: var(--primary);
-  font-size: 0.875rem; /* 14px */
-  font-weight: 600;
-  border: 0.0625rem solid rgba(17, 11, 102, 0.1);
-  cursor: pointer;
-  transition: all 0.3s ease;
-}
-
-.filterTab:hover {
-  background: rgba(17, 11, 102, 0.03);
-  transform: translateY(-0.125rem); /* -2px */
-}
-
-.filterTab.active {
-  background: var(--primary);
-  color: var(--white);
-  border-color: var(--primary);
-  box-shadow: 0 0.25rem 0.625rem rgba(17, 11, 102, 0.2); /* 4px 10px */
-}
-
-.filterTab svg {
-  width: 1.125rem; /* 18px */
-  height: 1.125rem; /* 18px */
-  fill: currentColor;
 }
 
 .cardsGrid {
   display: flex;
   flex-wrap: wrap;
-  gap: var(--gap-4); /* 24px */
-  margin-top: var(--sp-6); /* 48px */
+  gap: var(--gap-4); /* 16px */
+  margin-top: var(--sp-6); /* 32px */
   width: 100%;
   justify-content: center;
 }
@@ -76,23 +26,41 @@
   background: var(--white);
   border-radius: 1.5rem; /* 24px */
   overflow: hidden;
-  box-shadow: 0 0.25rem 1.25rem rgba(17, 11, 102, 0.06);
+  box-shadow: var(--shadow-card);
   border: 0.0625rem solid rgba(17, 11, 102, 0.06);
   flex: 0 0 calc(33.333% - 1rem); /* 16px */
   display: flex;
   flex-direction: column;
-  transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+  text-align: left;
+  transition:
+    transform 0.4s var(--ease-out),
+    box-shadow 0.4s var(--ease-out);
+  /* Animasi masuk dari bawah; berjalan lagi saat grid di-remount
+     (klik filter) karena key container berganti. */
+  animation: cardIn 0.55s var(--ease-out) both;
+  animation-delay: calc(var(--i, 0) * 60ms);
+}
+
+@keyframes cardIn {
+  from {
+    opacity: 0;
+    transform: translateY(2.5rem); /* 40px */
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .destinasiCard {
+    animation: none;
+  }
 }
 
 .destinasiCard:hover {
   transform: translateY(-0.625rem); /* -10px */
-  box-shadow: 0 1.25rem 3.125rem rgba(17, 11, 102, 0.14);
-}
-
-.destinasiCard.expanded {
-  grid-column: 1 / -1;
-  flex: 0 0 100%;
-  flex-direction: row;
+  box-shadow: var(--shadow-card-hover);
 }
 
 .cardImage {
@@ -102,56 +70,15 @@
   overflow: hidden;
 }
 
-.destinasiCard.expanded .cardImage {
-  width: 40%;
-  height: auto;
-  min-height: 25rem; /* 400px */
-}
-
 .cardImage img {
   width: 100%;
   height: 100%;
   object-fit: cover;
-  transition: transform 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+  transition: transform 0.5s var(--ease-out);
 }
 
 .destinasiCard:hover .cardImage img {
   transform: scale(1.08);
-}
-
-.cardBadge {
-  position: absolute;
-  top: 1rem; /* 16px */
-  left: 1rem; /* 16px */
-  background: var(--secondary);
-  color: var(--white);
-  padding: 0.375rem 0.875rem; /* 6px 14px */
-  border-radius: 6.25rem; /* 100px */
-  font-size: 0.75rem; /* 12px */
-  font-weight: 700;
-  box-shadow: 0 0.25rem 0.625rem rgba(0, 0, 0, 0.2);
-  z-index: 2;
-}
-
-.cardRating {
-  position: absolute;
-  top: 1rem; /* 16px */
-  right: 1rem; /* 16px */
-  background: rgba(255, 255, 255, 0.9);
-  backdrop-filter: blur(0.25rem); /* 4px */
-  padding: 0.375rem 0.75rem; /* 6px 12px */
-  border-radius: 6.25rem; /* 100px */
-  display: flex;
-  align-items: center;
-  gap: 0.25rem; /* 4px */
-  font-size: 0.75rem; /* 12px */
-  font-weight: 700;
-  color: var(--primary);
-  z-index: 2;
-}
-
-.cardRating svg {
-  fill: #fbbc05;
 }
 
 .cardBody {
@@ -160,12 +87,6 @@
   flex-direction: column;
   gap: 1rem; /* 16px */
   flex: 1;
-}
-
-.destinasiCard.expanded .cardBody {
-  width: 60%;
-  padding: 2.5rem; /* 40px */
-  justify-content: center;
 }
 
 .cardHeader {
@@ -202,11 +123,6 @@
   -webkit-line-clamp: 3;
   -webkit-box-orient: vertical;
   overflow: hidden;
-}
-
-.destinasiCard.expanded .cardDesc {
-  -webkit-line-clamp: unset;
-  font-size: 1rem; /* 16px */
 }
 
 .cardFooter {
@@ -261,36 +177,106 @@
   height: 1.125rem; /* 18px */
 }
 
-.chevron,
-.chevronOpen {
-  transition: transform 0.3s ease;
+/* ===== BOTTOM DRAWER DETAIL ===== */
+.drawerBackdrop {
+  position: fixed;
+  inset: 0;
+  background: rgba(10, 7, 60, 0.55);
+  backdrop-filter: blur(0.25rem); /* 4px */
+  -webkit-backdrop-filter: blur(0.25rem);
+  z-index: 1200;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.35s ease;
 }
 
-.chevronOpen {
-  transform: rotate(180deg);
+.backdropOpen {
+  opacity: 1;
+  pointer-events: auto;
 }
 
-.cardLine {
+.drawer {
+  position: fixed;
+  left: 50%;
+  bottom: 0;
+  /* Lebar mengikuti area konten section: viewport dikurangi
+     padding --section-px kiri-kanan, dan tetap terkunci pada
+     --container-max (lebar .wrapper) di layar sangat lebar. */
+  width: min(
+    calc(100% - 2 * var(--section-px)),
+    calc(var(--container-max) - 2 * var(--section-px))
+  );
+  z-index: 1201;
+  background: var(--white);
+  border-radius: 1.5rem 1.5rem 0 0; /* 24px atas */
+  box-shadow: 0 -0.75rem 2.5rem rgba(17, 11, 102, 0.2);
+  padding: var(--sp-6); /* 32px */
+  max-height: 88vh;
+  overflow-y: auto;
+  transform: translate(-50%, 100%);
+  transition: transform 0.45s var(--ease-out);
+}
+
+.drawerOpen {
+  transform: translate(-50%, 0);
+}
+
+.drawerClose {
+  position: absolute;
+  top: 1.25rem; /* 20px */
+  right: 1.25rem; /* 20px */
+  width: 2.5rem; /* 40px */
+  height: 2.5rem;
+  border-radius: 50%;
+  border: none;
+  background: rgba(17, 11, 102, 0.06);
+  color: var(--primary);
+  font-size: 1rem; /* 16px */
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.3s ease;
+  z-index: 2;
+}
+
+.drawerClose:hover {
+  background: var(--secondary);
+  color: var(--white);
+}
+
+.drawerLayout {
+  display: flex;
+  gap: var(--gap-6); /* 32px */
+  align-items: stretch;
   width: 100%;
-  height: 0.0625rem; /* 1px */
-  background: rgba(17, 11, 102, 0.08);
 }
 
-.cardDetail {
-  display: none;
+.drawerImage {
+  position: relative;
+  flex: 0 0 40%;
+  min-height: 20rem; /* 320px */
+  border-radius: 1.25rem; /* 20px */
+  overflow: hidden;
+}
+
+.drawerImage img {
+  object-fit: cover;
+}
+
+.drawerBody {
+  flex: 1;
+  display: flex;
   flex-direction: column;
   gap: 1.25rem; /* 20px */
-  margin-top: 1.25rem; /* 20px */
+  text-align: left;
+  justify-content: center;
 }
 
-.cardDetail.open {
-  display: flex;
-  animation: fadeInDown 0.4s ease forwards;
-}
-
-@keyframes fadeInDown {
-  from { opacity: 0; transform: translateY(-0.625rem); }
-  to { opacity: 1; transform: translateY(0); }
+.drawerDesc {
+  font-size: 1rem; /* 16px */
+  color: #555;
+  line-height: var(--lh-body);
 }
 
 .detailInfoGrid {
@@ -333,35 +319,6 @@
   font-weight: 600;
 }
 
-.btnPesan {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 0.5rem; /* 8px */
-  background: linear-gradient(135deg, var(--primary), #2a1fa8);
-  color: var(--white);
-  border: none;
-  border-radius: 6.25rem; /* 100px */
-  padding: 1rem 1.5rem; /* 16px 24px */
-  font-size: 1rem; /* 16px */
-  font-weight: 600;
-  cursor: pointer;
-  transition: all 0.3s ease;
-  width: 100%;
-}
-
-.btnPesan:hover {
-  background: linear-gradient(135deg, var(--secondary), #ff4433);
-  transform: translateY(-0.125rem); /* -2px */
-  box-shadow: 0 0.5rem 1.5rem rgba(254, 34, 13, 0.3); /* 8px 24px */
-}
-
-.btnPesan svg {
-  width: 1.25rem; /* 20px */
-  height: 1.25rem; /* 20px */
-  fill: var(--white);
-}
-
 /* Tips Section */
 .tipsDescription {
   max-width: 37.5rem; /* 600px */
@@ -372,8 +329,8 @@
 .tipsGrid {
   display: flex;
   flex-wrap: wrap;
-  gap: var(--gap-4); /* 24px */
-  margin-top: var(--sp-6); /* 48px */
+  gap: var(--gap-4); /* 16px */
+  margin-top: var(--sp-6); /* 32px */
   justify-content: center;
   width: 100%;
 }
@@ -385,15 +342,17 @@
   border-radius: 1.5rem; /* 24px */
   display: flex;
   flex-direction: column;
+  align-items: flex-start;
+  text-align: left;
   gap: 1rem; /* 16px */
-  box-shadow: 0 0.25rem 1.25rem rgba(17, 11, 102, 0.05);
+  box-shadow: var(--shadow-card);
   border: 0.0625rem solid rgba(17, 11, 102, 0.06);
   transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 
 .tipCard:hover {
   transform: translateY(-0.3125rem); /* -5px */
-  box-shadow: 0 1rem 2.5rem rgba(17, 11, 102, 0.1);
+  box-shadow: var(--shadow-card-hover);
 }
 
 .tipIcon {
@@ -426,15 +385,6 @@
 }
 
 /* ===== MEDIA QUERIES ===== */
-@media (max-width: 80rem) /* 1280px */ {
-  .pageHeader {
-    padding: var(--sp-7) var(--sp-6) var(--sp-6);
-  }
-  .listSection {
-    padding: 0 var(--sp-6) var(--sp-8);
-  }
-}
-
 @media (max-width: 64rem) /* 1024px */ {
   .destinasiCard {
     flex: 0 0 calc(50% - 0.75rem); /* 12px */
@@ -445,17 +395,13 @@
 }
 
 @media (max-width: 48rem) /* 768px */ {
-  .destinasiCard.expanded {
+  .drawerLayout {
     flex-direction: column;
   }
-  .destinasiCard.expanded .cardImage {
+  .drawerImage {
+    flex: none;
     width: 100%;
-    height: 15rem; /* 240px */
-    min-height: auto;
-  }
-  .destinasiCard.expanded .cardBody {
-    width: 100%;
-    padding: 1.5rem; /* 24px */
+    min-height: 13.75rem; /* 220px */
   }
   .detailInfoGrid {
     grid-template-columns: 1fr;
@@ -468,11 +414,5 @@
   }
   .tipCard {
     flex: 0 0 100%;
-  }
-  .pageHeader {
-    padding: 2.5rem 1.25rem; /* 40px 20px */
-  }
-  .listSection {
-    padding: 0 1.25rem var(--sp-7);
   }
 }

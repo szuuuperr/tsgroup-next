@@ -1,18 +1,16 @@
+/* Header halaman: tanpa padding sendiri, mengikuti padding section parent. */
 .blogHero {
-  padding: var(--sp-7) var(--sp-8) var(--sp-6) var(--sp-8);
   width: 100%;
   display: flex;
   flex-direction: column;
-  gap: var(--gap-5);
+  gap: var(--gap-4);
   align-items: center;
   text-align: center;
 }
 
+/* Lebar konten hanya dibatasi padding section parent. */
 .blogContainer {
-  padding: 0 var(--sp-8) var(--sp-9);
   width: 100%;
-  max-width: 80rem; /* 1280px */
-  margin: 0 auto;
   display: flex;
   flex-direction: column;
   gap: var(--gap-6);
@@ -211,23 +209,9 @@
   transform: translateX(0.25rem); /* 4px */
 }
 
-/* ===== MEDIA QUERIES ===== */
-@media (max-width: 80rem) /* 1280px */ {
-  .blogHero {
-    padding: var(--sp-7) var(--sp-6) var(--sp-6);
-  }
-  .blogContainer {
-    padding: 0 var(--sp-6) var(--sp-8);
-  }
-}
-
+/* ===== MEDIA QUERIES =====
+   Padding section mengikuti token parent; tidak ada override di sini. */
 @media (max-width: 64rem) /* 1024px */ {
-  .blogHero {
-    padding: var(--sp-6) var(--sp-4);
-  }
-  .blogContainer {
-    padding: 0 var(--sp-4) var(--sp-7);
-  }
   .blogCard {
     flex: 0 0 calc(50% - 0.75rem);
   }
@@ -240,9 +224,6 @@
 }
 
 @media (max-width: 48rem) /* 768px */ {
-  .blogHero {
-    padding: 2.5rem 1.25rem;
-  }
   .blogCard {
     flex: 0 0 100%;
   }

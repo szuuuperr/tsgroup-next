@@ -153,9 +153,18 @@ const Masonry: React.FC<MasonryProps> = ({
   }, [grid]);
 
   const hasMounted = useRef(false);
+  const prevKeysRef = useRef<Set<string>>(new Set());
 
   useLayoutEffect(() => {
     if (!imagesReady) return;
+
+    // Jika daftar item berubah (klik filter), animasikan ulang semua item
+    // dari bawah ke atas. Jika hanya posisi yang berubah (resize),
+    // cukup geser halus ke posisi baru.
+    const currentKeys = new Set(grid.map(item => item.id));
+    const keysChanged =
+      currentKeys.size !== prevKeysRef.current.size ||
+      [...currentKeys].some(key => !prevKeysRef.current.has(key));
 
     grid.forEach((item, index) => {
       const selector = `[data-key="${item.id}"]`;
@@ -185,6 +194,28 @@ const Masonry: React.FC<MasonryProps> = ({
           ease: 'power3.out',
           delay: index * stagger
         });
+      } else if (keysChanged) {
+        // Muncul dari sedikit di bawah posisi akhirnya (bottom-up).
+        gsap.fromTo(
+          selector,
+          {
+            opacity: 0,
+            x: item.x,
+            y: item.y + 80,
+            width: item.w,
+            height: item.h,
+            ...(blurToFocus && { filter: 'blur(10px)' })
+          },
+          {
+            opacity: 1,
+            ...animationProps,
+            ...(blurToFocus && { filter: 'blur(0px)' }),
+            duration: 0.6,
+            ease: 'power3.out',
+            delay: index * stagger,
+            overwrite: 'auto'
+          }
+        );
       } else {
         gsap.to(selector, {
           ...animationProps,
@@ -196,6 +227,7 @@ const Masonry: React.FC<MasonryProps> = ({
     });
 
     hasMounted.current = true;
+    prevKeysRef.current = currentKeys;
   }, [grid, imagesReady, stagger, animateFrom, blurToFocus, duration, ease]);
 
   const handleMouseEnter = (e: React.MouseEvent, item: GridItem) => {

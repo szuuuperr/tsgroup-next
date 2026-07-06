@@ -11,7 +11,8 @@
 .topBar {
   display: flex;
   align-items: center;
-  padding: var(--sp-2) var(--sp-8);
+  /* Horizontal mengikuti token section agar segaris dengan navbar & konten */
+  padding: var(--sp-2) var(--section-px);
   justify-content: space-between;
   width: 100%;
   max-width: 95rem; /* 1520px */

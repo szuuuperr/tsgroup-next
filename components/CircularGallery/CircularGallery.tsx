@@ -88,6 +88,13 @@ async function loadCustomFont(fontUrl: string): Promise<string> {
 // file) and returns a canvas-ready font string that keeps the size/weight from
 // `font` but swaps in the freshly loaded family. Falls back to `font` on error.
 async function resolveFont(font: string, fontUrl?: string): Promise<string> {
+  // Canvas tidak memahami var(--x); ganti dengan nilai komputasinya supaya
+  // font yang dimuat via next/font (nama family di-hash) tetap bisa dipakai,
+  // mis. font="bold 30px var(--font-inter)".
+  font = font.replace(/var\((--[\w-]+)\)/g, (_, name) => {
+    const value = getComputedStyle(document.documentElement).getPropertyValue(name).trim();
+    return value || 'sans-serif';
+  });
   // Use the bundled Figtree stylesheet when the caller relies on the default
   // font, otherwise honor the explicit `fontUrl`.
   const effectiveUrl = fontUrl || (font === DEFAULT_FONT ? DEFAULT_FONT_URL : null);

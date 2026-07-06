@@ -17,7 +17,7 @@ export const blogPosts: BlogPost[] = [
       "Yogyakarta selalu menjadi destinasi favorit keluarga. Tapi bagaimana caranya agar liburan tetap seru tanpa menguras kantong? Simak tips berikut ini.",
     image: "/assets/prambanan-gambar.png",
     category: "Tips Liburan",
-    date: "12 Okt 2023",
+    date: "28 Jun 2026",
     readingTime: "5 menit",
     content: [
       "Liburan keluarga ke Yogyakarta tidak harus mahal. Dengan perencanaan yang tepat, Anda bisa menikmati pesona Kota Gudeg bersama keluarga tanpa membuat dompet menjerit. Berikut lima tips yang bisa Anda terapkan.",
@@ -35,7 +35,7 @@ export const blogPosts: BlogPost[] = [
       "Kraton Yogyakarta bukan sekadar tempat tinggal sultan, melainkan pusat kebudayaan Jawa yang menyimpan banyak cerita sejarah yang patut kita pelajari.",
     image: "/assets/kraton-yogyakarta.webp",
     category: "Budaya",
-    date: "28 Sep 2023",
+    date: "14 Jun 2026",
     readingTime: "6 menit",
     content: [
       "Kraton Ngayogyakarta Hadiningrat berdiri sejak tahun 1755 sebagai hasil Perjanjian Giyanti yang membagi Kerajaan Mataram menjadi dua. Sri Sultan Hamengku Buwono I kemudian membangun istana ini di antara Sungai Winongo dan Sungai Code.",
@@ -52,7 +52,7 @@ export const blogPosts: BlogPost[] = [
       "Jalan-jalan di Malioboro kurang lengkap rasanya jika belum mencoba kuliner malamnya. Dari angkringan hingga kopi joss, ini rekomendasinya.",
     image: "/assets/tugu-jogja.jpg",
     category: "Kuliner",
-    date: "15 Sep 2023",
+    date: "30 Mei 2026",
     readingTime: "4 menit",
     content: [
       "Malioboro di malam hari berubah menjadi surga kuliner. Lampu-lampu kota, alunan musik pengamen jalanan, dan aroma masakan dari lesehan di sepanjang trotoar menciptakan suasana khas yang tidak ditemukan di kota lain.",
@@ -69,7 +69,7 @@ export const blogPosts: BlogPost[] = [
       "Menyaksikan matahari terbit dan terbenam di kawasan Candi Borobudur adalah pengalaman spiritual dan visual yang tidak boleh Anda lewatkan.",
     image: "/assets/candi-borobudur.jpeg",
     category: "Destinasi",
-    date: "05 Sep 2023",
+    date: "12 Mei 2026",
     readingTime: "5 menit",
     content: [
       "Candi Borobudur, mahakarya abad ke-9 yang menjadi candi Buddha terbesar di dunia, menawarkan pengalaman berbeda di setiap waktunya. Namun momen sunrise dan sunset adalah dua waktu paling magis untuk mengunjunginya.",
@@ -86,7 +86,7 @@ export const blogPosts: BlogPost[] = [
       "Ingin liburan lebih fleksibel? Menyewa mobil lepas kunci bisa jadi pilihan tepat. Pahami syarat dan tipsnya sebelum Anda memutuskan untuk menyewa.",
     image: "/assets/inova.png",
     category: "Panduan",
-    date: "22 Agu 2023",
+    date: "25 Apr 2026",
     readingTime: "6 menit",
     content: [
       "Sewa mobil lepas kunci — menyewa mobil tanpa sopir — semakin diminati wisatawan yang ingin kebebasan penuh mengatur itinerary. Sebelum menyewa, ada beberapa hal penting yang perlu Anda pahami.",
@@ -104,7 +104,7 @@ export const blogPosts: BlogPost[] = [
       "Pantai Parangtritis selalu punya daya magis tersendiri, terutama saat senja tiba. Ketahui waktu terbaik untuk berkunjung ke mari.",
     image: "/assets/parangtritis-gambar.png",
     category: "Destinasi",
-    date: "10 Agu 2023",
+    date: "08 Apr 2026",
     readingTime: "4 menit",
     content: [
       "Terletak sekitar 27 kilometer di selatan pusat kota Yogyakarta, Pantai Parangtritis adalah pantai paling ikonik di Jogja. Pasir hitam vulkanik, deburan ombak Laut Selatan, dan legenda Nyi Roro Kidul membuatnya begitu istimewa.",

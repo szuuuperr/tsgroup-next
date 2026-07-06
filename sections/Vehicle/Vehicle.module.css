@@ -1,20 +1,23 @@
 .vehicleOuter {
   width: 100%;
   overflow: hidden;
+  /* Ukuran lekukan sudut dekoratif; offset divider di bawah dihitung
+     otomatis dari token section, jadi selalu sinkron dengan padding. */
+  --divider-size: 5.625rem; /* 90px */
 }
 
 .vehicleSection {
   background-color: #e5e5f7;
   background-image: radial-gradient(#aaaaaa 0.03125rem, var(--grey) 0.03125rem); /* 0.5px */
   background-size: 0.625rem 0.625rem; /* 10px */
-  padding: var(--sp-9) var(--sp-8); /* 96px 72px */
-  border-radius: 0 5.625rem 0 5.625rem; /* 90px */
+  padding: var(--section-py) var(--section-px);
+  border-radius: 0 var(--divider-size) 0 var(--divider-size);
   width: 100%;
   filter: drop-shadow(0 0.25rem 0.5rem rgba(0, 0, 0, 0.18)); /* 4px 8px */
 }
 
 .vehiclePage {
-  padding: var(--sp-9) var(--sp-8); /* 96px 72px */
+  padding: var(--section-py) var(--section-px);
   width: 100%;
 }
 
@@ -25,14 +28,14 @@
 .dividerVehicleTop::before {
   content: "";
   position: absolute;
-  top: -11.625rem; /* -186px */
-  left: -4.5rem; /* -72px */
-  width: 5.625rem; /* 90px */
-  height: 5.625rem; /* 90px */
+  top: calc(-1 * (var(--section-py) + var(--divider-size)));
+  left: calc(-1 * var(--section-px));
+  width: var(--divider-size);
+  height: var(--divider-size);
   background: radial-gradient(
     circle at bottom left,
-    transparent 5.625rem,
-    var(--grey) 5.625rem
+    transparent var(--divider-size),
+    var(--grey) var(--divider-size)
   );
   transform: rotate(180deg);
 }
@@ -44,14 +47,14 @@
 .dividerVehicleBottom::before {
   content: "";
   position: absolute;
-  bottom: -11.625rem; /* -186px */
-  right: -4.5rem; /* -72px */
-  width: 5.625rem; /* 90px */
-  height: 5.625rem; /* 90px */
+  bottom: calc(-1 * (var(--section-py) + var(--divider-size)));
+  right: calc(-1 * var(--section-px));
+  width: var(--divider-size);
+  height: var(--divider-size);
   background: radial-gradient(
     circle at top right,
-    transparent 5.625rem,
-    var(--grey) 5.625rem
+    transparent var(--divider-size),
+    var(--grey) var(--divider-size)
   );
   transform: rotate(180deg);
 }
@@ -60,7 +63,7 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: var(--gap-5); /* 16px */
+  gap: var(--gap-4); /* 16px */
 }
 
 .vehicleGrid {
@@ -187,35 +190,7 @@
   margin-top: auto;
 }
 
-.btnPesan {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 0.375rem; /* 6px */
-  background: linear-gradient(135deg, var(--primary), #2a1fa8);
-  color: var(--white);
-  border: none;
-  border-radius: 6.25rem; /* 100px */
-  padding: 0.75rem 1rem; /* 12px 16px */
-  width: 100%;
-  font-size: 0.875rem; /* 14px */
-  font-weight: 500;
-  cursor: pointer;
-  font-family: var(--font-inter), sans-serif;
-  transition: all 0.3s ease;
-}
-
-.btnPesan:hover {
-  background: linear-gradient(135deg, var(--secondary), #ff4433);
-  transform: translateY(-0.125rem); /* -2px */
-  box-shadow: 0 0.375rem 1.25rem rgba(254, 34, 13, 0.3); /* 6px 20px */
-}
-
-.btnPesan svg {
-  width: 1.125rem; /* 18px */
-  height: 1.125rem; /* 18px */
-  fill: var(--white);
-}
+/* Tombol pesan memakai kelas global .btn-primary .btn-block */
 
 .btnMoreVehicle {
   margin-top: var(--sp-4); /* 32px */
@@ -223,39 +198,9 @@
 }
 
 /* ===== MEDIA QUERIES ===== */
-@media (max-width: 80rem) /* 1280px */ {
-  .vehicleSection {
-    padding: var(--sp-8) var(--sp-6); /* 72px 48px */
-  }
-
-  .dividerVehicleTop::before {
-    left: -3rem; /* -48px */
-    top: -10.125rem; /* -162px */
-  }
-
-  .dividerVehicleBottom::before {
-    right: -3rem; /* -48px */
-    bottom: -10.125rem; /* -162px */
-  }
-}
-
 @media (max-width: 64rem) /* 1024px */ {
-  .vehicleSection {
-    padding: var(--sp-6) var(--sp-4); /* 48px 24px */
-  }
-
   .vehicleGrid {
     gap: 1rem; /* 16px */
-  }
-
-  .dividerVehicleTop::before {
-    left: -1.5rem; /* -24px */
-    top: -8.625rem; /* -138px */
-  }
-
-  .dividerVehicleBottom::before {
-    right: -1.5rem; /* -24px */
-    bottom: -8.625rem; /* -138px */
   }
 
   .cardVehicle {
@@ -264,23 +209,8 @@
 }
 
 @media (max-width: 48rem) /* 768px */ {
-  .vehicleSection {
-    padding: 2.5rem 2rem; /* 40px 32px */
-    border-radius: 0 3.75rem 0 3.75rem; /* 60px */
-  }
-
-  .dividerVehicleTop::before {
-    top: -6.1875rem; /* -99px */
-    left: -1.25rem; /* -20px */
-    width: 3.75rem; /* 60px */
-    height: 3.75rem; /* 60px */
-  }
-
-  .dividerVehicleBottom::before {
-    bottom: -6.1875rem; /* -99px */
-    right: -1.25rem; /* -20px */
-    width: 3.75rem; /* 60px */
-    height: 3.75rem; /* 60px */
+  .vehicleOuter {
+    --divider-size: 3.75rem; /* 60px */
   }
 
   .cardVehicle {
@@ -289,23 +219,8 @@
 }
 
 @media (max-width: 30rem) /* 480px */ {
-  .vehicleSection {
-    padding: 2.5rem 2rem; /* 40px 32px */
-    border-radius: 0 2.5rem 0 2.5rem; /* 40px */
-  }
-
-  .dividerVehicleTop::before {
-    top: -5rem; /* -80px */
-    left: -1.25rem; /* -20px */
-    width: 2.5rem; /* 40px */
-    height: 2.5rem; /* 40px */
-  }
-
-  .dividerVehicleBottom::before {
-    bottom: -4.9375rem; /* -79px */
-    right: -1.25rem; /* -20px */
-    width: 2.5rem; /* 40px */
-    height: 2.5rem; /* 40px */
+  .vehicleOuter {
+    --divider-size: 2.5rem; /* 40px */
   }
 
   .vehicleGrid {
@@ -322,10 +237,5 @@
 
   .packagePrice {
     font-size: 0.8125rem; /* 13px */
-  }
-
-  .btnPesan {
-    font-size: 0.8125rem; /* 13px */
-    padding: 0.625rem 0.75rem; /* 10px 12px */
   }
 }

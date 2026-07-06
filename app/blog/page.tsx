@@ -33,20 +33,20 @@ export default function BlogPage() {
 
   return (
     <main>
-      <section className={styles.blogHero} id="blog-section">
-        <span className="section-subtitle" data-scroll="fade-up">
-          Artikel &amp; Berita
-        </span>
-        <h1 className="section-title" data-scroll="fade-up" data-scroll-delay="100">
-          Blog TS Group Tour &amp; Travel
-        </h1>
-        <p className="section-description" data-scroll="fade-up" data-scroll-delay="200">
-          Temukan berbagai tips perjalanan, rekomendasi destinasi wisata terbaru,
-          hingga informasi menarik seputar liburan di Yogyakarta dan sekitarnya.
-        </p>
-      </section>
-
-      <section className={styles.blogContainer}>
+      <section className="content-section" id="blog-section">
+        <div className={styles.blogContainer}>
+        <div className={styles.blogHero}>
+          <span className="section-subtitle" data-scroll="fade-up">
+            Artikel &amp; Berita
+          </span>
+          <h1 className="section-title" data-scroll="fade-up" data-scroll-delay="100">
+            Blog TS Group Tour &amp; Travel
+          </h1>
+          <p className="section-description" data-scroll="fade-up" data-scroll-delay="200">
+            Temukan berbagai tips perjalanan, rekomendasi destinasi wisata terbaru,
+            hingga informasi menarik seputar liburan di Yogyakarta dan sekitarnya.
+          </p>
+        </div>
         {/* Artikel Unggulan */}
         <article className={styles.featuredCard} data-scroll="zoom-in">
           <Link href={`/blog/${featuredPost.slug}`} className={styles.featuredImage}>
@@ -113,6 +113,7 @@ export default function BlogPage() {
               </div>
             </article>
           ))}
+        </div>
         </div>
       </section>
     </main>

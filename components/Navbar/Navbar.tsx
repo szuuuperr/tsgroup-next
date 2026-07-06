@@ -1,10 +1,11 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import styles from "./Navbar.module.css";
+import TopBar from "@/components/TopBar/TopBar";
 import { WHATSAPP_URL } from "@/lib/site";
 
 const navLinks = [
@@ -43,11 +44,43 @@ export default function Navbar() {
   const toggleMenu = () => setIsOpen(!isOpen);
   const closeMenu = () => setIsOpen(false);
 
+  const [showNavbar, setShowNavbar] = useState(true);
+
+  useEffect(() => {
+    let lastScrollY = window.scrollY;
+
+    const handleScroll = () => {
+      const currentScrollY = window.scrollY;
+
+      if (currentScrollY > lastScrollY && currentScrollY > 100) {
+        setShowNavbar(false);
+      } else {
+        setShowNavbar(true);
+      }
+
+      lastScrollY = currentScrollY;
+    };
+
+    window.addEventListener("scroll", handleScroll);
+
+    return () => {
+      window.removeEventListener("scroll", handleScroll);
+    };
+  }, []);
+
   const isActive = (href: string) =>
-    href === "/" ? pathname === "/" : pathname === href || pathname?.startsWith(`${href}/`);
+    href === "/"
+      ? pathname === "/"
+      : pathname === href || pathname?.startsWith(`${href}/`);
 
   return (
-    <div className={styles.navbarWrapper}>
+    
+    <div
+      className={`${styles.navbarWrapper} ${
+        showNavbar ? styles.show : styles.hide
+      }`}
+    >
+      <TopBar />
       <nav className={styles.navbar}>
         <div className={styles.navbarLogo}>
           <Link href="/">
@@ -92,7 +125,12 @@ export default function Navbar() {
           </a>
         </div>
         <div className={styles.navbarCta}>
-          <a href={WHATSAPP_URL} target="_blank" rel="noopener noreferrer">
+          <a
+            href={WHATSAPP_URL}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="btn-outline-primary"
+          >
             Hubungi Kami
             <PhoneIcon />
           </a>

@@ -1,8 +1,8 @@
 .whyChooseUsSection {
   display: flex;
-  gap: var(--gap-4); /* 24px */
+  gap: var(--gap-6); /* 32px */
   align-items: flex-start;
-  padding: var(--sp-9) var(--sp-8); /* 96px 72px */
+  padding: var(--section-py) var(--section-px);
   width: 100%;
 }
 
@@ -23,7 +23,7 @@
 .whyChooseUsRight {
   display: flex;
   flex-direction: column;
-  gap: var(--gap-3); /* 16px */
+  gap: var(--gap-3); /* 12px */
   width: 46.1875rem; /* 739px */
   flex-shrink: 0;
   overflow: visible;
@@ -32,7 +32,7 @@
 .description p {
   font-size: var(--fs-body);
   color: var(--primary);
-  line-height: var(--lh-base);
+  line-height: var(--lh-body);
   text-align: justify;
 }
 
@@ -40,12 +40,39 @@
   margin-top: 1rem; /* 16px */
 }
 
+/* Daftar keunggulan dengan ikon centang */
+.featureList {
+  display: flex;
+  flex-direction: column;
+  gap: var(--gap-2); /* 8px */
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.featureList li {
+  display: flex;
+  align-items: flex-start;
+  gap: var(--gap-2); /* 8px */
+  font-size: var(--fs-body);
+  color: var(--primary);
+  line-height: var(--lh-body);
+}
+
+.featureList svg {
+  width: 1.125rem; /* 18px */
+  height: 1.125rem;
+  fill: var(--secondary);
+  flex-shrink: 0;
+  margin-top: 0.2em;
+}
+
+.featureList strong {
+  font-weight: 600;
+}
+
 /* ===== MEDIA QUERIES ===== */
 @media (max-width: 80rem) /* 1280px */ {
-  .whyChooseUsSection {
-    padding: var(--sp-8) var(--sp-6); /* 72px 48px */
-  }
-
   .whyChooseUsRight {
     width: auto;
     flex: 1.2;
@@ -53,10 +80,6 @@
 }
 
 @media (max-width: 64rem) /* 1024px */ {
-  .whyChooseUsSection {
-    padding: var(--sp-6) var(--sp-4); /* 48px 24px */
-  }
-
   .whyChooseUsRight {
     width: auto;
     flex: 1;
@@ -70,7 +93,6 @@
 @media (max-width: 48rem) /* 768px */ {
   .whyChooseUsSection {
     flex-direction: column;
-    padding: 2.5rem 1.25rem; /* 40px 20px */
     overflow: visible;
   }
 
@@ -82,28 +104,15 @@
 
   .whyChooseUsLeft img {
     max-width: 100%;
-    border-radius: 1rem; /* 16px */
   }
 
   .whyChooseUsRight {
     width: 100%;
     flex-shrink: 1;
   }
-
-  .description p {
-    font-size: 0.9375rem; /* 15px */
-  }
 }
 
 @media (max-width: 30rem) /* 480px */ {
-  .whyChooseUsSection {
-    padding: 2.5rem 2rem; /* 40px 32px */
-  }
-
-  .description p {
-    font-size: 0.875rem; /* 14px */
-  }
-
   .whyChooseUsLeft {
     height: 12.5rem; /* 200px */
   }

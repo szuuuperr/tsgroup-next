@@ -1,12 +1,11 @@
 /* Tentang Kami */
+/* Hanya padding token parent; lebar child dibatasi padding ini. */
 .aboutSection {
   display: flex;
   align-items: center;
   gap: var(--sp-7); /* 48px */
   width: 100%;
-  max-width: 80rem; /* 1280px */
-  margin: 0 auto;
-  padding: var(--sp-8) var(--sp-8) var(--sp-6);
+  padding: var(--section-py) var(--section-px);
 }
 
 .aboutLeft {
@@ -16,8 +15,6 @@
 .aboutImage {
   width: 100%;
   height: auto;
-  border-radius: 1.5rem; /* 24px */
-  box-shadow: 0 1rem 2.5rem rgba(17, 11, 102, 0.12);
 }
 
 .aboutRight {
@@ -81,7 +78,6 @@
   justify-content: center;
   margin-top: var(--sp-5);
   width: 100%;
-  max-width: 60rem; /* 960px */
 }
 
 .visiMisiCard {
@@ -129,7 +125,6 @@
   justify-content: center;
   margin-top: var(--sp-5);
   width: 100%;
-  max-width: 80rem;
 }
 
 .valueCard {
@@ -187,7 +182,6 @@
   margin-top: var(--sp-5);
   margin-bottom: var(--sp-5);
   width: 100%;
-  max-width: 80rem;
 }
 
 .serviceCard {
@@ -274,7 +268,6 @@
 /* ===== MEDIA QUERIES ===== */
 @media (max-width: 80rem) /* 1280px */ {
   .aboutSection {
-    padding: var(--sp-7) var(--sp-6) var(--sp-5);
     gap: var(--sp-6);
   }
 }
@@ -282,7 +275,6 @@
 @media (max-width: 64rem) /* 1024px */ {
   .aboutSection {
     flex-direction: column;
-    padding: var(--sp-6) var(--sp-5) var(--sp-4);
   }
 
   .aboutLeft {
@@ -307,10 +299,6 @@
 }
 
 @media (max-width: 30rem) /* 480px */ {
-  .aboutSection {
-    padding: var(--sp-5) var(--sp-3);
-  }
-
   .valueCard,
   .serviceCard {
     flex: 0 0 100%;

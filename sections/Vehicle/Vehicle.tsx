@@ -117,7 +117,7 @@ export default function Vehicle({ variant = "page" }: VehicleProps) {
                   </div>
                   <div className={styles.cardBtnContainer}>
                     <a
-                      className={styles.btnPesan}
+                      className="btn-primary btn-block"
                       href={waLink(`Halo TS Group, saya tertarik dengan sewa mobil ${vehicle.name}`)}
                       target="_blank"
                       rel="noopener noreferrer"

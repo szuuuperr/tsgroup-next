@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useEffect, useState, type CSSProperties } from "react";
 import Image from "next/image";
 import styles from "./DestinasiWisata.module.css";
 import MapSection from "@/sections/MapSection/MapSection";
@@ -9,6 +9,7 @@ import {
   destinations,
   destinasiCategories,
   type DestinasiCategory,
+  type Destinasi,
 } from "@/app/data/destinasi";
 
 const StarIcon = () => (
@@ -59,37 +60,58 @@ const tips = [
 
 export default function DestinasiWisataPage() {
   const [activeCategory, setActiveCategory] = useState<DestinasiCategory>("semua");
-  const [expandedId, setExpandedId] = useState<string | null>(null);
+  // Konten drawer dipisah dari status buka/tutup supaya isi tetap
+  // terlihat selama animasi slide-down saat ditutup.
+  const [drawerContent, setDrawerContent] = useState<Destinasi | null>(null);
+  const [drawerOpen, setDrawerOpen] = useState(false);
 
   const filteredDestinations =
     activeCategory === "semua"
       ? destinations
       : destinations.filter((d) => d.category.includes(activeCategory));
 
+  const openDrawer = (dest: Destinasi) => {
+    setDrawerContent(dest);
+    setDrawerOpen(true);
+  };
+  const closeDrawer = () => setDrawerOpen(false);
+
+  // Kunci scroll halaman + tutup drawer dengan tombol Escape.
+  useEffect(() => {
+    if (!drawerOpen) return;
+    const onKey = (e: KeyboardEvent) => {
+      if (e.key === "Escape") setDrawerOpen(false);
+    };
+    document.addEventListener("keydown", onKey);
+    document.body.style.overflow = "hidden";
+    return () => {
+      document.removeEventListener("keydown", onKey);
+      document.body.style.overflow = "";
+    };
+  }, [drawerOpen]);
+
   return (
     <main>
-      <section className={styles.pageHeader} id="destination">
-        <span className="section-subtitle" data-scroll="fade-up">
-          Pilihan Destinasi
-        </span>
-        <h1 className="section-title" data-scroll="fade-up" data-scroll-delay="100">
-          Destinasi Wisata Populer
-        </h1>
-        <p className="section-description" data-scroll="fade-up" data-scroll-delay="200">
-          Yogyakarta menyimpan kekayaan destinasi wisata yang sayang untuk
-          dilewatkan, mulai dari pesona alam yang memukau, warisan situs
-          bersejarah, hingga tempat-tempat wisata kekinian yang selalu ramai
-          dikunjungi.
-        </p>
-      </section>
-
-      <section className={styles.listSection} id="destinasi-list">
+      <section className={styles.listSection} id="destinasi">
         <div className={styles.contentContainer}>
-          <div className={styles.filterTabs} data-scroll="fade-up" data-scroll-delay="300">
+          <span className="section-subtitle" data-scroll="fade-up">
+            Pilihan Destinasi
+          </span>
+          <h1 className="section-title" data-scroll="fade-up" data-scroll-delay="100">
+            Destinasi Wisata Populer
+          </h1>
+          <p className="section-description" data-scroll="fade-up" data-scroll-delay="200">
+            Yogyakarta menyimpan kekayaan destinasi wisata yang sayang untuk
+            dilewatkan, mulai dari pesona alam yang memukau, warisan situs
+            bersejarah, hingga tempat-tempat wisata kekinian yang selalu ramai
+            dikunjungi.
+          </p>
+
+          <div className="filter-tabs" data-scroll="fade-up" data-scroll-delay="300">
             {destinasiCategories.map((cat) => (
               <button
                 key={cat.key}
-                className={`${styles.filterTab} ${activeCategory === cat.key ? styles.active : ""}`}
+                className={`filter-tab ${activeCategory === cat.key ? "active" : ""}`}
                 onClick={() => setActiveCategory(cat.key)}
               >
                 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor">
@@ -100,12 +122,14 @@ export default function DestinasiWisataPage() {
             ))}
           </div>
 
-          <div className={styles.cardsGrid} data-scroll-parent>
-            {filteredDestinations.map((dest) => (
+          {/* key={activeCategory} me-remount grid sehingga animasi
+              bottom-up berjalan setiap kali filter diklik. */}
+          <div className={styles.cardsGrid} key={activeCategory}>
+            {filteredDestinations.map((dest, index) => (
               <article
                 key={dest.id}
-                className={`${styles.destinasiCard} ${expandedId === dest.id ? styles.expanded : ""}`}
-                data-scroll-child
+                className={styles.destinasiCard}
+                style={{ "--i": index } as CSSProperties}
               >
                 <div className={styles.cardImage}>
                   <Image
@@ -114,11 +138,6 @@ export default function DestinasiWisataPage() {
                     fill
                     sizes="(max-width: 480px) 100vw, (max-width: 1024px) 50vw, 33vw"
                   />
-                  <div className={styles.cardBadge}>{dest.highlight}</div>
-                  <div className={styles.cardRating}>
-                    <StarIcon />
-                    <span>{dest.rating}</span>
-                  </div>
                 </div>
                 <div className={styles.cardBody}>
                   <div className={styles.cardHeader}>
@@ -140,9 +159,9 @@ export default function DestinasiWisataPage() {
                     </div>
                     <button
                       className={styles.btnDetail}
-                      onClick={() => setExpandedId(expandedId === dest.id ? null : dest.id)}
+                      onClick={() => openDrawer(dest)}
                     >
-                      {expandedId === dest.id ? "Tutup" : "Lihat Detail"}
+                      Lihat Detail
                       <svg
                         xmlns="http://www.w3.org/2000/svg"
                         viewBox="0 0 24 24"
@@ -151,59 +170,105 @@ export default function DestinasiWisataPage() {
                         strokeWidth="2"
                         strokeLinecap="round"
                         strokeLinejoin="round"
-                        className={expandedId === dest.id ? styles.chevronOpen : styles.chevron}
                       >
-                        <polyline points="6 9 12 15 18 9" />
+                        <polyline points="18 15 12 9 6 15" />
                       </svg>
                     </button>
-                  </div>
-                  <div className={`${styles.cardDetail} ${expandedId === dest.id ? styles.open : ""}`}>
-                    <div className={styles.cardLine}></div>
-                    <div className={styles.detailInfoGrid}>
-                      <div className={styles.detailInfoItem}>
-                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor">
-                          <path d="M11.99 2C6.47 2 2 6.48 2 12s4.47 10 9.99 10C17.52 22 22 17.52 22 12S17.52 2 11.99 2zM12 20c-4.42 0-8-3.58-8-8s3.58-8 8-8 8 3.58 8 8-3.58 8-8 8zm.5-13H11v6l5.25 3.15.75-1.23-4.5-2.67z" />
-                        </svg>
-                        <div>
-                          <span className={styles.detailLabel}>Jam Buka</span>
-                          <span className={styles.detailValue}>06:00 - 17:00 WIB</span>
-                        </div>
-                      </div>
-                      <div className={styles.detailInfoItem}>
-                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor">
-                          <path d="M11.8 10.9c-2.27-.59-3-1.2-3-2.15 0-1.09 1.01-1.85 2.7-1.85 1.78 0 2.44.85 2.5 2.1h2.21c-.07-1.72-1.12-3.3-3.21-3.81V3h-3v2.16c-1.94.42-3.5 1.68-3.5 3.61 0 2.31 1.91 3.46 4.7 4.13 2.5.6 3 1.48 3 2.41 0 .69-.49 1.79-2.7 1.79-2.06 0-2.87-.92-2.98-2.1h-2.2c.12 2.19 1.76 3.42 3.68 3.83V21h3v-2.15c1.95-.37 3.5-1.5 3.5-3.55 0-2.84-2.43-3.81-4.7-4.4z" />
-                        </svg>
-                        <div>
-                          <span className={styles.detailLabel}>Tiket Masuk</span>
-                          <span className={styles.detailValue}>Mulai Rp 25.000</span>
-                        </div>
-                      </div>
-                      <div className={styles.detailInfoItem}>
-                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor">
-                          <path d="M18.92 6.01C18.72 5.42 18.16 5 17.5 5h-11c-.66 0-1.21.42-1.42 1.01L3 12v8c0 .55.45 1 1 1h1c.55 0 1-.45 1-1v-1h12v1c0 .55.45 1 1 1h1c.55 0 1-.45 1-1v-8l-2.08-5.99zM6.5 16c-.83 0-1.5-.67-1.5-1.5S5.67 13 6.5 13s1.5.67 1.5 1.5S7.33 16 6.5 16zm11 0c-.83 0-1.5-.67-1.5-1.5s.67-1.5 1.5-1.5 1.5.67 1.5 1.5-.67 1.5-1.5 1.5zM5 11l1.5-4.5h11L19 11H5z" />
-                        </svg>
-                        <div>
-                          <span className={styles.detailLabel}>Transportasi</span>
-                          <span className={styles.detailValue}>Tersedia via TS Group</span>
-                        </div>
-                      </div>
-                    </div>
-                    <a
-                      className={styles.btnPesan}
-                      href={waLink(`Halo TS Group, saya tertarik untuk mengunjungi ${dest.name}`)}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                    >
-                      Pesan Perjalanan ke {dest.name}
-                      <WhatsAppIcon />
-                    </a>
                   </div>
                 </div>
               </article>
             ))}
           </div>
+
+          <a href="#map-section" className="btn-outline-primary">
+            Lihat Semua di Peta
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor">
+              <path d="M20.5 3l-.16.03L15 5.1 9 3 3.36 4.9c-.21.07-.36.25-.36.48V20.5c0 .28.22.5.5.5l.16-.03L9 18.9l6 2.1 5.64-1.9c.21-.07.36-.25.36-.48V3.5c0-.28-.22-.5-.5-.5zM15 19l-6-2.11V5l6 2.11V19z" />
+            </svg>
+          </a>
         </div>
       </section>
+
+      {/* Drawer detail destinasi: muncul dari bawah ke atas */}
+      <div
+        className={`${styles.drawerBackdrop} ${drawerOpen ? styles.backdropOpen : ""}`}
+        onClick={closeDrawer}
+        aria-hidden={!drawerOpen}
+      />
+      <div
+        className={`${styles.drawer} ${drawerOpen ? styles.drawerOpen : ""}`}
+        role="dialog"
+        aria-modal="true"
+        aria-label={drawerContent ? `Detail ${drawerContent.name}` : "Detail destinasi"}
+      >
+        <button
+          className={styles.drawerClose}
+          onClick={closeDrawer}
+          aria-label="Tutup detail"
+        >
+          ✕
+        </button>
+        {drawerContent && (
+          <div className={styles.drawerLayout}>
+            <div className={styles.drawerImage}>
+              <Image
+                src={drawerContent.image}
+                alt={drawerContent.name}
+                fill
+                sizes="(max-width: 768px) 100vw, 40vw"
+              />
+            </div>
+            <div className={styles.drawerBody}>
+              <div className={styles.cardHeader}>
+                <h2 className={styles.cardName}>{drawerContent.name}</h2>
+                <div className={styles.cardLocation}>
+                  <LocationIcon />
+                  <span>{drawerContent.location}</span>
+                </div>
+              </div>
+              <p className={styles.drawerDesc}>{drawerContent.description}</p>
+              <div className={styles.detailInfoGrid}>
+                <div className={styles.detailInfoItem}>
+                  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor">
+                    <path d="M11.99 2C6.47 2 2 6.48 2 12s4.47 10 9.99 10C17.52 22 22 17.52 22 12S17.52 2 11.99 2zM12 20c-4.42 0-8-3.58-8-8s3.58-8 8-8 8 3.58 8 8-3.58 8-8 8zm.5-13H11v6l5.25 3.15.75-1.23-4.5-2.67z" />
+                  </svg>
+                  <div>
+                    <span className={styles.detailLabel}>Jam Buka</span>
+                    <span className={styles.detailValue}>06:00 - 17:00 WIB</span>
+                  </div>
+                </div>
+                <div className={styles.detailInfoItem}>
+                  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor">
+                    <path d="M11.8 10.9c-2.27-.59-3-1.2-3-2.15 0-1.09 1.01-1.85 2.7-1.85 1.78 0 2.44.85 2.5 2.1h2.21c-.07-1.72-1.12-3.3-3.21-3.81V3h-3v2.16c-1.94.42-3.5 1.68-3.5 3.61 0 2.31 1.91 3.46 4.7 4.13 2.5.6 3 1.48 3 2.41 0 .69-.49 1.79-2.7 1.79-2.06 0-2.87-.92-2.98-2.1h-2.2c.12 2.19 1.76 3.42 3.68 3.83V21h3v-2.15c1.95-.37 3.5-1.5 3.5-3.55 0-2.84-2.43-3.81-4.7-4.4z" />
+                  </svg>
+                  <div>
+                    <span className={styles.detailLabel}>Tiket Masuk</span>
+                    <span className={styles.detailValue}>Mulai Rp 25.000</span>
+                  </div>
+                </div>
+                <div className={styles.detailInfoItem}>
+                  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor">
+                    <path d="M18.92 6.01C18.72 5.42 18.16 5 17.5 5h-11c-.66 0-1.21.42-1.42 1.01L3 12v8c0 .55.45 1 1 1h1c.55 0 1-.45 1-1v-1h12v1c0 .55.45 1 1 1h1c.55 0 1-.45 1-1v-8l-2.08-5.99zM6.5 16c-.83 0-1.5-.67-1.5-1.5S5.67 13 6.5 13s1.5.67 1.5 1.5S7.33 16 6.5 16zm11 0c-.83 0-1.5-.67-1.5-1.5s.67-1.5 1.5-1.5 1.5.67 1.5 1.5-.67 1.5-1.5 1.5zM5 11l1.5-4.5h11L19 11H5z" />
+                  </svg>
+                  <div>
+                    <span className={styles.detailLabel}>Transportasi</span>
+                    <span className={styles.detailValue}>Tersedia via TS Group</span>
+                  </div>
+                </div>
+              </div>
+              <a
+                className="btn-primary btn-block"
+                href={waLink(`Halo TS Group, saya tertarik untuk mengunjungi ${drawerContent.name}`)}
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                Pesan Perjalanan ke {drawerContent.name}
+                <WhatsAppIcon />
+              </a>
+            </div>
+          </div>
+        )}
+      </div>
 
       <MapSection />
 

@@ -2,6 +2,7 @@
 
 import { useState, useEffect, useRef } from "react";
 import Image from "next/image";
+import Link from "next/link";
 import styles from "./HeroSlider.module.css";
 
 const slides = [
@@ -58,6 +59,29 @@ export default function HeroSlider() {
             />
           </div>
         ))}
+        <div className={styles.heroOverlay} aria-hidden="true"></div>
+        <div className={styles.heroContent}>
+          <span className={styles.heroSubtitle}>Tour &amp; Travel Yogyakarta</span>
+          <h1 className={styles.heroTitle}>
+            Jelajahi Pesona Jogja, <br />
+            Kami yang Urus Perjalanannya
+          </h1>
+          <p className={styles.heroDescription}>
+            Paket wisata lengkap dan rental mobil terpercaya sejak 2010.
+            Armada nyaman, sopir berpengalaman, harga transparan.
+          </p>
+          <div className={styles.heroActions}>
+            <Link href="/paket-wisata" className="btn-primary">
+              Lihat Paket Wisata
+            </Link>
+            <Link href="/rental-mobil" className="btn-outline-white">
+              Sewa Mobil
+            </Link>
+          </div>
+        </div>
+        <span className={styles.heroLocation}>
+          {slides[currentSlide].alt}
+        </span>
       </div>
       <div className={styles.heroNav}>
         <button className={styles.heroPrev} onClick={() => changeSlide(-1)}>

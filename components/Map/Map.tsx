@@ -11,8 +11,20 @@ import "react-leaflet-cluster/dist/assets/MarkerCluster.Default.css";
 import "./Map.css";
 import { wisataJogja, kategoriConfig } from "../../app/data/wisata-jogja";
 
-export default function Map() {
+type MapProps = {
+  /** "wisata": semua destinasi + cluster (default);
+   *  "kantor": hanya marker kantor TS Group, zoom dekat (untuk halaman kontak). */
+  variant?: "wisata" | "kantor";
+};
+
+const TSGROUP_ID = 46;
+
+export default function Map({ variant = "wisata" }: MapProps) {
   const tsGroupRef = useRef<L.Marker>(null);
+  const items =
+    variant === "kantor"
+      ? wisataJogja.filter((w) => w.id === TSGROUP_ID)
+      : wisataJogja;
 
   useEffect(() => {
     setTimeout(() => {
@@ -30,7 +42,7 @@ export default function Map() {
     });
   };
 
-  const markers = wisataJogja.map((w) => ({
+  const markers = items.map((w) => ({
     geocode: [w.koordinat.lat, w.koordinat.lng] as [number, number],
     popUp: `<div class="map-popup">
       <div class="map-popup-header">
@@ -66,29 +78,38 @@ export default function Map() {
     }),
   }));
 
+  const markerElements = markers.map((marker, idx) => (
+    <Marker
+      key={`wisata-${idx}`}
+      position={marker.geocode}
+      icon={marker.icon}
+      ref={items[idx].id === TSGROUP_ID ? tsGroupRef : undefined}
+    >
+      <Popup>
+        <div dangerouslySetInnerHTML={{ __html: marker.popUp }} />
+      </Popup>
+    </Marker>
+  ));
+
   return (
-    <MapContainer center={[-7.71286655407907, 110.34528000945151]} zoom={12}>
+    <MapContainer
+      center={[-7.71286655407907, 110.34528000945151]}
+      zoom={variant === "kantor" ? 15 : 12}
+    >
       <TileLayer
         attribution="&copy; OpenStreetMap contributors &copy; CARTO"
         url="https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png"
       />
-      <MarkerClusterGroup
-        chunkedLoading
-        iconCreateFunction={createCustomIconCluster}
-      >
-        {markers.map((marker, idx) => (
-          <Marker
-            key={`wisata-${idx}`}
-            position={marker.geocode}
-            icon={marker.icon}
-            ref={wisataJogja[idx].id === 46 ? tsGroupRef : undefined}
-          >
-            <Popup>
-              <div dangerouslySetInnerHTML={{ __html: marker.popUp }} />
-            </Popup>
-          </Marker>
-        ))}
-      </MarkerClusterGroup>
+      {variant === "kantor" ? (
+        markerElements
+      ) : (
+        <MarkerClusterGroup
+          chunkedLoading
+          iconCreateFunction={createCustomIconCluster}
+        >
+          {markerElements}
+        </MarkerClusterGroup>
+      )}
     </MapContainer>
   );
 }

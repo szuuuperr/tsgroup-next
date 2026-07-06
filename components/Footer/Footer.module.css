@@ -1,6 +1,6 @@
 .footerWrapper {
   background: var(--black);
-  width: 100vw;
+  width: 100%;
   display: flex;
   justify-content: center;
 }
@@ -13,7 +13,7 @@
   display: flex;
   gap: 2.25rem; /* 36px */
   align-items: flex-start;
-  padding: var(--sp-7) var(--sp-8); /* 56px 72px */
+  padding: var(--sp-7) var(--section-px); /* 48px + token */
 }
 
 .footerTopLeft {
@@ -162,7 +162,7 @@
 
 .footerBottom {
   background: var(--black);
-  padding: 1.5rem var(--sp-8) 1.5rem; /* 24px 72px 24px */
+  padding: 1.5rem var(--section-px); /* 24px + token */
 }
 
 .footerCopyright {
@@ -171,36 +171,23 @@
   line-height: var(--lh-base);
 }
 
-/* ===== MEDIA QUERIES ===== */
-@media (max-width: 80rem) /* 1280px */ {
-  .footerTop {
-    padding: var(--sp-6) var(--sp-6); /* 48px */
-  }
-
-  .footerBottom {
-    padding: 1.5rem var(--sp-6) 1.5rem; /* 24px 48px */
-  }
-}
-
+/* ===== MEDIA QUERIES =====
+   Padding horizontal selalu var(--section-px) dari base;
+   di sini hanya penyesuaian layout & ruang FAB di bawah. */
 @media (max-width: 64rem) /* 1024px */ {
-  .footerTop {
-    padding: var(--sp-6) var(--sp-4); /* 48px 24px */
-  }
-
   .footerTopRight {
     width: auto;
     flex: 1.5;
   }
 
   .footerBottom {
-    padding: 1.5rem var(--sp-4) 3rem; /* 24px 24px 48px */
+    padding-bottom: 3rem; /* ruang FAB */
   }
 }
 
 @media (max-width: 48rem) /* 768px */ {
   .footerTop {
     flex-direction: column;
-    padding: 2rem 1.25rem; /* 32px 20px */
     gap: 2rem; /* 32px */
   }
 
@@ -216,7 +203,7 @@
   }
 
   .footerBottom {
-    padding: 1.25rem 1.25rem 5rem; /* 20px 20px 80px */
+    padding-bottom: 5rem; /* ruang FAB */
   }
 
   .footerCopyright {

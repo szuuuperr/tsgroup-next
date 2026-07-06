@@ -10,7 +10,7 @@ export default function Introduction() {
           Tentang Kami
         </span>
         <h2 className="section-title" data-scroll="fade-up">
-          Kenapa Memilih Layanan Dari TS Group?
+          Teman Perjalanan Anda di Yogyakarta
         </h2>
         <div className={`${styles.description} description`} data-scroll="fade-up">
           <p>

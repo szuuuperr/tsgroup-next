@@ -2,63 +2,7 @@ import Image from "next/image";
 import Link from "next/link";
 import styles from "./PaketWisata.module.css";
 import { waLink } from "@/lib/site";
-
-const pakets = [
-  {
-    title: "PAKET PESONA JOGJA TOUR #1",
-    price: "Rp 350.000",
-    description: "Nikmati keindahan sunrise di Candi Borobudur dengan pengalaman tak terlupakan",
-    image: "/assets/paket-1.png",
-    includes: ["Mobil", "Driver", "BBM"],
-    destinations: ["Candi Borobudur", "Museum Samudraraksa", "Punthuk Setumbu", "Gardu View Borobudur"],
-    whatsappText: "Halo TS Group, saya tertarik dengan Paket Borobudur Sunrise"
-  },
-  {
-    title: "PAKET PESONA JOGJA TOUR #2",
-    price: "Rp 350.000",
-    description: "Nikmati keindahan sunrise di Candi Borobudur dengan pengalaman tak terlupakan",
-    image: "/assets/paket-2.png",
-    includes: ["Mobil", "Driver", "BBM"],
-    destinations: ["Candi Borobudur", "Museum Samudraraksa", "Punthuk Setumbu", "Gardu View Borobudur"],
-    whatsappText: "Halo TS Group, saya tertarik dengan Paket Borobudur Sunrise"
-  },
-  {
-    title: "PAKET PESONA JOGJA TOUR #3",
-    price: "Rp 350.000",
-    description: "Nikmati keindahan sunrise di Candi Borobudur dengan pengalaman tak terlupakan",
-    image: "/assets/paket-3.png",
-    includes: ["Mobil", "Driver", "BBM"],
-    destinations: ["Candi Borobudur", "Museum Samudraraksa", "Punthuk Setumbu", "Gardu View Borobudur"],
-    whatsappText: "Halo TS Group, saya tertarik dengan Paket Borobudur Sunrise"
-  },
-  {
-    title: "PAKET PESONA JOGJA TOUR #4",
-    price: "Rp 350.000",
-    description: "Nikmati keindahan sunrise di Candi Borobudur dengan pengalaman tak terlupakan",
-    image: "/assets/paket-4.png",
-    includes: ["Mobil", "Driver", "BBM"],
-    destinations: ["Candi Borobudur", "Museum Samudraraksa", "Punthuk Setumbu", "Gardu View Borobudur"],
-    whatsappText: "Halo TS Group, saya tertarik dengan Paket Borobudur Sunrise"
-  },
-  {
-    title: "PAKET PESONA JOGJA TOUR #5",
-    price: "Rp 350.000",
-    description: "Nikmati keindahan sunrise di Candi Borobudur dengan pengalaman tak terlupakan",
-    image: "/assets/paket-5.png",
-    includes: ["Mobil", "Driver", "BBM"],
-    destinations: ["Candi Borobudur", "Museum Samudraraksa", "Punthuk Setumbu", "Gardu View Borobudur"],
-    whatsappText: "Halo TS Group, saya tertarik dengan Paket Borobudur Sunrise"
-  },
-  {
-    title: "PAKET PESONA JOGJA TOUR #6",
-    price: "Rp 350.000",
-    description: "Nikmati keindahan sunrise di Candi Borobudur dengan pengalaman tak terlupakan",
-    image: "/assets/paket-6.png",
-    includes: ["Mobil", "Driver", "BBM"],
-    destinations: ["Candi Borobudur", "Museum Samudraraksa", "Punthuk Setumbu", "Gardu View Borobudur"],
-    whatsappText: "Halo TS Group, saya tertarik dengan Paket Borobudur Sunrise"
-  }
-];
+import { pakets } from "@/app/data/paket";
 
 export default function PaketWisata() {
   return (
@@ -72,10 +16,10 @@ export default function PaketWisata() {
             Pilihan Paket Wisata
           </h2>
           <p className="section-description" data-scroll="fade-up" data-scroll-delay="200">
-            Yogyakarta menyimpan kekayaan destinasi wisata yang sayang untuk
-            dilewatkan, mulai dari pesona alam yang memukau, warisan situs
-            bersejarah, hingga tempat-tempat wisata kekinian yang selalu ramai
-            dikunjungi.
+            Semua paket sudah termasuk mobil, sopir, dan BBM, jadi tinggal
+            berangkat tanpa pusing memikirkan rute. Harga berlaku per mobil,
+            bukan per orang, sehingga semakin ramai rombongan semakin hemat.
+            Rute juga bisa disesuaikan dengan keinginan Anda.
           </p>
 
           <div className={styles.paketCardContainer} data-scroll-parent>
@@ -126,7 +70,7 @@ export default function PaketWisata() {
 
                   <div className={styles.cardBtnContainer}>
                     <a
-                      className={styles.btnPesan}
+                      className="btn-primary btn-block"
                       href={waLink(paket.whatsappText)}
                       target="_blank"
                       rel="noopener noreferrer"

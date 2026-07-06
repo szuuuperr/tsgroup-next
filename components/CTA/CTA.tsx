@@ -9,7 +9,9 @@ export default function CTA() {
         <div className={styles.ctaLeft}>
           <h2 className={styles.ctaTitle}>Siap Liburan ke Jogja?</h2>
           <p className={styles.ctaDescription}>
-            Tersedia layanan rental mobil dengan beragam pilihan armada yang lengkap dan nyaman, didukung harga yang kompetitif untuk memenuhi kebutuhan perjalanan Anda.
+            Ceritakan rencana perjalanan Anda, tim kami bantu susun rute,
+            pilih armada yang pas, dan hitung biayanya. Gratis, tanpa
+            komitmen. Balasan cepat setiap hari pukul 07.00-21.00 WIB.
           </p>
           <a
             href={WHATSAPP_URL}

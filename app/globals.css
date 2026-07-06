@@ -47,32 +47,68 @@
   --gap-5: 1.5rem;  /* 24px */
   --gap-6: 2rem;    /* 32px */
 
-  /* Typography Scale (Figma: Inter, Base 16px, Scale 1.309) */
-  --fs-h1: 5rem; /* 80px */
-  --fs-h2: 3.813rem; /* 61px */
-  --fs-h3: 2.938rem; /* 47px */
-  --fs-h4: 2.25rem; /* 36px */
-  --fs-h5: 1.688rem; /* 27px */
-  --fs-h6: 1.313rem; /* 21px */
-  --fs-body: 1rem; /* 16px */
+  /* Typography Scale (Figma: Inter, Base 16px, Scale 1.309).
+     Fluid via clamp(): otomatis mengecil di layar sempit tanpa media query. */
+  --fs-h1: clamp(2.5rem, 1.5rem + 4.5vw, 5rem); /* 40px → 80px */
+  --fs-h2: clamp(2.125rem, 1.4rem + 3.2vw, 3.813rem); /* 34px → 61px */
+  --fs-h3: clamp(1.75rem, 1.3rem + 2.2vw, 2.938rem); /* 28px → 47px */
+  --fs-h4: clamp(1.375rem, 1.05rem + 1.5vw, 2.25rem); /* 22px → 36px */
+  --fs-h5: clamp(1.25rem, 1.05rem + 0.9vw, 1.688rem); /* 20px → 27px */
+  --fs-h6: clamp(1.125rem, 1rem + 0.4vw, 1.313rem); /* 18px → 21px */
+  --fs-body: clamp(0.875rem, 0.83rem + 0.2vw, 1rem); /* 14px → 16px */
   --fs-small: 0.75rem; /* 12px */
   --lh-base: 1.2;
+  --lh-body: 1.65; /* paragraf/teks panjang */
+
+  /* ===== LAYOUT TOKENS =====
+     Ubah nilai di sini, seluruh section ikut (jangan hard-code di module). */
+  --container-max: 95rem; /* 1520px — selaras TopBar/Navbar */
+  /* Tinggi header fixed (TopBar 36px + Navbar 72px); dipakai untuk
+     offset konten & scroll anchor. */
+  --header-h: 6.75rem; /* 108px */
+  --section-py: 6rem; /* 96px */
+  --section-px: 4.5rem; /* 72px */
+
+  /* ===== SURFACE TOKENS ===== */
+  --radius-sm: 0.5rem; /* 8px */
+  --radius-md: 1rem; /* 16px */
+  --radius-lg: 1.5rem; /* 24px */
+  --radius-xl: 2.5rem; /* 40px */
+  --shadow-card: 0 0.25rem 1.25rem rgba(17, 11, 102, 0.06);
+  --shadow-card-hover: 0 0.75rem 2rem rgba(17, 11, 102, 0.14);
+  --ease-out: cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+/* Ladder padding section — didefinisikan SEKALI di sini.
+   Module cukup pakai: padding: var(--section-py) var(--section-px); */
+@media (max-width: 80rem) /* 1280px */ {
+  :root { --section-py: 4.5rem; --section-px: 3rem; } /* 72px 48px */
+}
+@media (max-width: 64rem) /* 1024px */ {
+  /* TopBar disembunyikan, navbar menyusut ke 60px */
+  :root { --section-py: 3rem; --section-px: 1.5rem; --header-h: 3.75rem; }
+}
+@media (max-width: 48rem) /* 768px */ {
+  :root { --section-py: 2.5rem; --section-px: 1.25rem; } /* 40px 20px */
+}
+@media (max-width: 30rem) /* 480px */ {
+  :root { --section-py: 2.5rem; --section-px: 2rem; } /* 40px 32px */
 }
 
 .section-subtitle {
   font-family: var(--font-kaushan), cursive;
-  font-size: var(--fs-body);
+  font-size: clamp(0.9375rem, 0.85rem + 0.3vw, 1.125rem); /* 15px → 18px */
   color: var(--secondary);
   line-height: var(--lh-base);
 }
 
 .section-title {
   font-family: var(--font-inter), sans-serif;
-  font-weight: 600;
+  font-weight: 700;
   font-size: var(--fs-h4);
   color: var(--primary);
   line-height: var(--lh-base);
-  letter-spacing: -1.8px;
+  letter-spacing: -0.045em; /* skala mengikuti ukuran font */
 }
 
 .section-description {
@@ -80,15 +116,19 @@
   color: var(--primary);
   text-align: justify;
   text-align-last: center;
-  max-width: 858px;
-  line-height: var(--lh-base);
+  max-width: 53.625rem; /* 858px */
+  line-height: var(--lh-body);
+  opacity: 0.85;
 }
 
-/* ===== BUTTON DESIGN SYSTEM ===== */
+/* ===== BUTTON DESIGN SYSTEM =====
+   SATU-SATUNYA sumber gaya tombol. Semua tombol (ukuran, padding, hover)
+   harus memakai kelas ini; module hanya boleh menambah width/layout. */
 
 /* Base button styles */
 .btn,
 .btn-primary,
+.btn-secondary,
 .btn-outline-primary,
 .btn-outline-secondary,
 .btn-outline-white,
@@ -96,7 +136,7 @@
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  gap: 0.5rem; 
+  gap: 0.5rem;
   border-radius: 6.25rem; /* 100px — pill shape */
   padding: 0.75rem 1.5rem; /* 12px 24px */
   font-family: var(--font-inter), sans-serif;
@@ -113,6 +153,7 @@
 /* Focus visible for accessibility */
 .btn:focus-visible,
 .btn-primary:focus-visible,
+.btn-secondary:focus-visible,
 .btn-outline-primary:focus-visible,
 .btn-outline-secondary:focus-visible,
 .btn-outline-white:focus-visible,
@@ -124,6 +165,7 @@
 /* SVG icon sizing inside buttons */
 .btn svg,
 .btn-primary svg,
+.btn-secondary svg,
 .btn-outline-primary svg,
 .btn-outline-secondary svg,
 .btn-outline-white svg,
@@ -133,7 +175,7 @@
   flex-shrink: 0;
 }
 
-/* --- PRIMARY (Filled gradient) --- */
+/* --- PRIMARY (Filled gradient biru) --- */
 .btn-primary {
   background: linear-gradient(135deg, var(--primary), #2a1fa8);
   color: var(--white);
@@ -147,6 +189,23 @@
 }
 
 .btn-primary svg {
+  fill: var(--white);
+}
+
+/* --- SECONDARY (Filled gradient merah) --- */
+.btn-secondary {
+  background: linear-gradient(135deg, var(--secondary), #ff4433);
+  color: var(--white);
+  border: none;
+}
+
+.btn-secondary:hover {
+  background: linear-gradient(135deg, var(--primary), #2a1fa8);
+  transform: translateY(-0.125rem); /* -2px */
+  box-shadow: 0 0.375rem 1.25rem rgba(17, 11, 102, 0.3);
+}
+
+.btn-secondary svg {
   fill: var(--white);
 }
 
@@ -234,6 +293,54 @@
 
 .btn-ghost svg {
   fill: var(--primary);
+}
+
+/* --- Helper: tombol selebar container (untuk di dalam kartu) --- */
+.btn-block {
+  width: 100%;
+}
+
+/* ===== FILTER TABS (galeri & destinasi wisata) ===== */
+.filter-tabs {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.75rem; /* 12px */
+  justify-content: center;
+  margin-top: var(--sp-5); /* 24px — jarak dari elemen di atasnya */
+}
+
+.filter-tab {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem; /* 8px */
+  padding: 0.625rem 1.25rem; /* 10px 20px */
+  border-radius: 6.25rem; /* 100px */
+  background: var(--white);
+  color: var(--primary);
+  font-family: var(--font-inter), sans-serif;
+  font-size: 0.875rem; /* 14px */
+  font-weight: 600;
+  border: 0.0625rem solid rgba(17, 11, 102, 0.1);
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.filter-tab:hover {
+  background: rgba(17, 11, 102, 0.03);
+  transform: translateY(-0.125rem); /* -2px */
+}
+
+.filter-tab.active {
+  background: var(--primary);
+  color: var(--white);
+  border-color: var(--primary);
+  box-shadow: 0 0.25rem 0.625rem rgba(17, 11, 102, 0.2);
+}
+
+.filter-tab svg {
+  width: 1.125rem; /* 18px */
+  height: 1.125rem; /* 18px */
+  fill: currentColor;
 }
 
 /* Button responsive adjustments */
@@ -400,6 +507,8 @@
 
 .content-container .section-title[data-scroll]::after,
 #destination .section-title[data-scroll]::after,
+#destinasi .section-title[data-scroll]::after,
+#tips-wisata .section-title[data-scroll]::after,
 #paket-wisata .section-title[data-scroll]::after,
 #vehicle .section-title[data-scroll]::after,
 #review .section-title[data-scroll]::after,
@@ -426,6 +535,20 @@
 
 html {
   overflow-x: hidden;
+  scroll-behavior: smooth;
+  /* Anchor (#section) tidak tertutup header fixed */
+  scroll-padding-top: var(--header-h);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+}
+
+::selection {
+  background: var(--primary);
+  color: var(--white);
 }
 
 body {
@@ -442,6 +565,8 @@ body {
   overflow-x: hidden;
   background: radial-gradient(125% 125% at 50% 100%, #fff 55%, #9bc4ff 100%);
   background-attachment: fixed;
+  /* Kompensasi header fixed (TopBar + Navbar) agar konten tidak tertutup */
+  padding-top: var(--header-h);
 }
 
 /* ===== GLOBAL TYPOGRAPHY (Figma Scale) ===== */
@@ -489,7 +614,7 @@ h6 {
 
 p {
   font-size: var(--fs-body);
-  line-height: var(--lh-base);
+  line-height: var(--lh-body);
 }
 
 small {
@@ -637,53 +762,47 @@ a {
   fill: var(--white);
 }
 
+/* Wrapper konten utama: membatasi lebar halaman di layar sangat lebar.
+   Dipasang di app/layout.tsx membungkus {children} + CTA. */
 .wrapper {
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
   width: 100%;
-  max-width: 1520px;
+  max-width: var(--container-max);
   margin: 0 auto;
   overflow-x: hidden;
 }
 
+/* main adalah flex-item dari .wrapper (align-items: center);
+   tanpa width eksplisit ia menyusut ke lebar kontennya
+   (mis. halaman galeri yang isinya absolutely-positioned). */
+main {
+  width: 100%;
+}
 
+/* Section standar: padding dari token — JANGAN duplikasi ladder di module. */
 .content-section {
-  width:100%;
-  padding: var(--sp-9) var(--sp-8);
+  width: 100%;
+  padding: var(--section-py) var(--section-px);
 }
 
 .content-container {
-  display:flex;
+  display: flex;
   flex-direction: column;
-  align-items:center;
-  justify-content:center;
+  align-items: center;
+  justify-content: center;
   gap: var(--gap-4);
 }
 
-@media (max-width: 1280px) {
-  .content-section { padding: var(--sp-8) var(--sp-7); }
-}
-@media (max-width: 1024px) {
-  .content-section { padding: var(--sp-7) var(--sp-5); }
-  .section-title { font-size: 30px; }
-}
 @media (max-width: 768px) {
   .fab-whatsapp { bottom: 16px; left: 16px; padding: 10px 16px; font-size: 12px; }
   .fab-whatsapp svg { width: 20px; height: 20px; }
   .fab-scroll-top { bottom: 16px; right: 16px; width: 40px; height: 40px; }
   .fab-scroll-top svg { width: 24px; height: 24px; }
-  .section-title { font-size: 26px; letter-spacing: -1px; }
-  .section-subtitle { font-size: 15px; }
-  .section-description { font-size: 15px; }
-  .content-section { padding: var(--sp-6) var(--sp-4); }
 }
 @media (max-width: 480px) {
   .fab-whatsapp { padding: 8px 12px; font-size: 11px; }
   .fab-scroll-top { width: 36px; height: 36px; }
-  .section-title { font-size: 22px; letter-spacing: -0.5px; }
-  .section-subtitle { font-size: 14px; }
-  .section-description { font-size: 14px; }
-  .content-section { padding: var(--sp-5) var(--sp-3); }
 }
