@@ -58,14 +58,14 @@ const services = [
   {
     title: "Paket Wisata",
     href: "/paket-wisata",
-    image: "/assets/paket-1.png",
+    image: "/assets/destination/candi-prambanan.webp",
     description:
       "Beragam paket tour Jogja yang sudah termasuk mobil, sopir, dan BBM. Tinggal berangkat, semua kami atur.",
   },
   {
     title: "Rental Mobil",
     href: "/rental-mobil",
-    image: "/assets/gambar-mobil.jpg",
+    image: "/assets/destination/gunung-merapi.webp",
     description:
       "Sewa mobil dengan sopir maupun lepas kunci. Tersedia city car hingga Hiace untuk rombongan besar.",
   },
@@ -99,7 +99,7 @@ export default function ProfilPage() {
 
           <div className={styles.banner} data-scroll="zoom-in">
             <Image
-              src="/assets/introduction-image.png"
+              src="/assets/destination/tugu-jogja.webp"
               alt="Tim TS Group Tour & Travel"
               fill
               sizes="100vw"
