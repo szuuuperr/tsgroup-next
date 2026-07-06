@@ -22,7 +22,7 @@ export default function PaketWisata() {
             Rute juga bisa disesuaikan dengan keinginan Anda.
           </p>
 
-          <div className={styles.paketCardContainer} data-scroll-parent>
+          <div className={styles.paketCardContainer} data-scroll-gsap>
             {pakets.map((paket, index) => (
               <div className={styles.paketCard} data-scroll-child key={index}>
                 <div className={styles.cardImage}>

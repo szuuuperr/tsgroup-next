@@ -7,7 +7,7 @@
 
 .heroSlider {
   width: 100%;
-  height: 45rem; /* 720px */
+  height: 42rem; /* 608px */
   display: grid;
   position: relative;
 }
@@ -17,12 +17,33 @@
   grid-area: 1 / 1;
   width: 100%;
   opacity: 0;
-  transition: opacity 0.8s ease-in-out;
+  transition: opacity 0.9s ease-in-out;
 }
 
 .heroSlide.active {
   opacity: 1;
   z-index: 2;
+}
+
+.heroSlide img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+/* Ken Burns: zoom-out perlahan setiap slide aktif */
+.heroSlide.active img {
+  animation: kenBurns 7s var(--ease-out) forwards;
+}
+
+@keyframes kenBurns {
+  from {
+    transform: scale(1.12);
+  }
+  to {
+    transform: scale(1);
+  }
 }
 
 /* Gradient gelap agar teks terbaca di atas foto apa pun */
@@ -32,13 +53,14 @@
   z-index: 3;
   background: linear-gradient(
     100deg,
-    rgba(10, 7, 60, 0.78) 0%,
+    rgba(10, 7, 60, 0.8) 0%,
     rgba(10, 7, 60, 0.45) 45%,
     rgba(10, 7, 60, 0.12) 75%
   );
   pointer-events: none;
 }
 
+/* ===== KONTEN ===== */
 .heroContent {
   position: absolute;
   inset: 0;
@@ -48,7 +70,10 @@
   justify-content: center;
   align-items: flex-start;
   gap: var(--gap-4); /* 16px */
-  padding: var(--section-py) var(--section-px);
+  /* Padding bawah 6rem = reservasi zona bar kontrol
+     (offset 2rem + tinggi panah 2.5rem + jarak aman 1.5rem),
+     supaya konten yang di-center tidak pernah menimpa dots/panah. */
+  padding: var(--section-py) var(--section-px) 6rem;
   max-width: 60rem; /* 960px */
   pointer-events: none; /* biarkan klik tembus, kecuali elemen interaktif */
 }
@@ -57,26 +82,32 @@
   pointer-events: auto;
 }
 
+/* Initial hidden untuk entrance GSAP (anti-flash) */
+.heroReveal {
+  opacity: 0;
+}
+
 .heroSubtitle {
   font-family: var(--font-kaushan), cursive;
-  font-size: clamp(1rem, 0.9rem + 0.6vw, 1.375rem); /* 16px → 22px */
+  font-size: clamp(0.9375rem, 0.87rem + 0.35vw, 1.125rem); /* 15px → 18px */
   color: var(--secondary);
+  text-shadow: 0 0.0625rem 0.5rem rgba(0, 0, 0, 0.4);
 }
 
 .heroTitle {
-  font-size: var(--fs-h2);
+  font-size: clamp(1.625rem, 1.3rem + 1.6vw, 2.625rem); /* 26px → 42px */
   font-weight: 700;
   color: var(--white);
-  line-height: 1.15;
+  line-height: 1.2;
   letter-spacing: -0.03em;
   text-shadow: 0 0.125rem 1rem rgba(0, 0, 0, 0.35);
 }
 
 .heroDescription {
-  font-size: clamp(0.875rem, 0.83rem + 0.25vw, 1.0625rem); /* 14px → 17px */
+  font-size: clamp(0.8125rem, 0.78rem + 0.2vw, 0.9375rem); /* 13px → 15px */
   color: rgba(255, 255, 255, 0.9);
   line-height: var(--lh-body);
-  max-width: 34rem; /* 544px */
+  max-width: 30rem; /* 480px */
 }
 
 .heroActions {
@@ -86,12 +117,76 @@
   margin-top: var(--sp-2); /* 8px */
 }
 
-/* Chip nama lokasi slide aktif */
-.heroLocation {
+/* ===== DOTS PROGRES AUTOPLAY ===== */
+.heroDots {
   position: absolute;
-  bottom: 1.875rem; /* 30px */
+  bottom: 2rem; /* 32px */
+  left: var(--section-px);
+  display: flex;
+  align-items: center;
+  gap: 0.625rem; /* 10px */
+  z-index: 10;
+}
+
+.heroDot {
+  position: relative;
+  width: 0.5rem; /* 8px */
+  height: 0.5rem;
+  padding: 0;
+  border: none;
+  border-radius: 6.25rem;
+  background: rgba(255, 255, 255, 0.4);
+  cursor: pointer;
+  overflow: hidden;
+  transition: all 0.4s var(--ease-out);
+}
+
+.heroDot:hover {
+  background: rgba(255, 255, 255, 0.7);
+}
+
+.heroDot.active {
+  width: 2.75rem; /* 44px — memanjang jadi progress bar */
+  background: rgba(255, 255, 255, 0.25);
+}
+
+/* Isi progres: penuh tepat saat autoplay berganti slide */
+.heroDotFill {
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  background: var(--secondary);
+  transform-origin: left;
+  transform: scaleX(0);
+  animation-name: heroProgress;
+  animation-timing-function: linear;
+  animation-fill-mode: forwards;
+}
+
+@keyframes heroProgress {
+  from {
+    transform: scaleX(0);
+  }
+  to {
+    transform: scaleX(1);
+  }
+}
+
+/* ===== KLASTER KONTROL KANAN-BAWAH (chip + panah) ===== */
+.heroControls {
+  position: absolute;
+  bottom: 2rem; /* 32px — sejajar dots di kiri */
   right: var(--section-px);
-  z-index: 4;
+  z-index: 10;
+  display: flex;
+  align-items: center;
+  gap: 0.625rem; /* 10px */
+}
+
+.heroLocation {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem; /* 8px */
   background: rgba(255, 255, 255, 0.14);
   backdrop-filter: blur(8px);
   -webkit-backdrop-filter: blur(8px);
@@ -102,31 +197,32 @@
   letter-spacing: 0.02em;
   padding: 0.375rem 0.875rem; /* 6px 14px */
   border-radius: 6.25rem;
+  margin-right: 0.375rem; /* 6px jarak ekstra ke panah */
+  animation: chipIn 0.5s var(--ease-out);
 }
 
-.heroSlide img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  display: block;
+.heroLocationDot {
+  width: 0.25rem; /* 4px */
+  height: 0.25rem;
+  border-radius: 50%;
+  background: var(--secondary);
 }
 
-.heroNav {
-  position: absolute;
-  top: 50%;
-  transform: translateY(-50%);
-  width: 100%;
-  display: flex;
-  justify-content: space-between;
-  padding: 0 1.25rem; /* 20px */
-  z-index: 10;
-  pointer-events: none;
+@keyframes chipIn {
+  from {
+    opacity: 0;
+    transform: translateY(0.5rem); /* 8px */
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }
 
-.heroPrev,
-.heroNext {
-  width: 3rem; /* 48px */
-  height: 3rem;
+/* Panah navigasi: bundar kaca, seukuran chip agar klaster rapi */
+.heroArrow {
+  width: 2.5rem; /* 40px */
+  height: 2.5rem;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -135,97 +231,90 @@
   -webkit-backdrop-filter: blur(8px);
   border: 0.0625rem solid rgba(255, 255, 255, 0.25);
   border-radius: 50%;
-  color: white;
-  font-size: 1.25rem; /* 20px */
+  color: var(--white);
   cursor: pointer;
-  pointer-events: auto;
   transition: all 0.3s ease;
 }
 
-.heroPrev:hover,
-.heroNext:hover {
+.heroArrow svg {
+  width: 1.125rem; /* 18px */
+  height: 1.125rem;
+}
+
+.heroArrow:hover {
   background: var(--secondary);
   border-color: var(--secondary);
   transform: scale(1.08);
 }
 
-.heroDots {
-  position: absolute;
-  bottom: 1.875rem; /* 30px */
-  left: 50%;
-  transform: translateX(-50%);
-  display: flex;
-  gap: 0.75rem; /* 12px */
-  z-index: 10;
-}
+/* ===== REDUCED MOTION ===== */
+@media (prefers-reduced-motion: reduce) {
+  .heroSlide.active img {
+    animation: none;
+  }
 
-.heroDot {
-  width: 0.75rem; /* 12px */
-  height: 0.75rem; /* 12px */
-  border-radius: 50%;
-  background: rgba(255, 255, 255, 0.5);
-  cursor: pointer;
-  transition: background 0.3s;
-}
+  .heroLocation {
+    animation: none;
+  }
 
-.heroDot.active {
-  background: white;
-}
-
-.heroImage img {
-  mask-image: linear-gradient(to bottom, black 80%, transparent 100%);
-  -webkit-mask-image: linear-gradient(to bottom, black 80%, transparent 100%);
+  .heroDotFill {
+    animation: none;
+    transform: scaleX(1);
+  }
 }
 
 /* ===== MEDIA QUERIES ===== */
 @media (max-width: 64rem) /* 1024px */ {
   .heroSection {
-    height: 34.375rem; /* 550px */
+    height: 30rem; /* 480px */
   }
 
   .heroSlider {
-    height: 34.375rem; /* 550px */
+    height: 30rem;
   }
 }
 
 @media (max-width: 48rem) /* 768px */ {
   .heroSection {
-    height: 28rem; /* 448px — cukup untuk headline + CTA */
+    height: 26rem; /* 416px */
+    border-radius: 0 0 1.5rem 1.5rem; /* 24px */
   }
 
   .heroSlider {
-    height: 28rem;
+    height: 26rem;
   }
 
-  .heroPrev,
-  .heroNext {
-    display: none; /* di layar sentuh cukup dots + autoplay */
+  /* Chip lokasi disembunyikan; panah tetap (posisi bawah ramah jempol) */
+  .heroLocation {
+    display: none;
   }
 
-  .heroDots {
-    bottom: 1rem; /* 16px */
+  .heroControls {
+    bottom: 1.25rem; /* 20px */
     gap: 0.5rem; /* 8px */
   }
 
-  .heroDot {
-    width: 0.625rem; /* 10px */
-    height: 0.625rem; /* 10px */
+  .heroDots {
+    bottom: 1.75rem; /* 28px — sejajar tengah panah 40px */
   }
 
-  .heroLocation {
-    display: none;
+  /* Zona bar lebih pendek di mobile (offset 1.25rem + panah 2.5rem + aman 1.25rem) */
+  .heroContent {
+    padding-bottom: 5rem;
   }
 
   .heroOverlay {
     background: linear-gradient(
       180deg,
       rgba(10, 7, 60, 0.55) 0%,
-      rgba(10, 7, 60, 0.65) 100%
+      rgba(10, 7, 60, 0.68) 100%
     );
   }
 }
 
 @media (max-width: 30rem) /* 480px */ {
+  /* 26rem: cukup untuk konten (judul 2 baris + deskripsi 3 baris +
+     2 tombol yang wrap jadi kolom) + zona bar 5rem tanpa bertabrakan */
   .heroSection {
     height: 26rem; /* 416px */
   }

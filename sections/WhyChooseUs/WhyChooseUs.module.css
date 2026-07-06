@@ -40,35 +40,57 @@
   margin-top: 1rem; /* 16px */
 }
 
-/* Daftar keunggulan dengan ikon centang */
+/* Keunggulan: baris tenang tanpa kotak (grid 2 kolom × 2 baris) */
 .featureList {
-  display: flex;
-  flex-direction: column;
-  gap: var(--gap-2); /* 8px */
-  margin: 0;
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 1.125rem 1.5rem; /* 18px 24px */
+  margin: 0.25rem 0; /* 4px */
   padding: 0;
   list-style: none;
 }
 
-.featureList li {
+.featureItem {
   display: flex;
   align-items: flex-start;
-  gap: var(--gap-2); /* 8px */
-  font-size: var(--fs-body);
-  color: var(--primary);
-  line-height: var(--lh-body);
+  gap: 0.875rem; /* 14px */
 }
 
-.featureList svg {
+.featureIcon {
+  width: 2.25rem; /* 36px */
+  height: 2.25rem;
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(17, 11, 102, 0.05);
+  border-radius: 0.625rem; /* 10px */
+  color: var(--primary);
+}
+
+.featureIcon svg {
   width: 1.125rem; /* 18px */
   height: 1.125rem;
-  fill: var(--secondary);
-  flex-shrink: 0;
-  margin-top: 0.2em;
 }
 
-.featureList strong {
+.featureText {
+  display: flex;
+  flex-direction: column;
+  gap: 0.125rem; /* 2px */
+  text-align: left;
+}
+
+.featureText strong {
+  font-size: 0.9375rem; /* 15px */
   font-weight: 600;
+  color: var(--primary);
+  line-height: 1.4;
+}
+
+.featureText > span {
+  font-size: 0.8125rem; /* 13px */
+  color: #777;
+  line-height: 1.5;
 }
 
 /* ===== MEDIA QUERIES ===== */
@@ -115,5 +137,10 @@
 @media (max-width: 30rem) /* 480px */ {
   .whyChooseUsLeft {
     height: 12.5rem; /* 200px */
+  }
+
+  /* Layar sempit: kembali satu kolom agar teks tidak terpotong-potong */
+  .featureList {
+    grid-template-columns: 1fr;
   }
 }

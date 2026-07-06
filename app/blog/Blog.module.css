@@ -16,110 +16,253 @@
   gap: var(--gap-6);
 }
 
-/* Artikel unggulan */
+/* ===== AREA ATAS: FEATURED + ARTIKEL TERBARU ===== */
+.topArea {
+  display: grid;
+  grid-template-columns: 1.9fr 1fr;
+  gap: var(--gap-6); /* 32px */
+  width: 100%;
+  align-items: stretch;
+  margin-top: var(--sp-4); /* 16px */
+}
+
+/* Kartu featured: gambar penuh + overlay gradasi (tanpa blur) */
 .featuredCard {
-  display: flex;
-  background: var(--white);
+  position: relative;
+  display: block;
+  min-height: 27.5rem; /* 440px */
   border-radius: 1.5rem; /* 24px */
   overflow: hidden;
-  box-shadow: 0 0.25rem 1.25rem rgba(17, 11, 102, 0.06);
+  box-shadow: var(--shadow-card);
   border: 0.0625rem solid rgba(17, 11, 102, 0.06);
   transition:
-    transform 0.4s cubic-bezier(0.16, 1, 0.3, 1),
-    box-shadow 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+    transform 0.4s var(--ease-out),
+    box-shadow 0.4s var(--ease-out);
 }
 
 .featuredCard:hover {
   transform: translateY(-0.375rem); /* -6px */
-  box-shadow: 0 1.25rem 3.125rem rgba(17, 11, 102, 0.14);
+  box-shadow: var(--shadow-card-hover);
 }
 
-.featuredImage {
+.featuredCard img {
+  object-fit: cover;
+  transition: transform 0.5s var(--ease-out);
+}
+
+.featuredCard:hover img {
+  transform: scale(1.05);
+}
+
+/* Gradasi linear dari transparan ke navy tema — pengganti efek blur */
+.featuredOverlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    180deg,
+    rgba(10, 7, 60, 0) 35%,
+    rgba(10, 7, 60, 0.55) 65%,
+    rgba(10, 7, 60, 0.92) 100%
+  );
+  z-index: 1;
+}
+
+.featuredContent {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 2;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 0.75rem; /* 12px */
+  padding: 1.75rem; /* 28px */
+}
+
+.featuredTitle {
+  font-size: clamp(1.375rem, 1.1rem + 1.2vw, 2rem); /* 22px → 32px */
+  font-weight: 700;
+  color: var(--white);
+  line-height: 1.25;
+  letter-spacing: -0.03em;
+}
+
+/* Pill kategori: dot merah + label (ala referensi) */
+.categoryPill {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem; /* 8px */
+  background: rgba(255, 255, 255, 0.92);
+  color: var(--primary);
+  padding: 0.375rem 0.875rem; /* 6px 14px */
+  border-radius: 6.25rem; /* 100px */
+  font-size: 0.75rem; /* 12px */
+  font-weight: 600;
+  width: fit-content;
+}
+
+.categoryPill::before {
+  content: "";
+  width: 0.5rem; /* 8px */
+  height: 0.5rem;
+  border-radius: 50%;
+  background: var(--secondary);
+  flex-shrink: 0;
+}
+
+/* Varian outline untuk kartu berlatar putih */
+.categoryPillOutline {
+  background: transparent;
+  border: 0.0625rem solid rgba(17, 11, 102, 0.15);
+}
+
+.featuredMeta {
+  display: flex;
+  align-items: center;
+  gap: 0.625rem; /* 10px */
+  font-size: 0.75rem; /* 12px */
+  font-weight: 500;
+  color: rgba(255, 255, 255, 0.85);
+}
+
+.metaItem {
+  display: flex;
+  align-items: center;
+  gap: 0.375rem; /* 6px */
+}
+
+.metaDot {
+  width: 0.25rem; /* 4px */
+  height: 0.25rem;
+  border-radius: 50%;
+  background: currentColor;
+  opacity: 0.6;
+}
+
+/* Sidebar Artikel Terbaru */
+.latestAside {
+  display: flex;
+  flex-direction: column;
+  gap: 1.25rem; /* 20px */
+}
+
+.asideTitle {
+  font-size: 1.375rem; /* 22px */
+  font-weight: 700;
+  color: var(--primary);
+  letter-spacing: -0.02em;
+}
+
+.latestList {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem; /* 16px */
+}
+
+.latestItem {
+  display: flex;
+  gap: 0.875rem; /* 14px */
+  align-items: flex-start;
+  padding-bottom: 1rem; /* 16px */
+  border-bottom: 0.0625rem solid rgba(17, 11, 102, 0.08);
+}
+
+.latestItem:last-child {
+  border-bottom: none;
+  padding-bottom: 0;
+}
+
+.latestThumb {
   position: relative;
-  width: 55%;
-  min-height: 22.5rem; /* 360px */
+  width: 5.5rem; /* 88px */
+  height: 4.25rem; /* 68px */
+  border-radius: 0.75rem; /* 12px */
   overflow: hidden;
   flex-shrink: 0;
 }
 
-.featuredImage img {
+.latestThumb img {
   object-fit: cover;
-  transition: transform 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+  transition: transform 0.4s var(--ease-out);
 }
 
-.featuredCard:hover .featuredImage img {
-  transform: scale(1.05);
+.latestItem:hover .latestThumb img {
+  transform: scale(1.08);
 }
 
-.featuredBadge {
-  position: absolute;
-  top: 1.25rem; /* 20px */
-  left: 1.25rem; /* 20px */
-  background: var(--secondary);
-  color: var(--white);
-  padding: 0.375rem 0.875rem; /* 6px 14px */
-  border-radius: 6.25rem; /* 100px */
-  font-size: 0.75rem; /* 12px */
-  font-weight: 700;
-  box-shadow: 0 0.25rem 0.625rem rgba(0, 0, 0, 0.2);
-  z-index: 2;
-}
-
-.featuredBody {
+.latestInfo {
   display: flex;
   flex-direction: column;
-  justify-content: center;
-  gap: 1rem; /* 16px */
-  padding: 2.5rem; /* 40px */
+  gap: 0.375rem; /* 6px */
 }
 
-.featuredTitle {
-  font-size: 1.75rem; /* 28px */
-  font-weight: 700;
+.latestTitle {
+  font-size: 0.875rem; /* 14px */
+  font-weight: 600;
   color: var(--primary);
-  line-height: 1.25;
-  letter-spacing: -0.046875rem; /* -0.75px */
+  line-height: 1.45;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
   transition: color 0.3s ease;
 }
 
-.featuredTitle:hover {
+.latestItem:hover .latestTitle {
   color: var(--secondary);
 }
 
-.featuredExcerpt {
-  font-size: 0.9375rem; /* 15px */
-  color: #555;
-  line-height: 1.7;
+.latestMeta {
+  font-size: 0.75rem; /* 12px */
+  color: #888;
 }
 
+/* ===== HEADING GRID ===== */
+.gridHeading {
+  width: 100%;
+  margin-top: var(--sp-5); /* 24px */
+}
+
+.gridHeading h2 {
+  font-size: var(--fs-h5);
+  font-weight: 700;
+  color: var(--primary);
+  letter-spacing: -0.03em;
+}
+
+/* ===== GRID ARTIKEL ===== */
 .blogGrid {
   display: flex;
   flex-wrap: wrap;
-  gap: var(--gap-4); /* 24px */
-  justify-content: center;
+  gap: var(--gap-4); /* 16px */
+  justify-content: flex-start;
 }
 
 .blogCard {
-  flex: 0 0 calc(33.333% - 1rem); /* 16px */
+  flex: 0 0 calc(33.333% - 0.7rem);
   background: var(--white);
   border-radius: 1.5rem; /* 24px */
   overflow: hidden;
   display: flex;
   flex-direction: column;
-  box-shadow: 0 0.25rem 1.25rem rgba(17, 11, 102, 0.06);
+  box-shadow: var(--shadow-card);
   border: 0.0625rem solid rgba(17, 11, 102, 0.06);
-  transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+  transition:
+    transform 0.4s var(--ease-out),
+    box-shadow 0.4s var(--ease-out);
 }
 
 .blogCard:hover {
   transform: translateY(-0.625rem); /* -10px */
-  box-shadow: 0 1.25rem 3.125rem rgba(17, 11, 102, 0.14);
+  box-shadow: var(--shadow-card-hover);
 }
 
 .blogImage {
   position: relative;
+  display: block;
   width: 100%;
-  height: 15rem; /* 240px */
+  height: 13.75rem; /* 220px */
   overflow: hidden;
 }
 
@@ -127,7 +270,7 @@
   width: 100%;
   height: 100%;
   object-fit: cover;
-  transition: transform 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+  transition: transform 0.5s var(--ease-out);
 }
 
 .blogCard:hover .blogImage img {
@@ -137,31 +280,9 @@
 .blogBody {
   display: flex;
   flex-direction: column;
-  gap: 1rem;
+  gap: 0.875rem; /* 14px */
   padding: 1.5rem; /* 24px */
   flex: 1;
-}
-
-.blogMeta {
-  display: flex;
-  align-items: center;
-  gap: 1rem; /* 16px */
-  font-size: 0.75rem; /* 12px */
-  color: #666;
-  font-weight: 500;
-}
-
-.blogCategory {
-  color: var(--secondary);
-  background: rgba(254, 34, 13, 0.1);
-  padding: 0.25rem 0.75rem; /* 4px 12px */
-  border-radius: 6.25rem; /* 100px */
-}
-
-.blogDate {
-  display: flex;
-  align-items: center;
-  gap: 0.375rem; /* 6px */
 }
 
 .blogTitle {
@@ -170,6 +291,11 @@
   color: var(--primary);
   line-height: 1.3;
   letter-spacing: -0.03125rem; /* -0.5px */
+  transition: color 0.3s ease;
+}
+
+.blogTitle:hover {
+  color: var(--secondary);
 }
 
 .blogExcerpt {
@@ -182,44 +308,62 @@
   overflow: hidden;
 }
 
-.blogReadMore {
+/* Footer kartu: meta kiri, baca selengkapnya kanan */
+.blogCardFooter {
   margin-top: auto;
-  display: inline-flex;
+  display: flex;
   align-items: center;
-  gap: 0.5rem;
-  color: var(--primary);
-  font-size: 0.875rem;
-  font-weight: 600;
-  text-decoration: none;
-  transition: color 0.3s ease;
+  justify-content: space-between;
+  gap: 0.75rem; /* 12px */
+  padding-top: 1rem; /* 16px */
+  border-top: 0.0625rem solid rgba(17, 11, 102, 0.08);
 }
 
-.blogReadMore:hover {
+.blogCardFooter .featuredMeta {
+  color: #888;
+}
+
+/* "Baca Selengkapnya" — didesain ulang mengikuti tema:
+   teks merah brand + panah dalam chip bundar yang terisi saat hover */
+.blogReadMore {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem; /* 8px */
   color: var(--secondary);
+  font-size: 0.8125rem; /* 13px */
+  font-weight: 600;
+  white-space: nowrap;
 }
 
 .blogReadMore svg {
-  width: 1.125rem; /* 18px */
-  height: 1.125rem; /* 18px */
-  fill: currentColor;
-  transition: transform 0.3s ease;
+  width: 1.75rem; /* 28px */
+  height: 1.75rem;
+  padding: 0.375rem; /* 6px */
+  border: 0.09375rem solid rgba(254, 34, 13, 0.35); /* 1.5px */
+  border-radius: 50%;
+  color: var(--secondary);
+  transition: all 0.3s ease;
 }
 
 .blogReadMore:hover svg {
+  background: var(--secondary);
+  border-color: var(--secondary);
+  color: var(--white);
   transform: translateX(0.25rem); /* 4px */
 }
 
-/* ===== MEDIA QUERIES =====
-   Padding section mengikuti token parent; tidak ada override di sini. */
+/* ===== MEDIA QUERIES ===== */
 @media (max-width: 64rem) /* 1024px */ {
+  .topArea {
+    grid-template-columns: 1fr;
+  }
+
+  .featuredCard {
+    min-height: 22rem; /* 352px */
+  }
+
   .blogCard {
-    flex: 0 0 calc(50% - 0.75rem);
-  }
-  .featuredBody {
-    padding: 1.75rem; /* 28px */
-  }
-  .featuredTitle {
-    font-size: 1.375rem; /* 22px */
+    flex: 0 0 calc(50% - 0.5rem);
   }
 }
 
@@ -227,15 +371,16 @@
   .blogCard {
     flex: 0 0 100%;
   }
+
+  .featuredCard {
+    min-height: 18rem; /* 288px */
+  }
+
+  .featuredContent {
+    padding: 1.25rem; /* 20px */
+  }
+
   .blogImage {
     height: 12.5rem; /* 200px */
-  }
-  .featuredCard {
-    flex-direction: column;
-  }
-  .featuredImage {
-    width: 100%;
-    min-height: auto;
-    height: 13.75rem; /* 220px */
   }
 }

@@ -5,6 +5,9 @@ import dynamic from "next/dynamic";
 
 const Masonry = dynamic(() => import("@/components/Masonry/Masonry"), {
   ssr: false,
+  // Placeholder setinggi galeri agar layout tidak melompat & tidak
+  // tampak kosong selama chunk JS diunduh di kunjungan pertama.
+  loading: () => <div style={{ width: "100%", minHeight: "28rem" }} aria-hidden />,
 });
 
 type GaleriCategory = "semua" | "destinasi" | "budaya" | "perjalanan";
@@ -18,18 +21,39 @@ interface GaleriItem {
 }
 
 const galleryItems: GaleriItem[] = [
-  { id: "heha", img: "/assets/heha-gambar.png", url: "/destinasi-wisata", height: 400, category: "destinasi" },
-  { id: "borobudur", img: "/assets/borobudur-gambar.png", url: "/destinasi-wisata", height: 300, category: "budaya" },
-  { id: "merapi", img: "/assets/merapilava-gambar.png", url: "/destinasi-wisata", height: 500, category: "destinasi" },
-  { id: "prambanan", img: "/assets/prambanan-gambar.png", url: "/destinasi-wisata", height: 350, category: "budaya" },
-  { id: "parangtritis", img: "/assets/parangtritis-gambar.png", url: "/destinasi-wisata", height: 450, category: "destinasi" },
-  { id: "goapindul", img: "/assets/goapindul-gambar.png", url: "/destinasi-wisata", height: 400, category: "destinasi" },
-  { id: "tugu", img: "/assets/tugu-jogja.jpg", url: "/destinasi-wisata", height: 500, category: "budaya" },
-  { id: "candi-borobudur", img: "/assets/candi-borobudur.jpeg", url: "/destinasi-wisata", height: 350, category: "budaya" },
-  { id: "kraton", img: "/assets/kraton-yogyakarta.webp", url: "/destinasi-wisata", height: 400, category: "budaya" },
-  { id: "perjalanan", img: "/assets/introduction-image.png", url: "/destinasi-wisata", height: 450, category: "perjalanan" },
-  { id: "paket-1", img: "/assets/paket-1.png", url: "/paket-wisata", height: 350, category: "perjalanan" },
-  { id: "paket-2", img: "/assets/paket-2.png", url: "/paket-wisata", height: 400, category: "perjalanan" },
+  // ── Destinasi ───────────────────────────────────────────────
+  { id: "heha-ocean", img: "/assets/destination/heha-ocean-view.webp", url: "/destinasi-wisata", height: 400, category: "destinasi" },
+  { id: "merapi", img: "/assets/destination/gunung-merapi-2.webp", url: "/destinasi-wisata", height: 500, category: "destinasi" },
+  { id: "parangtritis", img: "/assets/destination/pantai-parangtritis.webp", url: "/destinasi-wisata", height: 450, category: "destinasi" },
+  { id: "goapindul", img: "/assets/destination/goa-pindul.webp", url: "/destinasi-wisata", height: 400, category: "destinasi" },
+  { id: "heha-sky", img: "/assets/destination/heha-sky-view.webp", url: "/destinasi-wisata", height: 350, category: "destinasi" },
+  { id: "indrayanti", img: "/assets/destination/pantai-indrayanti.webp", url: "/destinasi-wisata", height: 450, category: "destinasi" },
+  { id: "hutan-pinus", img: "/assets/destination/hutan-pinus-mangunan.webp", url: "/destinasi-wisata", height: 400, category: "destinasi" },
+  { id: "goa-jomblang", img: "/assets/destination/goa-jomblang.webp", url: "/destinasi-wisata", height: 500, category: "destinasi" },
+  { id: "timang", img: "/assets/destination/pantai-timang.webp", url: "/destinasi-wisata", height: 350, category: "destinasi" },
+  { id: "nglanggeran", img: "/assets/destination/embung-nglanggeran.webp", url: "/destinasi-wisata", height: 400, category: "destinasi" },
+  { id: "pok-tunggal", img: "/assets/destination/pantai-pok-tunggal.webp", url: "/destinasi-wisata", height: 450, category: "destinasi" },
+  { id: "wediombo", img: "/assets/destination/pantai-wediombo.webp", url: "/destinasi-wisata", height: 350, category: "destinasi" },
+  // ── Budaya & Sejarah ────────────────────────────────────────
+  { id: "borobudur", img: "/assets/Candi-Borobudur-Cover-261807757.webp", url: "/destinasi-wisata", height: 300, category: "budaya" },
+  { id: "prambanan", img: "/assets/destination/candi-prambanan-3.webp", url: "/destinasi-wisata", height: 350, category: "budaya" },
+  { id: "tugu", img: "/assets/destination/tugu-jogja.webp", url: "/destinasi-wisata", height: 500, category: "budaya" },
+  { id: "malioboro", img: "/assets/destination/malioboro.webp", url: "/destinasi-wisata", height: 350, category: "budaya" },
+  { id: "kraton", img: "/assets/destination/keraton-yogyakarta.webp", url: "/destinasi-wisata", height: 400, category: "budaya" },
+  { id: "ratu-boko", img: "/assets/destination/candi-ratu-boko.webp", url: "/destinasi-wisata", height: 450, category: "budaya" },
+  { id: "vredeburg", img: "/assets/destination/museum-benteng-vredeburg.webp", url: "/destinasi-wisata", height: 350, category: "budaya" },
+  { id: "taman-sari", img: "/assets/destination/taman-sari.webp", url: "/destinasi-wisata", height: 400, category: "budaya" },
+  { id: "sambisari", img: "/assets/destination/candi-sambisari.webp", url: "/destinasi-wisata", height: 450, category: "budaya" },
+  { id: "sonobudoyo", img: "/assets/destination/museum-sonobudoyo.webp", url: "/destinasi-wisata", height: 300, category: "budaya" },
+  // ── Perjalanan Kami ─────────────────────────────────────────
+  { id: "kalibiru", img: "/assets/destination/kalibiru.webp", url: "/destinasi-wisata", height: 350, category: "perjalanan" },
+  { id: "tebing-breksi", img: "/assets/destination/tebing-breksi.webp", url: "/destinasi-wisata", height: 400, category: "perjalanan" },
+  { id: "sri-gethuk", img: "/assets/destination/air-terjun-sri-gethuk.webp", url: "/destinasi-wisata", height: 500, category: "perjalanan" },
+  { id: "gereja-ayam", img: "/assets/destination/gereja-ayam-bukit-rhema.webp", url: "/destinasi-wisata", height: 400, category: "perjalanan" },
+  { id: "jurang-tembelan", img: "/assets/destination/jurang-tembelan.webp", url: "/destinasi-wisata", height: 350, category: "perjalanan" },
+  { id: "pinus-pengger", img: "/assets/destination/pinus-pengger.webp", url: "/destinasi-wisata", height: 450, category: "perjalanan" },
+  { id: "monjali", img: "/assets/destination/taman-pelangi-monjali.webp", url: "/destinasi-wisata", height: 400, category: "perjalanan" },
+  { id: "pantai-drini", img: "/assets/destination/pantai-drini.webp", url: "/destinasi-wisata", height: 350, category: "perjalanan" },
 ];
 
 const categories: { key: GaleriCategory; label: string; icon: string }[] = [

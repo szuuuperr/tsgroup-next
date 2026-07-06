@@ -35,27 +35,7 @@
   transition:
     transform 0.4s var(--ease-out),
     box-shadow 0.4s var(--ease-out);
-  /* Animasi masuk dari bawah; berjalan lagi saat grid di-remount
-     (klik filter) karena key container berganti. */
-  animation: cardIn 0.55s var(--ease-out) both;
-  animation-delay: calc(var(--i, 0) * 60ms);
-}
-
-@keyframes cardIn {
-  from {
-    opacity: 0;
-    transform: translateY(2.5rem); /* 40px */
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
-}
-
-@media (prefers-reduced-motion: reduce) {
-  .destinasiCard {
-    animation: none;
-  }
+  /* Animasi masuk ditangani GSAP (data-scroll-gsap di ScrollAnimations). */
 }
 
 .destinasiCard:hover {
@@ -383,6 +363,8 @@
   color: #666;
   line-height: 1.6;
 }
+
+/* ===== PAGINATION ===== */
 
 /* ===== MEDIA QUERIES ===== */
 @media (max-width: 64rem) /* 1024px */ {

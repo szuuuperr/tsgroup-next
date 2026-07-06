@@ -282,6 +282,8 @@ class Media {
   title!: Title;
   scale!: number;
   padding!: number;
+  /** Bend asli dari prop; this.bend dihitung ulang responsif saat resize. */
+  baseBend: number;
   width!: number;
   widthTotal!: number;
   x!: number;
@@ -316,6 +318,7 @@ class Media {
     this.text = text;
     this.viewport = viewport;
     this.bend = bend;
+    this.baseBend = bend;
     this.textColor = textColor;
     this.borderRadius = borderRadius;
     this.font = font;
@@ -472,10 +475,16 @@ class Media {
     this.plane.scale.y = (this.viewport.height * (900 * this.scale)) / this.screen.height;
     this.plane.scale.x = (this.viewport.width * (700 * this.scale)) / this.screen.width;
     this.plane.program.uniforms.uPlaneSizes.value = [this.plane.scale.x, this.plane.scale.y];
-    this.padding = 1.5;
+    /* Gap antar item proporsional terhadap lebar item (45%),
+       jadi konsisten lega di setiap ukuran layar tanpa breakpoint manual. */
+    this.padding = this.plane.scale.x * 0.45;
     this.width = this.plane.scale.x + this.padding;
     this.widthTotal = this.width * this.length;
     this.x = this.width * this.index;
+    /* Lengkungan melandai mengikuti lebar viewport WebGL: di layar sempit
+       viewport.width kecil sehingga bend penuh terasa ekstrem; faktor
+       (width/40, maks 1) menjaga kurva tetap landai di semua breakpoint. */
+    this.bend = this.baseBend * Math.min(1, this.viewport.width / 40);
   }
 }
 

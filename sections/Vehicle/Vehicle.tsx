@@ -87,7 +87,7 @@ export default function Vehicle({ variant = "page" }: VehicleProps) {
             Yogyakarta.
           </p>
 
-          <div className={styles.vehicleGrid} data-scroll-parent>
+          <div className={styles.vehicleGrid} data-scroll-gsap>
             {vehicles.map((vehicle, index) => (
               <div className={styles.cardVehicle} data-scroll-child key={index}>
                 <div className={styles.cardImage}>

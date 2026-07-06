@@ -54,48 +54,56 @@ export default function KontakPage() {
           </h1>
           <p className="section-description" data-scroll="fade-up" data-scroll-delay="200">
             Punya pertanyaan seputar paket wisata atau rental mobil? Hubungi
-            kami melalui salah satu kanal di bawah ini, atau kirim pesan
-            langsung melalui <a href="#form-kontak" className={styles.inlineLink}>formulir</a>,
+            kami melalui kanal berikut, atau kirim pesan langsung lewat{" "}
+            <a href="#form-kontak" className={styles.inlineLink}>formulir</a>,
             tim kami akan segera merespons.
           </p>
 
-          <div className={styles.contactGrid} data-scroll-parent>
-            {contactItems.map((item) => (
-              <a
-                href={item.href}
-                target="_blank"
-                rel="noopener noreferrer"
-                className={styles.contactCard}
-                data-scroll-child
-                key={item.label}
-              >
-                <div className={styles.contactIcon}>
-                  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor">
-                    <path d={item.icon} />
-                  </svg>
-                </div>
-                <span className={styles.contactLabel}>{item.label}</span>
-                <span className={styles.contactValue}>{item.value}</span>
-                <span className={styles.contactNote}>{item.note}</span>
-              </a>
-            ))}
-          </div>
-        </div>
-      </section>
+          {/* Kiri: kanal kontak (tanpa kotak). Kanan: formulir,
+              satu-satunya kartu di halaman ini. */}
+          <div className={styles.splitGrid}>
+            <div className={styles.channels} data-scroll="fade-right">
+              <h2 className={styles.blockTitle}>Kontak Langsung</h2>
+              <div className={styles.channelList}>
+                {contactItems.map((item) => (
+                  <a
+                    href={item.href}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className={styles.channelRow}
+                    key={item.label}
+                  >
+                    <span className={styles.channelIcon}>
+                      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor">
+                        <path d={item.icon} />
+                      </svg>
+                    </span>
+                    <span className={styles.channelInfo}>
+                      <span className={styles.channelLabel}>{item.label}</span>
+                      <span className={styles.channelValue}>{item.value}</span>
+                      <span className={styles.channelNote}>{item.note}</span>
+                    </span>
+                  </a>
+                ))}
+              </div>
+            </div>
 
-      <section className={styles.formSection} id="form-kontak">
-        <div className={styles.formWrapper} data-scroll="fade-right">
-          <h2 className={styles.formTitle}>Kirim Pesan</h2>
-          <p className={styles.formSubtitle}>
-            Isi formulir berikut dan pesan Anda akan kami terima melalui
-            WhatsApp.
-          </p>
-          <KontakForm />
-        </div>
-        <div className={styles.mapWrapper} data-scroll="fade-left">
-          <h2 className={styles.formTitle}>Lokasi Kami</h2>
-          <p className={styles.formSubtitle}>{SITE.address}</p>
-          <KontakMap />
+            <div className={styles.formCard} id="form-kontak" data-scroll="fade-left">
+              <h2 className={styles.formTitle}>Kirim Pesan</h2>
+              <p className={styles.formSubtitle}>
+                Isi formulir berikut dan pesan Anda akan kami terima melalui
+                WhatsApp.
+              </p>
+              <KontakForm />
+            </div>
+          </div>
+
+          {/* Peta lokasi: tampil polos, radius & bayangan dari peta sendiri */}
+          <div className={styles.mapBlock} data-scroll="fade-up">
+            <h2 className={styles.blockTitle}>Lokasi Kami</h2>
+            <p className={styles.mapAddress}>{SITE.address}</p>
+            <KontakMap />
+          </div>
         </div>
       </section>
     </main>

@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useState, type CSSProperties } from "react";
+import { useEffect, useState, useCallback, useRef } from "react";
 import Image from "next/image";
 import styles from "./DestinasiWisata.module.css";
 import MapSection from "@/sections/MapSection/MapSection";
@@ -11,6 +11,8 @@ import {
   type DestinasiCategory,
   type Destinasi,
 } from "@/app/data/destinasi";
+
+const ITEMS_PER_PAGE = 9;
 
 const StarIcon = () => (
   <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="14" height="14">
@@ -60,15 +62,35 @@ const tips = [
 
 export default function DestinasiWisataPage() {
   const [activeCategory, setActiveCategory] = useState<DestinasiCategory>("semua");
+  const [currentPage, setCurrentPage] = useState(1);
   // Konten drawer dipisah dari status buka/tutup supaya isi tetap
   // terlihat selama animasi slide-down saat ditutup.
   const [drawerContent, setDrawerContent] = useState<Destinasi | null>(null);
   const [drawerOpen, setDrawerOpen] = useState(false);
+  const sectionRef = useRef<HTMLElement>(null);
 
   const filteredDestinations =
     activeCategory === "semua"
       ? destinations
       : destinations.filter((d) => d.category.includes(activeCategory));
+
+  const totalPages = Math.ceil(filteredDestinations.length / ITEMS_PER_PAGE);
+  const paginatedDestinations = filteredDestinations.slice(
+    (currentPage - 1) * ITEMS_PER_PAGE,
+    currentPage * ITEMS_PER_PAGE,
+  );
+
+  // Reset halaman saat filter berubah
+  const handleCategoryChange = useCallback((cat: DestinasiCategory) => {
+    setActiveCategory(cat);
+    setCurrentPage(1);
+  }, []);
+
+  const handlePageChange = useCallback((page: number) => {
+    setCurrentPage(page);
+    // Scroll ke atas section destinasi
+    sectionRef.current?.scrollIntoView({ behavior: "smooth", block: "start" });
+  }, []);
 
   const openDrawer = (dest: Destinasi) => {
     setDrawerContent(dest);
@@ -92,7 +114,7 @@ export default function DestinasiWisataPage() {
 
   return (
     <main>
-      <section className={styles.listSection} id="destinasi">
+      <section className={styles.listSection} id="destinasi" ref={sectionRef}>
         <div className={styles.contentContainer}>
           <span className="section-subtitle" data-scroll="fade-up">
             Pilihan Destinasi
@@ -112,7 +134,7 @@ export default function DestinasiWisataPage() {
               <button
                 key={cat.key}
                 className={`filter-tab ${activeCategory === cat.key ? "active" : ""}`}
-                onClick={() => setActiveCategory(cat.key)}
+                onClick={() => handleCategoryChange(cat.key)}
               >
                 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor">
                   <path d={cat.icon} />
@@ -122,14 +144,19 @@ export default function DestinasiWisataPage() {
             ))}
           </div>
 
-          {/* key={activeCategory} me-remount grid sehingga animasi
-              bottom-up berjalan setiap kali filter diklik. */}
-          <div className={styles.cardsGrid} key={activeCategory}>
-            {filteredDestinations.map((dest, index) => (
+          {/* key me-remount grid saat filter/halaman berganti; node baru
+              terdeteksi MutationObserver di ScrollAnimations sehingga
+              animasi GSAP berjalan ulang. */}
+          <div
+            className={styles.cardsGrid}
+            key={`${activeCategory}-${currentPage}`}
+            data-scroll-gsap
+          >
+            {paginatedDestinations.map((dest) => (
               <article
                 key={dest.id}
                 className={styles.destinasiCard}
-                style={{ "--i": index } as CSSProperties}
+                data-scroll-child
               >
                 <div className={styles.cardImage}>
                   <Image
@@ -179,6 +206,43 @@ export default function DestinasiWisataPage() {
               </article>
             ))}
           </div>
+
+          {/* Pagination */}
+          {totalPages > 1 && (
+            <nav className="pagination" aria-label="Navigasi halaman destinasi">
+              <button
+                className="page-btn"
+                onClick={() => handlePageChange(currentPage - 1)}
+                disabled={currentPage === 1}
+                aria-label="Halaman sebelumnya"
+              >
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                  <polyline points="15 18 9 12 15 6" />
+                </svg>
+              </button>
+              {Array.from({ length: totalPages }, (_, i) => i + 1).map((page) => (
+                <button
+                  key={page}
+                  className={`page-btn ${page === currentPage ? "active" : ""}`}
+                  onClick={() => handlePageChange(page)}
+                  aria-label={`Halaman ${page}`}
+                  aria-current={page === currentPage ? "page" : undefined}
+                >
+                  {page}
+                </button>
+              ))}
+              <button
+                className="page-btn"
+                onClick={() => handlePageChange(currentPage + 1)}
+                disabled={currentPage === totalPages}
+                aria-label="Halaman berikutnya"
+              >
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                  <polyline points="9 18 15 12 9 6" />
+                </svg>
+              </button>
+            </nav>
+          )}
 
           <a href="#map-section" className="btn-outline-primary">
             Lihat Semua di Peta

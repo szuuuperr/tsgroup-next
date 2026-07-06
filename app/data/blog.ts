@@ -15,7 +15,7 @@ export const blogPosts: BlogPost[] = [
     title: "5 Tips Liburan Hemat di Yogyakarta untuk Keluarga",
     excerpt:
       "Yogyakarta selalu menjadi destinasi favorit keluarga. Tapi bagaimana caranya agar liburan tetap seru tanpa menguras kantong? Simak tips berikut ini.",
-    image: "/assets/prambanan-gambar.png",
+    image: "/assets/destination/wisata-jogja.webp",
     category: "Tips Liburan",
     date: "28 Jun 2026",
     readingTime: "5 menit",
@@ -33,7 +33,7 @@ export const blogPosts: BlogPost[] = [
     title: "Mengenal Sejarah Kraton Yogyakarta Lebih Dekat",
     excerpt:
       "Kraton Yogyakarta bukan sekadar tempat tinggal sultan, melainkan pusat kebudayaan Jawa yang menyimpan banyak cerita sejarah yang patut kita pelajari.",
-    image: "/assets/kraton-yogyakarta.webp",
+    image: "/assets/destination/keraton-yogyakarta.webp",
     category: "Budaya",
     date: "14 Jun 2026",
     readingTime: "6 menit",
@@ -50,7 +50,7 @@ export const blogPosts: BlogPost[] = [
     title: "Rekomendasi Kuliner Malam di Sepanjang Jalan Malioboro",
     excerpt:
       "Jalan-jalan di Malioboro kurang lengkap rasanya jika belum mencoba kuliner malamnya. Dari angkringan hingga kopi joss, ini rekomendasinya.",
-    image: "/assets/tugu-jogja.jpg",
+    image: "/assets/destination/angkringan-lik-man.webp",
     category: "Kuliner",
     date: "30 Mei 2026",
     readingTime: "4 menit",
@@ -67,7 +67,7 @@ export const blogPosts: BlogPost[] = [
     title: "Keindahan Sunset di Candi Borobudur yang Menakjubkan",
     excerpt:
       "Menyaksikan matahari terbit dan terbenam di kawasan Candi Borobudur adalah pengalaman spiritual dan visual yang tidak boleh Anda lewatkan.",
-    image: "/assets/candi-borobudur.jpeg",
+    image: "/assets/Candi-Borobudur-Cover-261807757.webp",
     category: "Destinasi",
     date: "12 Mei 2026",
     readingTime: "5 menit",
@@ -84,7 +84,7 @@ export const blogPosts: BlogPost[] = [
     title: "Panduan Sewa Mobil Lepas Kunci di Yogyakarta",
     excerpt:
       "Ingin liburan lebih fleksibel? Menyewa mobil lepas kunci bisa jadi pilihan tepat. Pahami syarat dan tipsnya sebelum Anda memutuskan untuk menyewa.",
-    image: "/assets/inova.png",
+    image: "/assets/destination/tugu-jogja.webp",
     category: "Panduan",
     date: "25 Apr 2026",
     readingTime: "6 menit",
@@ -102,7 +102,7 @@ export const blogPosts: BlogPost[] = [
     title: "Pesona Pantai Parangtritis di Kala Senja",
     excerpt:
       "Pantai Parangtritis selalu punya daya magis tersendiri, terutama saat senja tiba. Ketahui waktu terbaik untuk berkunjung ke mari.",
-    image: "/assets/parangtritis-gambar.png",
+    image: "/assets/destination/pantai-parangtritis.webp",
     category: "Destinasi",
     date: "08 Apr 2026",
     readingTime: "4 menit",

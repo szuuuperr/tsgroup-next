@@ -3,7 +3,27 @@ import Image from "next/image";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import styles from "./BlogPost.module.css";
+import blogStyles from "../Blog.module.css";
 import { blogPosts, getPostBySlug } from "@/app/data/blog";
+
+const CalendarIcon = () => (
+  <svg viewBox="0 0 24 24" width="14" height="14" fill="currentColor">
+    <path d="M19 4h-1V2h-2v2H8V2H6v2H5c-1.11 0-1.99.9-1.99 2L3 20a2 2 0 002 2h14c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 16H5V10h14v10zm0-12H5V6h14v2z" />
+  </svg>
+);
+
+const ArrowIcon = () => (
+  <svg viewBox="0 0 24 24">
+    <path
+      d="M5 12h14M12 5l7 7-7 7"
+      stroke="currentColor"
+      strokeWidth="2"
+      strokeLinecap="round"
+      strokeLinejoin="round"
+      fill="none"
+    />
+  </svg>
+);
 
 export function generateStaticParams() {
   return blogPosts.map((post) => ({ slug: post.slug }));
@@ -81,28 +101,54 @@ export default async function BlogPostPage({
         </div>
       </article>
 
+      {/* Kartu memakai kelas Blog.module.css agar identik dengan
+          section "Semua Artikel" di halaman blog. */}
       <section className={styles.relatedSection}>
         <h2 className={styles.relatedTitle}>Artikel Lainnya</h2>
-        <div className={styles.relatedGrid}>
+        <div className={blogStyles.blogGrid} data-scroll-gsap>
           {relatedPosts.map((related) => (
-            <Link
-              href={`/blog/${related.slug}`}
-              className={styles.relatedCard}
+            <article
+              className={blogStyles.blogCard}
               key={related.slug}
+              data-scroll-child
             >
-              <div className={styles.relatedImage}>
+              <Link href={`/blog/${related.slug}`} className={blogStyles.blogImage}>
                 <Image
                   src={related.image}
                   alt={related.title}
                   fill
-                  sizes="(max-width: 768px) 100vw, 33vw"
+                  sizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 33vw"
                 />
+              </Link>
+              <div className={blogStyles.blogBody}>
+                <span
+                  className={`${blogStyles.categoryPill} ${blogStyles.categoryPillOutline}`}
+                >
+                  {related.category}
+                </span>
+                <Link href={`/blog/${related.slug}`}>
+                  <h3 className={blogStyles.blogTitle}>{related.title}</h3>
+                </Link>
+                <p className={blogStyles.blogExcerpt}>{related.excerpt}</p>
+                <div className={blogStyles.blogCardFooter}>
+                  <div className={blogStyles.featuredMeta}>
+                    <span className={blogStyles.metaItem}>
+                      <CalendarIcon />
+                      {related.date}
+                    </span>
+                    <span className={blogStyles.metaDot} aria-hidden="true" />
+                    <span className={blogStyles.metaItem}>{related.readingTime}</span>
+                  </div>
+                  <Link
+                    href={`/blog/${related.slug}`}
+                    className={blogStyles.blogReadMore}
+                  >
+                    Baca Selengkapnya
+                    <ArrowIcon />
+                  </Link>
+                </div>
               </div>
-              <div className={styles.relatedBody}>
-                <span className={styles.relatedCategory}>{related.category}</span>
-                <h3 className={styles.relatedCardTitle}>{related.title}</h3>
-              </div>
-            </Link>
+            </article>
           ))}
         </div>
       </section>

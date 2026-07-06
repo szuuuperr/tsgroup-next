@@ -16,7 +16,7 @@ export const destinations: Destinasi[] = [
   {
     id: "borobudur",
     name: "Candi Borobudur",
-    image: "/assets/borobudur-gambar.png",
+    image: "/assets/Candi-Borobudur-Cover-261807757.webp",
     category: ["budaya"],
     location: "Magelang, Jawa Tengah",
     description:
@@ -28,7 +28,7 @@ export const destinations: Destinasi[] = [
   {
     id: "prambanan",
     name: "Candi Prambanan",
-    image: "/assets/prambanan-gambar.png",
+    image: "/assets/destination/candi-prambanan-3.webp",
     category: ["budaya"],
     location: "Sleman, Yogyakarta",
     description:
@@ -40,7 +40,7 @@ export const destinations: Destinasi[] = [
   {
     id: "merapi",
     name: "Merapi Lava Tour",
-    image: "/assets/merapilava-gambar.png",
+    image: "/assets/destination/gunung-merapi-2.webp",
     category: ["alam"],
     location: "Sleman, Yogyakarta",
     description:
@@ -52,7 +52,7 @@ export const destinations: Destinasi[] = [
   {
     id: "parangtritis",
     name: "Pantai Parangtritis",
-    image: "/assets/parangtritis-gambar.png",
+    image: "/assets/destination/pantai-parangtritis.webp",
     category: ["pantai"],
     location: "Bantul, Yogyakarta",
     description:
@@ -64,7 +64,7 @@ export const destinations: Destinasi[] = [
   {
     id: "heha",
     name: "HeHa Ocean View",
-    image: "/assets/heha-gambar.png",
+    image: "/assets/destination/heha-ocean-view.webp",
     category: ["kekinian"],
     location: "Gunungkidul, Yogyakarta",
     description:
@@ -76,7 +76,7 @@ export const destinations: Destinasi[] = [
   {
     id: "goapindul",
     name: "Goa Pindul",
-    image: "/assets/goapindul-gambar.png",
+    image: "/assets/destination/goa-pindul.webp",
     category: ["alam"],
     location: "Gunungkidul, Yogyakarta",
     description:
@@ -112,7 +112,7 @@ export const destinations: Destinasi[] = [
   {
     id: "malioboro",
     name: "Jalan Malioboro",
-    image: "/assets/candi-borobudur.jpeg",
+    image: "/assets/destination/malioboro.webp",
     category: ["kekinian", "budaya"],
     location: "Kota Yogyakarta",
     description:
@@ -120,6 +120,151 @@ export const destinations: Destinasi[] = [
     highlight: "Pusat Kuliner & Belanja",
     rating: 4.6,
     reviewCount: 11200,
+  },
+  // ── Destinasi Baru ──────────────────────────────────────────
+  {
+    id: "tamansari",
+    name: "Taman Sari",
+    image: "/assets/destination/taman-sari.webp",
+    category: ["budaya"],
+    location: "Kota Yogyakarta",
+    description:
+      "Bekas taman kerajaan Kesultanan Yogyakarta yang dibangun pada abad ke-18. Kompleks ini memiliki kolam pemandian, lorong bawah tanah, dan arsitektur perpaduan Jawa dan Eropa yang memukau.",
+    highlight: "Taman Kerajaan Bersejarah",
+    rating: 4.5,
+    reviewCount: 7600,
+  },
+  {
+    id: "indrayanti",
+    name: "Pantai Indrayanti",
+    image: "/assets/destination/pantai-indrayanti.webp",
+    category: ["pantai"],
+    location: "Gunungkidul, Yogyakarta",
+    description:
+      "Pantai berpasir putih yang bersih dengan air laut biru jernih. Dilengkapi kafe-kafe tepi pantai yang nyaman untuk bersantai sambil menikmati pemandangan laut selatan yang menakjubkan.",
+    highlight: "Pasir Putih & Kafe Tepi Pantai",
+    rating: 4.6,
+    reviewCount: 8900,
+  },
+  {
+    id: "hutanpinus",
+    name: "Hutan Pinus Mangunan",
+    image: "/assets/destination/hutan-pinus-mangunan.webp",
+    category: ["alam"],
+    location: "Bantul, Yogyakarta",
+    description:
+      "Hutan pinus yang asri dengan udara sejuk di perbukitan Mangunan. Spot foto ikonik dengan ayunan di antara pepohonan pinus dan pemandangan perbukitan yang memanjakan mata.",
+    highlight: "Spot Foto Ayunan Pinus",
+    rating: 4.4,
+    reviewCount: 6500,
+  },
+  {
+    id: "ratuboko",
+    name: "Candi Ratu Boko",
+    image: "/assets/destination/candi-ratu-boko.webp",
+    category: ["budaya"],
+    location: "Sleman, Yogyakarta",
+    description:
+      "Situs arkeologi berupa reruntuhan istana di atas bukit dengan pemandangan sunset yang spektakuler. Terletak di dekat Candi Prambanan, tempat ini menawarkan panorama alam yang luar biasa.",
+    highlight: "Sunset di Atas Bukit",
+    rating: 4.5,
+    reviewCount: 5800,
+  },
+  {
+    id: "timang",
+    name: "Pantai Timang",
+    image: "/assets/destination/pantai-timang.webp",
+    category: ["pantai"],
+    location: "Gunungkidul, Yogyakarta",
+    description:
+      "Pantai eksotis dengan gondola tradisional yang menghubungkan daratan ke pulau karang. Sensasi menyeberangi lautan dengan gondola kayu menjadi pengalaman yang tak terlupakan.",
+    highlight: "Gondola Tradisional",
+    rating: 4.3,
+    reviewCount: 4700,
+  },
+  {
+    id: "kalibiru",
+    name: "Kalibiru",
+    image: "/assets/destination/kalibiru.webp",
+    category: ["alam", "kekinian"],
+    location: "Kulon Progo, Yogyakarta",
+    description:
+      "Wisata alam di perbukitan Menoreh dengan spot foto di atas pohon menghadap Waduk Sermo. Pemandangan perbukitan hijau dan waduk biru menjadi latar belakang foto yang menakjubkan.",
+    highlight: "Foto di Atas Pohon",
+    rating: 4.4,
+    reviewCount: 5100,
+  },
+  {
+    id: "goajomblang",
+    name: "Goa Jomblang",
+    image: "/assets/destination/goa-jomblang.webp",
+    category: ["alam"],
+    location: "Gunungkidul, Yogyakarta",
+    description:
+      "Goa vertikal dengan fenomena cahaya surga (heavenly light) yang menerobos masuk menyinari dasar goa. Petualangan menuruni goa sedalam 60 meter menjadi pengalaman yang mendebarkan.",
+    highlight: "Cahaya Surga",
+    rating: 4.7,
+    reviewCount: 6200,
+  },
+  {
+    id: "hehaskyview",
+    name: "HeHa Sky View",
+    image: "/assets/destination/heha-sky-view.webp",
+    category: ["kekinian"],
+    location: "Sleman, Yogyakarta",
+    description:
+      "Destinasi kekinian di dataran tinggi dengan konsep modern dan pemandangan kota Yogyakarta dari ketinggian. Spot foto unik, area kuliner, dan suasana romantis saat malam hari.",
+    highlight: "City View dari Ketinggian",
+    rating: 4.3,
+    reviewCount: 5500,
+  },
+  {
+    id: "tebingbreksi",
+    name: "Tebing Breksi",
+    image: "/assets/destination/tebing-breksi.webp",
+    category: ["alam", "kekinian"],
+    location: "Sleman, Yogyakarta",
+    description:
+      "Bekas tambang batu breksi yang disulap menjadi destinasi wisata dengan ukiran relief di dinding tebing. Lokasi yang sempurna untuk menikmati sunset dengan panorama kota Yogyakarta.",
+    highlight: "Bekas Tambang Eksotis",
+    rating: 4.4,
+    reviewCount: 7300,
+  },
+  {
+    id: "vredeburg",
+    name: "Museum Benteng Vredeburg",
+    image: "/assets/destination/museum-benteng-vredeburg.webp",
+    category: ["budaya"],
+    location: "Kota Yogyakarta",
+    description:
+      "Benteng peninggalan Belanda yang kini menjadi museum perjuangan kemerdekaan Indonesia. Koleksi diorama sejarah yang lengkap menjadikannya tempat edukasi sejarah yang menarik.",
+    highlight: "Museum Perjuangan",
+    rating: 4.3,
+    reviewCount: 4200,
+  },
+  {
+    id: "poktunggal",
+    name: "Pantai Pok Tunggal",
+    image: "/assets/destination/pantai-pok-tunggal.webp",
+    category: ["pantai"],
+    location: "Gunungkidul, Yogyakarta",
+    description:
+      "Pantai tersembunyi dengan pasir putih lembut dan tebing karang yang menjulang. Pohon duras tunggal yang ikonik menjadi ciri khas pantai ini serta spot camping yang populer.",
+    highlight: "Pantai Tersembunyi",
+    rating: 4.5,
+    reviewCount: 4900,
+  },
+  {
+    id: "nglanggeran",
+    name: "Embung Nglanggeran",
+    image: "/assets/destination/embung-nglanggeran.webp",
+    category: ["alam"],
+    location: "Gunungkidul, Yogyakarta",
+    description:
+      "Embung (waduk kecil) di puncak gunung api purba Nglanggeran dengan pemandangan sunset yang luar biasa. Perpaduan gunung batu purba dan waduk hijau menciptakan panorama yang unik.",
+    highlight: "Sunset Gunung Api Purba",
+    rating: 4.6,
+    reviewCount: 5300,
   },
 ];
 

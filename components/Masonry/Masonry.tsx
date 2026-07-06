@@ -126,7 +126,20 @@ const Masonry: React.FC<MasonryProps> = ({
   };
 
   useEffect(() => {
-    preloadImages(items.map(i => i.img)).then(() => setImagesReady(true));
+    // Jangan blokir tampilan menunggu SEMUA gambar (lambat di kunjungan
+    // pertama saat cache kosong): tampilkan setelah preload selesai ATAU
+    // maksimal 800ms, mana yang lebih dulu. Gambar yang belum selesai
+    // tetap muncul sendiri karena dirender sebagai background-image.
+    let done = false;
+    const markReady = () => {
+      if (!done) {
+        done = true;
+        setImagesReady(true);
+      }
+    };
+    preloadImages(items.map(i => i.img)).then(markReady);
+    const fallback = setTimeout(markReady, 800);
+    return () => clearTimeout(fallback);
   }, [items]);
 
   const grid = useMemo<GridItem[]>(() => {

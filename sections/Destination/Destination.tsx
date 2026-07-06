@@ -41,7 +41,7 @@ export default function Destination() {
               },
               { image: "/assets/goapindul-gambar.png", text: "Goa Pindul" },
             ]}
-            bend={2}
+            bend={1.2}
             textColor="#110b66"
             borderRadius={0.08}
             font="bold 30px var(--font-inter)"
